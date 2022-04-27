@@ -10,6 +10,7 @@
 
     <!body>
     <h1> Rusira Thamuditha</h1>
+    <h1>Akmal</h1>
 
     <?php
         include("templates/footer.php");
