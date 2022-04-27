@@ -133,7 +133,7 @@ create table saved_request(
 create table sale_complaints(
 	complaint_id int,
 	description varchar(500),
-	reviewed BIT default '0',
+	reviewed BIT default 0,
 	complaint_type varchar(50) not null,
 	sale_id int not null,
 	user_id int not null,
@@ -148,7 +148,7 @@ create table sale_complaints(
 create table request_complaints(
 	complaint_id int,
 	description varchar(500),
-	reviewed BIT default '0',
+	reviewed BIT default 0,
 	complaint_type varchar(50) not null,
 	request_id int not null,
 	user_id int not null,
