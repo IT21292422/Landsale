@@ -9,6 +9,7 @@
     ?>
 
     <!body>
+    <h1> Rusira </h1>
 
     <?php
         include("templates/footer.php");
