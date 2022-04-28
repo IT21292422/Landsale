@@ -216,6 +216,7 @@ insert into sale_complaints values(2,'Advertised photos were false ',1,'False ad
 insert into sale_complaints values(3,'description about the advertised plot of land is false',0,'False infomation', 3, 3,'2022-04-10');
 insert into sale_complaints values(4,'Addres of the advertised plot of land is false',0,'False infomation', 4, 4,'2022-04-11');
 insert into sale_complaints values(5,'seller do not intend to sell the stated amount of land area',1,'transaction denial', 5, 5,'2022-04-18');
+
 --user_phone
 insert into users_phone values(1, '0713456123');
 insert into users_phone values(1, '0771382373');
@@ -232,27 +233,30 @@ insert into users_phone values(8, '0819191790');
 insert into users_phone values(9, '0816361934');
 insert into users_phone values(10,'0713456789');
 
-
---request_phone -rusira
+--request_phone 
 insert into request_phone values(1,'0772345706');
 insert into request_phone values(2,'0714356348');
 insert into request_phone values(3,'0728523233');
 insert into request_phone values(4,'0312464937');
 insert into request_phone values(5,'0115493572');
---sale_phone -nimeth
+
+--sale_phone 
 insert into request_phone values(1,'0712553404');
 insert into request_phone values(2,'0776768617');
 insert into request_phone values(3,'0771646814');
 insert into request_phone values(4,'0786948035');
 insert into request_phone values(5,'0113633672');
---sale_save -akmal
 
+--sale_save 
 insert into sale_save values(1,1)
 insert into sale_save values(2,2)
 insert into sale_save values(3,3)
 insert into sale_save values(4,4)
 insert into sale_save values(5,5)
 
-
-
---request_save -ravindu
+--request_save 
+insert into request_save values(10,1)
+insert into request_save values(2,2)
+insert into request_save values(7,3)
+insert into request_save values(8,4)
+insert into request_save values(5,5)
