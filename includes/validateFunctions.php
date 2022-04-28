@@ -3,7 +3,6 @@
     {
         $foundEmpty = False;
 
-        //TODO CHECK EQUALITY FOR 0
         foreach ($fields as $fieldName=>$field)
         {
             //check if any mandatory field is missing and add errors

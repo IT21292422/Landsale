@@ -18,4 +18,10 @@
         //todo
         return NULL;
     }
+
+    function doesEmailExist($email)
+    {
+        //todo
+        return False;
+    }
 ?>

@@ -3,7 +3,6 @@
     require_once("includes/utilFunctions.php");
     require_once("includes/signinFunctions.php");
     require_once("includes/validateFunctions.php");
-
     require_once("includes/Field.php");
 
     //array with field names and corresponding field
@@ -30,32 +29,46 @@
         //check for empty fields
         if (!checkEmpty($fields))
         {
-            //validate user fields
+            
 
-            $isvalid = True;
-
-            //validate password strength
-            $isvalid = $isvalid and validatePassword($fields['password']->value, $fields['password']->error);
-
-            if ($fields['password']->value !== $fields['confirm_password']->value)
+            //check if email exists
+            if (doesEmailExist($fields['email']->value))
             {
-                $fields['confirm_password']->error = 'Passwords do not match';
-                $isvalid = False;
+                $fields['email']->error = 'This E-mail is already registered';
+            }
+            else
+            {
+                //variable to store if the data is valid
+                $isvalid = True;
+
+                //validate password strength
+                $isvalid = $isvalid and validatePassword($fields['password']->value, $fields['password']->error);
+                            
+                //check for matching passwords
+                if ($fields['password']->value !== $fields['confirm_password']->value)
+                {
+                    $fields['confirm_password']->error = 'Passwords do not match';
+                    $isvalid = False;
+                }
+
+                //check if email is valid
+                if (!filter_var($fields['email']->value, FILTER_VALIDATE_EMAIL))
+                {
+                    $fields['email']->error = "invalid email";
+                    $isvalid = False;
+                }
+
+                //if data is validated
+                if ($isvalid)
+                {
+                    $userId = addUser($fields); //add user to the database
+
+                    if ($userId) signin($userId);   //sign in the user
+                    else $formError = 'Registering failed'; //error if failed to add to the database
+                }
             }
 
-            if (!filter_var($fields['email']->value, FILTER_VALIDATE_EMAIL))
-            {
-                $fields['email']->error = "invalid email";
-                $isvalid = False;
-            }
-
-            if ($isvalid)
-            {
-                $userId = addUser($fields);
-
-                if ($userId) signin($userId);
-                else $formError = 'Registering failed';
-            }
+            
 
 
         }
