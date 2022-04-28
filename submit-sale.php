@@ -9,7 +9,7 @@
     ?>
 
     <!body
-        submit sale form
+        submit sale form [chathupa]
     >
 
     <?php

@@ -9,7 +9,7 @@
     ?>
 
     <!body
-        register form
+        register form [nimeth]
     >
 
     <?php
