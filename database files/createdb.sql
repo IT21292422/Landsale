@@ -229,4 +229,12 @@ insert into request_phone values(5,'0115493572');
 
 --sale_save -akmal
 
+insert into sale_save values(1,1)
+insert into sale_save values(2,2)
+insert into sale_save values(3,3)
+insert into sale_save values(4,4)
+insert into sale_save values(5,5)
+
+
+
 --request_save -ravindu
