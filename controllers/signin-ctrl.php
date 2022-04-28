@@ -2,27 +2,29 @@
     require_once("includes/dbFunctions.php");
     require_once("includes/utilFunctions.php");
     require_once("includes/signinFunctions.php");
+    require_once("includes/validateFunctions.php");
 
-    $email = "";
-    $pwd = "";
+    require_once("includes/Field.php");
 
-    //variables to pass error messages
-    $submitError = "";
+    //array with field names and corresponding field
+    $fields = array(
+        "email"=> new Field(True),
+        "password"=>new Field(True)
+    );
 
     if(isset($_POST["email"])) //check for a post method
     {
         //get values from user
-        $name = $_POST["email"];
-        $pwd = $_POST["password"];
+        foreach ($fields as $fieldName=>$field)
+        {
+            $fields[$fieldName]->value = $_POST[$fieldName];
+        }
 
         //check for empty fields
-        if (checkEmpty($name, $pwd))
+        if (!checkEmpty($fields))
         {
-            $submitError = "Fill required fields";
-        }
-        else
-        {   
-            $userId = matchUserPassword($name, $pwd); //check for matching email password pair
+            //check for matching email password pair
+            $userId = matchUserPassword($fields['email']->value, $fields['password']->value); 
 
             if ($userId === NULL)    // if user is not valid
             {
@@ -34,8 +36,6 @@
                 header('Location: /');  //redirrect to homepage
             }
         }
-
-
     }
    
 

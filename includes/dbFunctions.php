@@ -12,4 +12,10 @@
         //todo
         return array();
     }
+
+    function addUser($fields)
+    {
+        //todo
+        return NULL;
+    }
 ?>
