@@ -1,3 +1,6 @@
+<?php
+    include("controllers/register-ctrl.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +12,11 @@
     ?>
 
     <!body
-        register form
+        register form [nimeth]
     >
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+
+    </form>
 
     <?php
         include("templates/footer.php");

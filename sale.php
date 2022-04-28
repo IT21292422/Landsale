@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Submit sale</title>
+    <title>Sale Post</title>
 </head>
 <body>
     <?php
@@ -9,7 +9,7 @@
     ?>
 
     <!body
-        submit sale form [chathupa]
+        view a sale post
     >
 
     <?php
