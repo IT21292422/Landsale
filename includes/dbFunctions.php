@@ -1,7 +1,7 @@
 <?php
     require_once("includes/dbcon.php");
 
-    function matchUserPassword($name, $pwd)
+    function matchUserPassword($email, $pwd)
     {
         //todo
         return NULL;
