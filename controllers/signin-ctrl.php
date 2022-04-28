@@ -1,23 +1,43 @@
 <?php
-    include_once("../includes/dbcon.php");
-    include_once("../includes/dbfunctions.php");
-    include_once("../includes/validateFunctions.php");
+    require_once("includes/dbFunctions.php");
+    require_once("includes/utilFunctions.php");
+    require_once("includes/signinFunctions.php");
 
-    if(isset($_POST["username"])) //check for a post method
+    $email = "";
+    $pwd = "";
+
+    //variables to pass error messages
+    $submitError = "";
+
+    if(isset($_POST["email"])) //check for a post method
     {
-        //start session
-        session_start();
-
         //get values from user
-        $name = $_POST["username"];
-        $pwd = $_POST["pwd"];
+        $name = $_POST["email"];
+        $pwd = $_POST["password"];
 
         //check for empty fields
-        if (checkEmpty(array($name, $pwd)))
+        if (checkEmpty($name, $pwd))
         {
-            
+            $submitError = "Fill required fields";
         }
+        else
+        {   
+            $userId = matchUserPassword($name, $pwd); //check for matching email password pair
+
+            if ($userId === NULL)    // if user is not valid
+            {
+                $submitError = "Email and password do not match";
+            }
+            else    //if user is valid
+            {
+                signin($userId);    //signin user
+                header('Location: /');  //redirrect to homepage
+            }
+        }
+
+
     }
+   
 
 
 
