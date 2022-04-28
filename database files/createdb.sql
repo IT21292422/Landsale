@@ -206,17 +206,16 @@ insert into request_type values (4, 'Land wanted from Ambalangoda', '6.2442N,80.
 insert into request_type values (5, 'Land wanted from Peradeniya area', '7.2698N,80.5938E', 'Preferred if the land is close to the main road and the Peradeniya University', 'Peradeniya', 'Kandy', 'Central', 'Negotiable', 'Negotiable', 280, 150, 25, 'data/image/img_44628.jpg', 2, 1, '2022-04-14');
 
 --request_complaints
-insert into request_complaints values(1,'requester is asking for a lower price than advertised minimum price',0,'False advertisment',1, 1); 
-insert into request_complaints values(2,'requester seems indecisive and keeps pushing back disscussions for months without no explanation',0,'transaction denial', 2, 2);
-insert into request_complaints values(3,'requester is asking for a smaller area of land for a lower price compared to stated requirments',1,'False advertisment', 3, 3);
+insert into request_complaints values(1,'requester is asking for a lower price than advertised minimum price',0,'False advertisment',1, 1,'2022-03-21'); 
+insert into request_complaints values(2,'requester seems indecisive and keeps pushing back disscussions for months without no explanation',0,'transaction denial', 2, 2,'2022-04-12');
+insert into request_complaints values(3,'requester is asking for a smaller area of land for a lower price compared to stated requirments',1,'False advertisment', 3, 3,'2022-04-13');
 
 --sale_complaints
-insert into sale_complaints values(1,'seller is asking for a higher price than advertised maximum price',1,'False advertisment', 1, 1);
-insert into sale_complaints values(2,'Advertised photos were false ',1,'False advertisment', 2, 2);
-insert into sale_complaints values(3,'description about the advertised plot of land is false',0,'False infomation', 3, 3);
-insert into sale_complaints values(4,'Addres of the advertised plot of land is false',0,'False infomation', 4, 4);
-insert into sale_complaints values(5,'seller do not intend to sell the stated amount of land area',1,'transaction denial', 5, 5);
-
+insert into sale_complaints values(1,'seller is asking for a higher price than advertised maximum price',1,'False advertisment', 1, 1,'2022-04-01');
+insert into sale_complaints values(2,'Advertised photos were false ',1,'False advertisment', 2, 2,'2022-04-05');
+insert into sale_complaints values(3,'description about the advertised plot of land is false',0,'False infomation', 3, 3,'2022-04-10');
+insert into sale_complaints values(4,'Addres of the advertised plot of land is false',0,'False infomation', 4, 4,'2022-04-11');
+insert into sale_complaints values(5,'seller do not intend to sell the stated amount of land area',1,'transaction denial', 5, 5,'2022-04-18');
 --user_phone
 insert into users_phone values(1, '0713456123');
 insert into users_phone values(1, '0771382373');
@@ -241,7 +240,11 @@ insert into request_phone values(3,'0728523233');
 insert into request_phone values(4,'0312464937');
 insert into request_phone values(5,'0115493572');
 --sale_phone -nimeth
-
+insert into request_phone values(1,'0712553404');
+insert into request_phone values(2,'0776768617');
+insert into request_phone values(3,'0771646814');
+insert into request_phone values(4,'0786948035');
+insert into request_phone values(5,'0113633672');
 --sale_save -akmal
 
 insert into sale_save values(1,1)
