@@ -199,11 +199,11 @@ insert into sale_type values(2,'Budget plan is the Budget Package which is quite
 insert into sale_type values(3,'Premium plan is the Premium Version to make you post featured in the home page with a validity period of 90 days',1000.00,'Premium')
 
 --request
-insert into request_type values (1, 'Land needed from Kandy', '7.2906N,80.6337E', 'Should be close by to the city and 10mins driving distance to the city maximum', 'Kandy', 'Kandy','Central', 'Negotiable', 'Negotiable', 400, 300, 5, 'data/image/img_34518.jpg', 1, 7);
-insert into request_type values (2, '200perch land wanted from Malbe, Colombo', '6.9064N,79.9692E', 'Need a 200purchase land from Malabe, Should be close to the E02 highway', 'Malabe', 'Colombo', 'Western', 30000000, 10000000, 250, 100, 15, 'data/image/img_45679.jpeg', 3, 8);
-insert into request_type values (3, 'Small land wanted from mawathagama', '7.4318N,80.4426E', 'Land wanted from Mawathagama area. Should be witin 20km of the city','Mawathagama', 'Kurunegala', 'North Western', 'Negotiable', 'Negotiable', 150, 70, 20, 'data/image/img_89456.jpeg', 2, 10);
-insert into request_type values (4, 'Land wanted from Ambalangoda', '6.2442N,80.0585E', 'Should be close to the Sharmashoka college and A2 road', 'Ambalangoda', 'Galle', 'Southern', 80000000, 25000000, 600, 400, 15, 'data/image/img_89345.jpeg', 3, 4);
-insert into request_type values (5, 'Land wanted from Peradeniya area', '7.2698N,80.5938E', 'Preferred if the land is close to the main road and the Peradeniya University', 'Peradeniya', 'Kandy', 'Central', 'Negotiable', 'Negotiable', 280, 150, 25, 'data/image/img_44628.jpg', 2, 1);
+insert into request_type values (1, 'Land needed from Kandy', '7.2906N,80.6337E', 'Should be close by to the city and 10mins driving distance to the city maximum', 'Kandy', 'Kandy','Central', 'Negotiable', 'Negotiable', 400, 300, 5, 'data/image/img_34518.jpg', 1, 7, '2022-04-02');
+insert into request_type values (2, '200perch land wanted from Malbe, Colombo', '6.9064N,79.9692E', 'Need a 200purchase land from Malabe, Should be close to the E02 highway', 'Malabe', 'Colombo', 'Western', 30000000, 10000000, 250, 100, 15, 'data/image/img_45679.jpeg', 3, 8, '2022-03-21');
+insert into request_type values (3, 'Small land wanted from mawathagama', '7.4318N,80.4426E', 'Land wanted from Mawathagama area. Should be witin 20km of the city','Mawathagama', 'Kurunegala', 'North Western', 'Negotiable', 'Negotiable', 150, 70, 20, 'data/image/img_89456.jpeg', 2, 10, '2022-04-09');
+insert into request_type values (4, 'Land wanted from Ambalangoda', '6.2442N,80.0585E', 'Should be close to the Sharmashoka college and A2 road', 'Ambalangoda', 'Galle', 'Southern', 80000000, 25000000, 600, 400, 15, 'data/image/img_89345.jpeg', 3, 4, '2022-03-30');
+insert into request_type values (5, 'Land wanted from Peradeniya area', '7.2698N,80.5938E', 'Preferred if the land is close to the main road and the Peradeniya University', 'Peradeniya', 'Kandy', 'Central', 'Negotiable', 'Negotiable', 280, 150, 25, 'data/image/img_44628.jpg', 2, 1, '2022-04-14');
 
 --request_complaints
 insert into request_complaints values(1,'requester is asking for a lower price than advertised minimum price',0,'False advertisment',1, 1); 
@@ -216,6 +216,9 @@ insert into sale_complaints values(2,'Advertised photos were false ',1,'False ad
 insert into sale_complaints values(3,'description about the advertised plot of land is false',0,'False infomation', 3, 3);
 insert into sale_complaints values(4,'Addres of the advertised plot of land is false',0,'False infomation', 4, 4);
 insert into sale_complaints values(5,'seller do not intend to sell the stated amount of land area',1,'transaction denial', 5, 5);
+
+--user_phone
+insert into 
 
 --user_phone -chathupa
 
