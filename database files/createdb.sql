@@ -218,9 +218,21 @@ insert into sale_complaints values(4,'Addres of the advertised plot of land is f
 insert into sale_complaints values(5,'seller do not intend to sell the stated amount of land area',1,'transaction denial', 5, 5);
 
 --user_phone
-insert into 
+insert into users_phone values(1, '0713456123');
+insert into users_phone values(1, '0771382373');
+insert into users_phone values(2, '0813983498');
+insert into users_phone values(3, '0332419068');
+insert into users_phone values(3, '0718757872');
+insert into users_phone values(4, '0717867474');
+insert into users_phone values(5, '0316738999');
+insert into users_phone values(6, '0315637382');
+insert into users_phone values(6, '0778949181');
+insert into users_phone values(6, '0714567411');
+insert into users_phone values(7, '0778932853');
+insert into users_phone values(8, '0819191790');
+insert into users_phone values(9, '0816361934');
+insert into users_phone values(10,'0713456789');
 
---user_phone -chathupa
 
 --request_phone -rusira
 insert into request_phone values(1,'0772345706');
