@@ -220,7 +220,11 @@ insert into sale_complaints values(5,'seller do not intend to sell the stated am
 --user_phone -chathupa
 
 --request_phone -rusira
-
+insert into request_phone values(1,'0772345706');
+insert into request_phone values(2,'0714356348');
+insert into request_phone values(3,'0728523233');
+insert into request_phone values(4,'0312464937');
+insert into request_phone values(5,'0115493572');
 --sale_phone -nimeth
 
 --sale_save -akmal
