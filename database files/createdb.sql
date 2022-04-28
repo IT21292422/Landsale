@@ -187,11 +187,11 @@ insert into sale_type values(2,'Budget plan is the Budget Package which is quite
 insert into sale_type values(3,'Premium plan is the Premium Version to make you post featured in the home page with a validity period of 90 days',1000.00,'Premium')
 
 --sale
-insert into sale values( 1,'Land for Sale in Maharagama','6.8511N,79.9212E', 'A 20 perches land in the heart of Maharagama is available for sale. Price Negotiable ','Maharagama', 'Colombo', 'Western Province', 750000,20, 'No.47, High Level Road, Maharagama ',1, 1);
-insert into sale values( 2,'Valuable land in Ja-ela for Sale ','7.0668N,79.9041E', 'A 15 perches bare land in Ja-ela which is 500m from Highway Exit is available for sale. Price Negotiable ','Ja-ela', 'Gampaha', 'Western Province', 500000,15, 'No.38/9, Seeduwa Road, Ja-ela ',2, 2);
-insert into sale values( 3,'25 Perch land for Sale in Kaduwela','6.9291N,79.9828E', 'A 25 perches, flat land in the Residential Area of Kaduwela is available for sale. Price Negotiable ','Kaduwela', 'Colombo', 'Western Province', 800000,25, 'No.13/5, High Level Road, Kaduwela',1, 3);
-insert into sale values( 4,'Valuable Scenic Land For Sale in Nuwara Eliya','6.9497N,80.7891E', 'A 8 perches land in the heart of Nuwara Eliya overlooking Gregory Lake is available for sale. Price Not Negotiable ','Nuwara Eliya', 'Nuwara Eliya', 'Central Province', 900000,8, 'No.5, Abepura, Nuwara Eliya ',3, 4);
-insert into sale values( 5,'Land for Sale in Pelawatte','6.8906N,79.9249E', 'A 10 perches land in the suburbs of Pelawatte closer to Battaramulla is available for sale. Price Negotiable ','Battaramulla', 'Colombo', 'Western Province', 950000,10, 'No.28, Pannipitiya Road, Pelawatte ',3, 5);
+insert into sale values( 1,'Land for Sale in Maharagama','6.8511N,79.9212E', 'A 20 perches land in the heart of Maharagama is available for sale. Price Negotiable ','Maharagama', 'Colombo', 'Western Province', 750000,20, 'No.47, High Level Road, Maharagama ',1, 1,'2022-4-1');
+insert into sale values( 2,'Valuable land in Ja-ela for Sale ','7.0668N,79.9041E', 'A 15 perches bare land in Ja-ela which is 500m from Highway Exit is available for sale. Price Negotiable ','Ja-ela', 'Gampaha', 'Western Province', 500000,15, 'No.38/9, Seeduwa Road, Ja-ela ',2, 2,'2022-4-2');
+insert into sale values( 3,'25 Perch land for Sale in Kaduwela','6.9291N,79.9828E', 'A 25 perches, flat land in the Residential Area of Kaduwela is available for sale. Price Negotiable ','Kaduwela', 'Colombo', 'Western Province', 800000,25, 'No.13/5, High Level Road, Kaduwela',1, 3,'2022-4-2');
+insert into sale values( 4,'Valuable Scenic Land For Sale in Nuwara Eliya','6.9497N,80.7891E', 'A 8 perches land in the heart of Nuwara Eliya overlooking Gregory Lake is available for sale. Price Not Negotiable ','Nuwara Eliya', 'Nuwara Eliya', 'Central Province', 900000,8, 'No.5, Abepura, Nuwara Eliya ',3, 4,'2022-4-1');
+insert into sale values( 5,'Land for Sale in Pelawatte','6.8906N,79.9249E', 'A 10 perches land in the suburbs of Pelawatte closer to Battaramulla is available for sale. Price Negotiable ','Battaramulla', 'Colombo', 'Western Province', 950000,10, 'No.28, Pannipitiya Road, Pelawatte ',3, 5,'2022-4-5');
 
 --request_type
 insert into sale_type values(1,'Basic plan is the Free and Standard Package, with a validity period of 30 days',0.00,'Basic')
