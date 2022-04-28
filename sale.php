@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Home</title>
+    <title>Sale Post</title>
 </head>
 <body>
     <?php
         include("templates/header.php");
     ?>
 
-    <!body>
-    <h1> Rusira Thamuditha</h1>
-    <h1>Akmal</h1>
+    <!body
+        view a sale post
+    >
 
     <?php
         include("templates/footer.php");
