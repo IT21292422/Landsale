@@ -141,7 +141,7 @@ create table sale_complaints(
 	constraint sale_complaints_pk primary key (complaint_id),
 	constraint sale_complaints_fk_sale foreign key (sale_id) references sale(sale_id),
 	constraint sale_complaints_fk_users foreign key (user_id) references users(user_id),
-	constraint sale_complaints_check_type check (complaint_type in ('false advertisement', 'spam and abuse', 'false imformation', 'transaction denial'))
+	constraint sale_complaints_check_type check (complaint_type in ('false advertisement', 'spam and abuse', 'false information', 'transaction denial'))
 );
 
 
@@ -156,7 +156,7 @@ create table request_complaints(
 	constraint request_complaints_pk primary key (complaint_id),
 	constraint request_complaints_fk_sale foreign key (request_id) references request(request_id),
 	constraint request_complaints_fk_users foreign key (user_id) references users(user_id),
-	constraint request_complaints_check_type check (complaint_type in ('false advertisement', 'spam and abuse', 'false imformation', 'transaction denial'))
+	constraint request_complaints_check_type check (complaint_type in ('false advertisement', 'spam and abuse', 'false information', 'transaction denial'))
 );
 
 --enter sample data
@@ -194,27 +194,27 @@ insert into sale values( 4,'Valuable Scenic Land For Sale in Nuwara Eliya','6.94
 insert into sale values( 5,'Land for Sale in Pelawatte','6.8906N,79.9249E', 'A 10 perches land in the suburbs of Pelawatte closer to Battaramulla is available for sale. Price Negotiable ','Battaramulla', 'Colombo', 'Western Province', 950000,10, 'No.28, Pannipitiya Road, Pelawatte ',3, 5,'2022-4-5');
 
 --request_type
-insert into sale_type values(1,'Basic plan is the Free and Standard Package, with a validity period of 30 days',0.00,'Basic')
-insert into sale_type values(2,'Budget plan is the Budget Package which is quite similar to the Basic Plan but with a validity period of 60 days',300.00,'Budget')
-insert into sale_type values(3,'Premium plan is the Premium Version to make you post featured in the home page with a validity period of 90 days',1000.00,'Premium')
+insert into request_type values(1,'Basic plan is the Free and Standard Package, with a validity period of 30 days',0.00,'Basic')
+insert into request_type values(2,'Budget plan is the Budget Package which is quite similar to the Basic Plan but with a validity period of 60 days',300.00,'Budget')
+insert into request_type values(3,'Premium plan is the Premium Version to make you post featured in the home page with a validity period of 90 days',1000.00,'Premium')
 
 --request
-insert into request_type values (1, 'Land needed from Kandy', '7.2906N,80.6337E', 'Should be close by to the city and 10mins driving distance to the city maximum', 'Kandy', 'Kandy','Central', 'Negotiable', 'Negotiable', 400, 300, 5, 'data/image/img_34518.jpg', 1, 7, '2022-04-02');
-insert into request_type values (2, '200perch land wanted from Malbe, Colombo', '6.9064N,79.9692E', 'Need a 200purchase land from Malabe, Should be close to the E02 highway', 'Malabe', 'Colombo', 'Western', 30000000, 10000000, 250, 100, 15, 'data/image/img_45679.jpeg', 3, 8, '2022-03-21');
-insert into request_type values (3, 'Small land wanted from mawathagama', '7.4318N,80.4426E', 'Land wanted from Mawathagama area. Should be witin 20km of the city','Mawathagama', 'Kurunegala', 'North Western', 'Negotiable', 'Negotiable', 150, 70, 20, 'data/image/img_89456.jpeg', 2, 10, '2022-04-09');
-insert into request_type values (4, 'Land wanted from Ambalangoda', '6.2442N,80.0585E', 'Should be close to the Sharmashoka college and A2 road', 'Ambalangoda', 'Galle', 'Southern', 80000000, 25000000, 600, 400, 15, 'data/image/img_89345.jpeg', 3, 4, '2022-03-30');
-insert into request_type values (5, 'Land wanted from Peradeniya area', '7.2698N,80.5938E', 'Preferred if the land is close to the main road and the Peradeniya University', 'Peradeniya', 'Kandy', 'Central', 'Negotiable', 'Negotiable', 280, 150, 25, 'data/image/img_44628.jpg', 2, 1, '2022-04-14');
+insert into request values (1, 'Land needed from Kandy', '7.2906N,80.6337E', 'Should be close by to the city and 10mins driving distance to the city maximum', 'Kandy', 'Kandy','Central', -1, -1, 400, 300, 5, 'data/image/img_34518.jpg', 1, 7, '2022-04-02');
+insert into request values (2, '200perch land wanted from Malbe, Colombo', '6.9064N,79.9692E', 'Need a 200purchase land from Malabe, Should be close to the E02 highway', 'Malabe', 'Colombo', 'Western', 30000000, 10000000, 250, 100, 15, 'data/image/img_45679.jpeg', 3, 8, '2022-03-21');
+insert into request values (3, 'Small land wanted from mawathagama', '7.4318N,80.4426E', 'Land wanted from Mawathagama area. Should be witin 20km of the city','Mawathagama', 'Kurunegala', 'North Western', -1, -1, 150, 70, 20, 'data/image/img_89456.jpeg', 2, 10, '2022-04-09');
+insert into request values (4, 'Land wanted from Ambalangoda', '6.2442N,80.0585E', 'Should be close to the Sharmashoka college and A2 road', 'Ambalangoda', 'Galle', 'Southern', 80000000, 25000000, 600, 400, 15, 'data/image/img_89345.jpeg', 3, 4, '2022-03-30');
+insert into request values (5, 'Land wanted from Peradeniya area', '7.2698N,80.5938E', 'Preferred if the land is close to the main road and the Peradeniya University', 'Peradeniya', 'Kandy', 'Central', -1, -1, 280, 150, 25, 'data/image/img_44628.jpg', 2, 1, '2022-04-14');
 
 --request_complaints
-insert into request_complaints values(1,'requester is asking for a lower price than advertised minimum price',0,'False advertisment',1, 1,'2022-03-21'); 
+insert into request_complaints values(1,'requester is asking for a lower price than advertised minimum price',0,'false advertisement',1, 1,'2022-03-21'); 
 insert into request_complaints values(2,'requester seems indecisive and keeps pushing back disscussions for months without no explanation',0,'transaction denial', 2, 2,'2022-04-12');
-insert into request_complaints values(3,'requester is asking for a smaller area of land for a lower price compared to stated requirments',1,'False advertisment', 3, 3,'2022-04-13');
+insert into request_complaints values(3,'requester is asking for a smaller area of land for a lower price compared to stated requirments',1,'false advertisement', 3, 3,'2022-04-13');
 
 --sale_complaints
-insert into sale_complaints values(1,'seller is asking for a higher price than advertised maximum price',1,'False advertisment', 1, 1,'2022-04-01');
-insert into sale_complaints values(2,'Advertised photos were false ',1,'False advertisment', 2, 2,'2022-04-05');
-insert into sale_complaints values(3,'description about the advertised plot of land is false',0,'False infomation', 3, 3,'2022-04-10');
-insert into sale_complaints values(4,'Addres of the advertised plot of land is false',0,'False infomation', 4, 4,'2022-04-11');
+insert into sale_complaints values(1,'seller is asking for a higher price than advertised maximum price',1,'false advertisement', 1, 1,'2022-04-01');
+insert into sale_complaints values(2,'Advertised photos were false ',1,'false advertisement', 2, 2,'2022-04-05');
+insert into sale_complaints values(3,'description about the advertised plot of land is false',0,'false information', 3, 3,'2022-04-10');
+insert into sale_complaints values(4,'Addres of the advertised plot of land is false',0,'false information', 4, 4,'2022-04-11');
 insert into sale_complaints values(5,'seller do not intend to sell the stated amount of land area',1,'transaction denial', 5, 5,'2022-04-18');
 
 --user_phone
@@ -248,15 +248,23 @@ insert into request_phone values(4,'0786948035');
 insert into request_phone values(5,'0113633672');
 
 --sale_save 
-insert into sale_save values(1,1)
-insert into sale_save values(2,2)
-insert into sale_save values(3,3)
-insert into sale_save values(4,4)
-insert into sale_save values(5,5)
+insert into saved_sale values(1,1)
+insert into saved_sale values(2,2)
+insert into saved_sale values(3,3)
+insert into saved_sale values(4,4)
+insert into saved_sale values(5,5)
 
 --request_save 
-insert into request_save values(10,1)
-insert into request_save values(2,2)
-insert into request_save values(7,3)
-insert into request_save values(8,4)
-insert into request_save values(5,5)
+insert into saved_request values(1,10)
+insert into saved_request values(2,2)
+insert into saved_request values(3,7)
+insert into saved_request values(4,8)
+insert into saved_request values(5,5)
+
+--sale_media
+insert into sale_media values(4,'/media/32423.png');
+insert into sale_media values(3,'/media/52727.png');
+insert into sale_media values(2,'/media/78285.png');
+insert into sale_media values(1,'/media/27572.png');
+insert into sale_media values(5,'/media/75257.png');
+
