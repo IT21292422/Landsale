@@ -9,13 +9,14 @@
 <body>
    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
        <label for="email">E-mail</label>
-       <input type="text" name="email" value="<?php echo $fields['email']->value ?>">
+       <input type="text" name="email" value="<?php echo $values['email'] ?>">
        <br>
-       <?php    if (!empty($fields['email']->error)) echo "<label>".$fields['email']->error."</label><br>";    ?>
+       <?php    if (!empty($errors['email'])) echo "<label>".$errors['email']."</label><br>";    ?>
        <label for="pwd">Password</label>
-       <input type="password" name="password" value="<?php echo $fields['password']->value ?>">
+       <input type="password" name="password" value="<?php echo $values['password'] ?>">
        <br>
-       <?php    if (!empty($fields['password']->error)) echo "<label>".$fields['password']->error."</label><br>";    ?>
+       <?php    if (!empty($errors['password'])) echo "<label>".$errors['password']."</label><br>";    ?>
+       <?php    if (!empty($errors['form'])) echo "<label>".$errors['form']."</label><br>";    ?>
        <input type="submit" name="submit" value="Submit">
    </form> 
 </body>

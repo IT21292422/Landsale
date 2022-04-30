@@ -1,16 +1,16 @@
 <?php
-    function checkEmpty(&$fields) //check for empty values in the array DO NOT USE FOR NUMERIC VALUES
+    function checkEmpty($values, $required, &$errors) //check for empty values in the array
     {
         $foundEmpty = False;
 
-        foreach ($fields as $fieldName=>$field)
+        foreach ($required as $fieldName=>$isRequired)
         {
             //check if any mandatory field is missing and add errors
-            if ($field->required and ($field->value === "" or $field->value === NULL or $field->value === array())) 
+            if ($isRequired and ($values[$fieldName] === "" or $values[$fieldName] === NULL or $values[$fieldName] === array())) 
             {
                 $foundEmpty = True;
 
-                $fields[$fieldName]->error = 'This field is required';
+                $errors[$fieldName] = 'This field is required';
             }
         }
         return $foundEmpty;  

@@ -13,7 +13,7 @@
         return array();
     }
 
-    function addUser($fields)
+    function addUser($values)
     {
         //todo
         return NULL;
