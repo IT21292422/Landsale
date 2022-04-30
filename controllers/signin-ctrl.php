@@ -42,7 +42,17 @@
             else    //if user is valid
             {
                 signin($userId);    //signin user
-                header('Location: /');  //redirrect to homepage
+
+
+                if(!empty($_POST['redirect']))
+                {
+                    //todo redirect
+                    header('Location: /landsale');  //redirect to homepage
+                }
+                else
+                {
+                    header('Location: /landsale');  //redirect to homepage
+                }
             }
         }
     }

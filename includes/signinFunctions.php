@@ -7,14 +7,15 @@
             session_start();
         }
 
-        $userDetails = getBasicUserDetails();   //get user details
+        $userDetails = getBasicUserDetails($userId);   //get user details
+
 
         //assign user details to session variables
-        $_SESSION['userId'] == $userDetails['user_id'];     
-        $_SESSION['firstName'] == $userDetails['first_name'];
-        $_SESSION['lastName'] == $userDetails['last_name'];
-        $_SESSION['accountType'] == $userDetails['account_type'];
-        $_SESSION['profile'] == $userDetails['profile_photo'];
+        $_SESSION['user_id'] = $userDetails['user_id'];     
+        $_SESSION['first_name'] = $userDetails['first_name'];
+        $_SESSION['last_name'] = $userDetails['last_name'];
+        $_SESSION['account_type'] = $userDetails['account_type'];
+        $_SESSION['profile_photo'] = $userDetails['profile_photo'];
     }
 
     function signout()

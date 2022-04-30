@@ -2,15 +2,28 @@
     require_once("includes/dbcon.php");
 
     function matchUserPassword($email, $pwd)
-    {
-        //todo
-        return NULL;
+    {   
+        global $con;
+        $email = strtolower($email);
+        $sql = "select user_id from users where email= '$email' and password= '$pwd'";
+        $results = $con->query($sql);
+
+        if ($results->num_rows < 1) return NULL;
+
+        return $results->fetch_assoc()['user_id'];
     }
 
     function getBasicUserDetails($userId)
     {
-        //todo
-        return array();
+        global $con;
+
+        $sql = "select user_id, first_name, last_name, profile_photo, account_type from users where user_id = $userId";
+
+        $results = $con->query($sql);
+
+        if ($results->num_rows < 1) return NULL;
+
+        return $results->fetch_array(MYSQLI_ASSOC);
     }
 
     function addUser($values)

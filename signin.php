@@ -17,6 +17,7 @@
        <br>
        <?php    if (!empty($errors['password'])) echo "<label>*".$errors['password']."</label><br>";    ?>
        <?php    if (!empty($errors['form'])) echo "<label>*".$errors['form']."</label><br>";    ?>
+       <?php    if (!empty($_GET['redirect'])) echo "<input type='hidden' name='redirect' value='".$_GET['redirect']."'>";    ?>
        <input type="submit" name="submit" value="Submit">
    </form> 
 </body>
