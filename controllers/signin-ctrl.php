@@ -4,6 +4,7 @@
     require_once("includes/signinFunctions.php");
     require_once("includes/validateFunctions.php");
 
+    //array to store mandatoriness of each field of form
     $required = array(
         "email"=> True,
         "password"=>True

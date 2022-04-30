@@ -14,15 +14,15 @@
         <legend>Submit Request Form</legend>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
             <label>Title</label> <br>
-            <input type="text" name="title" required><br><br> 
+            <input type="text" name="title" ><br><br> 
             <label>Cover Photo : </label>
             <input type="file" name="cover_photo" accept="image/png, image/jpeg" multiple><br><br> 
             <label>Location</label> <br>
-            <input type="text" name="location" required><br><br> 
+            <input type="text" name="location" ><br><br> 
             <label>Description</label> <br>
-            <textarea name="description" rows="10" cols="50" required></textarea><br><br> 
+            <textarea name="description" rows="10" cols="50" ></textarea><br><br> 
             <label>City</label> <br>
-            <input type="text" name="city" required><br><br> 
+            <input type="text" name="city" ><br><br> 
             <label>District</label> <br>
             <select name="district">
                 <option value="Anuradhapura">Anuradhapura</option>
@@ -64,15 +64,15 @@
                 <option value="Southern">Southern Province</option>
             </select> <br><br>
             <label>Maximum Price</label> <br>
-            <input type="text" name="max_price" pattern="[0-9]{10}" required><br><br> 
+            <input type="text" name="max_price" pattern="[0-9]{10}" ><br><br> 
             <label>Minimum Price</label> <br>
-            <input type="text" name="min_price" pattern="[0-9]{10}" required><br><br> 
+            <input type="text" name="min_price" pattern="[0-9]{10}" ><br><br> 
             <label>Maximum Area</label> <br>
-            <input type="text" name="max_area" pattern="[0-9]{10}" required><br><br> 
+            <input type="text" name="max_area" pattern="[0-9]{10}" ><br><br> 
             <label>Minimum Area</label> <br>
-            <input type="text" name="min_area" pattern="[0-9]{10}" required><br><br> 
+            <input type="text" name="min_area" pattern="[0-9]{10}" ><br><br> 
             <label>Distance</label> <br>
-            <input type="text" name="distance" pattern="[0-9]{10}" required><br><br> 
+            <input type="text" name="distance" pattern="[0-9]{10}" ><br><br> 
             <input type="reset" name ="reset" value="Reset">
             <input type="submit" name ="submit" value="Submit">
         </form>

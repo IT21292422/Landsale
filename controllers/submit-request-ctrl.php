@@ -1,10 +1,10 @@
-<?php
+<?php   //TODO --just copy of register-ctrl
     require_once("includes/dbFunctions.php");
     require_once("includes/utilFunctions.php");
     require_once("includes/signinFunctions.php");
     require_once("includes/validateFunctions.php");
-
-    //array field names of form and their mandatoriness
+    
+    //array to store mandatoriness of each field of form
     $required = array(
         "email"=> True,
         "first_name"=>True,

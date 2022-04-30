@@ -11,12 +11,12 @@
        <label for="email">E-mail</label>
        <input type="text" name="email" value="<?php echo $values['email'] ?>">
        <br>
-       <?php    if (!empty($errors['email'])) echo "<label>".$errors['email']."</label><br>";    ?>
+       <?php    if (!empty($errors['email'])) echo "<label>*".$errors['email']."</label><br>";    ?>
        <label for="pwd">Password</label>
        <input type="password" name="password" value="<?php echo $values['password'] ?>">
        <br>
-       <?php    if (!empty($errors['password'])) echo "<label>".$errors['password']."</label><br>";    ?>
-       <?php    if (!empty($errors['form'])) echo "<label>".$errors['form']."</label><br>";    ?>
+       <?php    if (!empty($errors['password'])) echo "<label>*".$errors['password']."</label><br>";    ?>
+       <?php    if (!empty($errors['form'])) echo "<label>*".$errors['form']."</label><br>";    ?>
        <input type="submit" name="submit" value="Submit">
    </form> 
 </body>
