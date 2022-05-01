@@ -128,4 +128,48 @@
         return $sql;
         
     }
+
+    function getSale($id)   //get sale details from db
+    {
+        global $con;
+        $sql = "select * from sale where sale_id = $id";
+        $results = $con->query($sql);
+
+        if ($results and $results->num_rows < 1) return False;
+
+        return $results->fetch_assoc();
+    }
+
+    function getRequest($id)    //get request details from db
+    {
+        global $con;
+        $sql = "select * from request where sale_id = $id";
+        $results = $con->query($sql);
+
+        if ($results and $results->num_rows < 1) return False;
+
+        return $results->fetch_assoc();
+    }
+
+    function getSales($startFrom) //get list of sales from db
+    {
+        global $con;
+        $sql = "select (sale_id, price, province, district, city, title, land_area) from sale limit $startFrom, 10";
+        $results = $con->query($sql);
+
+        if ($results and $results->num_rows < 1) return False;
+
+        return $results->fetch_assoc();
+    }
+
+    function getRequests($startFrom)  //get list of requests from db
+    {
+        global $con;
+        $sql = "select (sale_id, max_price, min_price, province, district, city, title, max_area, min_area) from request limit $startFrom,10";
+        $results = $con->query($sql);
+
+        if ($results and $results->num_rows < 1) return False;
+
+        return $results->fetch_assoc();
+    }
 ?>

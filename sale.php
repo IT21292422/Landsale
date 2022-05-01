@@ -1,3 +1,6 @@
+<?php
+    include("controllers/sale-ctrl.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +14,9 @@
     <!--body
         view a sale post
     -->
+    <?php
+        echo var_dump($values);
+    ?>
 
     <?php
         include("templates/footer.php");
