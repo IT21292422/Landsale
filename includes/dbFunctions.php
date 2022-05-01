@@ -30,12 +30,7 @@
     {
         global $con;
 
-        $sql = "insert into users(email, first_name, last_name, password, about, profile_photo) values('{email}', '{first_name}', {'last_name}', '{password}', '{about}', '{profile_photo}')";
-        
-        foreach($values as $fieldName=>$value)
-        {
-            $sql = str_replace("{$fieldName}", $value, $sql);
-        }
+        $sql = generateInsertString('users', $values);
 
         if($con->query($sql))
         {
@@ -57,15 +52,80 @@
         return True;
     }
 
-    function addRequest($values)
+    function addRequest($values, $userId)
     {
-        //todo
+        global $con;
+
+        $values['user_id'] = (int)$userId;
+
+        $sql = generateInsertString('request', $values);
+
+        if($con->query($sql))
+        {
+            return True;
+        }
+
         return False;
     }
 
     function addSale($values)
     {
-        //todo
+        global $con;
+
+        $values['user_id'] = (int)$userId;
+
+        $sql = generateInsertString('sale', $values);
+
+        if($con->query($sql))
+        {
+            return True;
+        }
+
         return False;
+    }
+
+    function generateInsertString($tableName, $values)
+    {
+        $sql = "insert into $tableName ({fieldNames}) values ({values});";
+
+        $fieldNames = array_keys($values);  //get keys from array
+        $fieldValues = array_values($values);   //get values from array
+
+        $str_fieldNames = '';
+        $str_values = '';
+
+        for ($i = 0; $i < count($fieldNames); $i++)
+        {
+            $sep = ',';
+            if ($i === 0) $sep = '';
+
+            $str_fieldNames .= $sep.$fieldNames[$i];    //add field name to the values string
+            
+            if (is_null($fieldValues[$i]))  //if value is null add 'NULL' to the values string
+            {
+                $str_values .= $sep.'NULL';
+            }
+            elseif (gettype($fieldValues[$i]) == "integer") //if value is an int add the value to the values string
+            {
+                $str_values .= $sep.(int)$fieldValues[$i];
+            }
+            elseif (gettype($fieldValues[$i]) == "double")  //if value is an double add the value to the values string
+            {
+                $str_values .= $sep.(double)$fieldValues[$i];
+            }
+            else    //if value is an string add the string to the values string
+            {
+                $str_values .= $sep."'".$fieldValues[$i]."'";
+            }
+
+        }
+        //add field names and values to the sql statement
+        $sql = str_replace('{fieldNames}', $str_fieldNames, $sql);
+        $sql = str_replace('{values}', $str_values, $sql);
+
+        echo $sql;
+
+        return $sql;
+        
     }
 ?>

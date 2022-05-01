@@ -1,4 +1,4 @@
-<?php   //TODO --just copy of register-ctrl
+<?php 
     require_once("includes/dbFunctions.php");
     require_once("includes/utilFunctions.php");
     require_once("includes/signinFunctions.php");

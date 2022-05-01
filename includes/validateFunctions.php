@@ -1,24 +1,30 @@
 <?php
-    function checkEmpty(&$values, $required, &$errors) //check for empty values in the array
+    //check for empty values in the array, assign null and add errors
+    function checkEmpty(&$values, $required, &$errors) 
     {
         $foundEmpty = False;
 
         foreach ($required as $fieldName=>$isRequired)
         {
-            //check if any mandatory field is missing and add errors
-            if ($isRequired and ($values[$fieldName] === "" or $values[$fieldName] === NULL or $values[$fieldName] === array())) 
+            if (($values[$fieldName] === "" or $values[$fieldName] === NULL or $values[$fieldName] === array()))
             {
-                $values[$fieldName] = NULL;
+                $values[$fieldName] = NULL; //assign null to empty values
 
-                $foundEmpty = True;
+                //check if any mandatory field is missing and add errors
+                if ($isRequired) 
+                {
+                    $foundEmpty = True;
 
-                $errors[$fieldName] = 'This field is required';
+                    $errors[$fieldName] = 'This field is required';
+                }
             }
+            
         }
         return $foundEmpty;  
     }
 
-    function validatePassword($pwd, &$error)
+    //check if the password is strong enough
+    function validatePassword($pwd, &$error)    
     {
         if (strlen($pwd) < 8)
         {
@@ -35,7 +41,8 @@
         return true;
     }
 
-    function checkNumericValues(&$values, &$errors, $fieldNames)
+    //check if provided numerica values are valid and if valid convert data type to numeric types
+    function checkNumericValues(&$values, &$errors, $fieldNames)    
     {
         $isValid = True;
         foreach($fieldNames as $fieldName)

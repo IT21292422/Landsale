@@ -62,7 +62,7 @@ create table request(
 	cover_photo varchar(50),
 	type_id int not null,
 	user_id int not null,
-	create_date date,
+	create_date date default (curdate()),
 	constraint request_pk primary key (request_id),
 	constraint request_fk_request_type foreign key (type_id) references request_type(type_id),
 	constraint request_fk_users foreign key (user_id) references users(user_id)
@@ -70,19 +70,19 @@ create table request(
 );
 
 create table sale(
-	sale_id int,
+	sale_id int AUTO_INCREMENT,
 	title varchar(50) not null,
 	location varchar(30),
 	description varchar(500),
 	city varchar(40) not null,
 	district varchar(30) not null,
 	province varchar(20) not null,
-	price float not null,
+	price float,
 	land_area float not null,
 	address varchar(100),
 	type_id int not null,
 	user_id int not null,
-	create_date date,
+	create_date date default (curdate()),
 	constraint sale_pk primary key (sale_id),
 	constraint sale_fk_request_type foreign key (type_id) references sale_type(type_id),
 	constraint sale_fk_users foreign key (user_id) references users(user_id)
@@ -130,13 +130,13 @@ create table saved_request(
 );
 
 create table sale_complaints(
-	complaint_id int,
+	complaint_id int AUTO_INCREMENT,
 	description varchar(500),
 	reviewed BIT default 0,
 	complaint_type varchar(50) not null,
 	sale_id int not null,
 	user_id int not null,
-	create_date date,
+	create_date date default (curdate()),
 	constraint sale_complaints_pk primary key (complaint_id),
 	constraint sale_complaints_fk_sale foreign key (sale_id) references sale(sale_id),
 	constraint sale_complaints_fk_users foreign key (user_id) references users(user_id),
@@ -145,13 +145,13 @@ create table sale_complaints(
 
 
 create table request_complaints(
-	complaint_id int,
+	complaint_id int AUTO_INCREMENT,
 	description varchar(500),
 	reviewed BIT default 0,
 	complaint_type varchar(50) not null,
 	request_id int not null,
 	user_id int not null,
-	create_date date,
+	create_date date default (curdate()),
 	constraint request_complaints_pk primary key (complaint_id),
 	constraint request_complaints_fk_sale foreign key (request_id) references request(request_id),
 	constraint request_complaints_fk_users foreign key (user_id) references users(user_id),
