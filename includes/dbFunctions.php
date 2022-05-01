@@ -159,7 +159,7 @@
 
         if ($results and $results->num_rows < 1) return False;
 
-        return $results->fetch_assoc();
+        return $results->fetch_array(MYSQLI_ASSOC);
     }
 
     function getRequests($startFrom)  //get list of requests from db
@@ -170,6 +170,6 @@
 
         if ($results and $results->num_rows < 1) return False;
 
-        return $results->fetch_assoc();
+        return $results->fetch_array(MYSQLI_ASSOC);
     }
 ?>
