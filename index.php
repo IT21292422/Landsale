@@ -11,6 +11,10 @@
     <!body>
     <h1> Rusira Thamuditha</h1>
     <h1>Akmal</h1>
+    <?php 
+        session_start();
+        echo var_dump($_SESSION);
+     ?>
 
     <?php
         include("templates/footer.php");

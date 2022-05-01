@@ -21,8 +21,14 @@
             <li><img class="profilepic" src="profile.png" alt="UserImg"></li>
         </ul>
         </div>
-
+        
+        <!-- Breadcrumbs are here -->
         <div class="navigation">
-            Home >Register >
+            
+           <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Pens</a></li>
+            <li class="breadcrumb-item"><a href="#">Loved</a></li>
+           </ul> 
         </div>
         </header>
