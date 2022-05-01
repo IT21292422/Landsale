@@ -59,6 +59,13 @@
 
     function addRequest($values)
     {
+        //todo
+        return False;
+    }
+
+    function addSale($values)
+    {
+        //todo
         return False;
     }
 ?>
