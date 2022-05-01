@@ -6,13 +6,18 @@
     
     //array to store mandatoriness of each field of form
     $required = array(
-        "email"=> True,
-        "first_name"=>True,
-        "last_name"=>True,
-        "password"=>True,
-        "confirm_password"=>True,
-        "about"=>False,
-        "profile_photo"=>False,
+        "title"=> True,
+        "location"=>False,
+        "description"=>False,
+        "city"=>True,
+        "district"=>True,
+        "province"=>True,
+        "max_price"=>False,
+        "min_price"=>False,
+        "min_area"=>False,
+        "max_area"=>False,
+        "distance"=>False,
+        "cover_photo"=>False
     );
 
     $values = array();  //array to store values from form
@@ -34,45 +39,34 @@
             $values[$fieldName] = $_POST[$fieldName];
         }
 
+        //alter fields
+        $values['city'] = strtolower($values['city']);
+        $values['district'] = strtolower($values['district']);
+        $values['province'] = strtolower($values['province']);
+
         //check for empty fields in required fields
         if (!checkEmpty($values, $required, $errors))
         {
-            //check if email exists
-            if (doesEmailExist($values['email']))
+            //check if numeric values are valid
+            if(checkNumericValues($values, $errors, array('max_price', 'min_price', 'max_area', 'min_area')))
             {
-                $errors['email'] = 'This E-mail is already registered';
-            }
-            else
-            {
-                //variable to store if the data is valid
-                $isvalid = True;
-
-                //validate password strength
-                $isvalid = $isvalid and validatePassword($values['password'], $errors['password']);
-                            
-                //check for matching passwords
-                if ($values['password'] !== $values['confirm_password'])
+                //assign current user as the owner of the post
+                $values['user_id'] = $_SESSION['user_id'];
+            
+                if (addRequest($values))    //add request to the db
                 {
-                    $errors['confirm_password']= 'Passwords do not match';
-                    $isvalid = False;
+                    //todo success
                 }
-
-                //check if email is valid
-                if (!filter_var($values['email'], FILTER_VALIDATE_EMAIL))
+                else
                 {
-                    $errors['email'] = "invalid email";
-                    $isvalid = False;
-                }
-
-                //if data is validated
-                if ($isvalid)
-                {
-                    $userId = addUser($values); //add user to the database
-
-                    if ($userId) signin($userId);   //sign in the user
-                    else $formError = 'Registering failed'; //error if failed to add to the database
+                    $errors['form'] = 'submission failed';
                 }
             }
+
+
+            
+
+            
 
             
 

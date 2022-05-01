@@ -34,6 +34,9 @@
             $values[$fieldName] = $_POST[$fieldName];
         }
 
+        //alter fields
+        $values['email'] = strtolower($values['email']);
+
         //check for empty fields in required fields
         if (!checkEmpty($values, $required, $errors))
         {
@@ -67,10 +70,16 @@
                 //if data is validated
                 if ($isvalid)
                 {
-                    $userId = addUser($values); //add user to the database
+                    $valuesToAdd = $values;
+                    unset($valuesToAdd['confirm_password']); //remove confirm_password from the array
+                    $userId = addUser($valuesToAdd); //add user to the database
 
-                    if ($userId) signin($userId);   //sign in the user
-                    else $formError = 'Registering failed'; //error if failed to add to the database
+                    if ($userId) 
+                    {
+                        signin($userId);   //sign in the user
+                        //todo success
+                    }
+                    else $errors['form'] = 'Registering failed'; //error if failed to add to the database
                 }
             }
 

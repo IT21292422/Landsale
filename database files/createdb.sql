@@ -1,7 +1,6 @@
---create tables
 
 create table users(
-	user_id int,
+	user_id int AUTO_INCREMENT,
 	password varchar(100) not null,
 	first_name varchar(50) not null,
 	last_name varchar(50) not null,
@@ -48,7 +47,7 @@ create table request_type(
 );
 
 create table request(
-	request_id int,
+	request_id int AUTO_INCREMENT,
 	title varchar(50) not null,
 	location varchar(30),
 	description varchar(500),
@@ -159,9 +158,7 @@ create table request_complaints(
 	constraint request_complaints_check_type check (complaint_type in ('false advertisement', 'spam and abuse', 'false information', 'transaction denial'))
 );
 
---enter sample data
 
---users
 insert into users values (1,'3k54jh5#$3jk','Mark','Bedwell','MarkBedwell@yahoo.com','valid','user','E:\Users\profiles\image\1001','Looking a land for build new house');
 insert into users values (2,'53kl5$#%fgv','Eric','Willey','EricWilley@gmail.com','banned','user','E:\Users\profiles\image\1002','Looking a land for build a warehouse');
 insert into users values (3,'jh34jh$453','Swett','Kevin','SwettKevin@outlook.com','valid','user','E:\Users\profiles\image\1003','Looking a land for build a shop');
@@ -173,7 +170,7 @@ insert into users values (8,'t5435#$Gre','Sheena','Manly','SheenaManly@gmail.com
 insert into users values (9,'35v#$@c45v4','Clinton','Gerard','ClintonGerard@outlook.com','valid','mod','E:\Users\profiles\image\1009','Manage users');
 insert into users values (10,'v54#53fsf54','Lula','Bundy','LulaVBundy@telegmail.com','suspended','user','E:\Users\profiles\image\1010','Looking a land for build new house');
 
---user_warnings
+
 insert into users_warnings values (1,'Usage of explicit images on posts is violating the rules and regulations and further use of such content will cause a permanent ban');
 insert into users_warnings values (2,'Incorrect type or incomplete data of given details with viewers negative reviews and feedbacks');
 insert into users_warnings values (3,'Identity verification error with a similer post which will be deleted before the expire-date');
@@ -181,43 +178,36 @@ insert into users_warnings values (4,'Incorrect type or incomplete data of given
 insert into users_warnings values (5,'Usage of abusive or prohibited words may be banded the account without any warnings');
 insert into users_warnings values (7,'Consider the negative reviews');
 
---sale_type
-insert into sale_type values(1,'Basic plan is the Free and Standard Package, with a validity period of 30 days',0.00,'Basic')
-insert into sale_type values(2,'Budget plan is the Budget Package which is quite similar to the Basic Plan but with a validity period of 60 days',300.00,'Budget')
-insert into sale_type values(3,'Premium plan is the Premium Version to make you post featured in the home page with a validity period of 90 days',1000.00,'Premium')
+insert into sale_type values(1,'Basic plan is the Free and Standard Package, with a validity period of 30 days',0.00,'Basic');
+insert into sale_type values(2,'Budget plan is the Budget Package which is quite similar to the Basic Plan but with a validity period of 60 days',300.00,'Budget');
+insert into sale_type values(3,'Premium plan is the Premium Version to make you post featured in the home page with a validity period of 90 days',1000.00,'Premium');
 
---sale
 insert into sale values( 1,'Land for Sale in Maharagama','6.8511N,79.9212E', 'A 20 perches land in the heart of Maharagama is available for sale. Price Negotiable ','Maharagama', 'Colombo', 'Western Province', 750000,20, 'No.47, High Level Road, Maharagama ',1, 1,'2022-4-1');
 insert into sale values( 2,'Valuable land in Ja-ela for Sale ','7.0668N,79.9041E', 'A 15 perches bare land in Ja-ela which is 500m from Highway Exit is available for sale. Price Negotiable ','Ja-ela', 'Gampaha', 'Western Province', 500000,15, 'No.38/9, Seeduwa Road, Ja-ela ',2, 2,'2022-4-2');
 insert into sale values( 3,'25 Perch land for Sale in Kaduwela','6.9291N,79.9828E', 'A 25 perches, flat land in the Residential Area of Kaduwela is available for sale. Price Negotiable ','Kaduwela', 'Colombo', 'Western Province', 800000,25, 'No.13/5, High Level Road, Kaduwela',1, 3,'2022-4-2');
 insert into sale values( 4,'Valuable Scenic Land For Sale in Nuwara Eliya','6.9497N,80.7891E', 'A 8 perches land in the heart of Nuwara Eliya overlooking Gregory Lake is available for sale. Price Not Negotiable ','Nuwara Eliya', 'Nuwara Eliya', 'Central Province', 900000,8, 'No.5, Abepura, Nuwara Eliya ',3, 4,'2022-4-1');
 insert into sale values( 5,'Land for Sale in Pelawatte','6.8906N,79.9249E', 'A 10 perches land in the suburbs of Pelawatte closer to Battaramulla is available for sale. Price Negotiable ','Battaramulla', 'Colombo', 'Western Province', 950000,10, 'No.28, Pannipitiya Road, Pelawatte ',3, 5,'2022-4-5');
 
---request_type
-insert into request_type values(1,'Basic plan is the Free and Standard Package, with a validity period of 30 days',0.00,'Basic')
-insert into request_type values(2,'Budget plan is the Budget Package which is quite similar to the Basic Plan but with a validity period of 60 days',300.00,'Budget')
-insert into request_type values(3,'Premium plan is the Premium Version to make you post featured in the home page with a validity period of 90 days',1000.00,'Premium')
+insert into request_type values(1,'Basic plan is the Free and Standard Package, with a validity period of 30 days',0.00,'Basic');
+insert into request_type values(2,'Budget plan is the Budget Package which is quite similar to the Basic Plan but with a validity period of 60 days',300.00,'Budget');
+insert into request_type values(3,'Premium plan is the Premium Version to make you post featured in the home page with a validity period of 90 days',1000.00,'Premium');
 
---request
 insert into request values (1, 'Land needed from Kandy', '7.2906N,80.6337E', 'Should be close by to the city and 10mins driving distance to the city maximum', 'Kandy', 'Kandy','Central', -1, -1, 400, 300, 5, 'data/image/img_34518.jpg', 1, 7, '2022-04-02');
 insert into request values (2, '200perch land wanted from Malbe, Colombo', '6.9064N,79.9692E', 'Need a 200purchase land from Malabe, Should be close to the E02 highway', 'Malabe', 'Colombo', 'Western', 30000000, 10000000, 250, 100, 15, 'data/image/img_45679.jpeg', 3, 8, '2022-03-21');
 insert into request values (3, 'Small land wanted from mawathagama', '7.4318N,80.4426E', 'Land wanted from Mawathagama area. Should be witin 20km of the city','Mawathagama', 'Kurunegala', 'North Western', -1, -1, 150, 70, 20, 'data/image/img_89456.jpeg', 2, 10, '2022-04-09');
 insert into request values (4, 'Land wanted from Ambalangoda', '6.2442N,80.0585E', 'Should be close to the Sharmashoka college and A2 road', 'Ambalangoda', 'Galle', 'Southern', 80000000, 25000000, 600, 400, 15, 'data/image/img_89345.jpeg', 3, 4, '2022-03-30');
 insert into request values (5, 'Land wanted from Peradeniya area', '7.2698N,80.5938E', 'Preferred if the land is close to the main road and the Peradeniya University', 'Peradeniya', 'Kandy', 'Central', -1, -1, 280, 150, 25, 'data/image/img_44628.jpg', 2, 1, '2022-04-14');
 
---request_complaints
 insert into request_complaints values(1,'requester is asking for a lower price than advertised minimum price',0,'false advertisement',1, 1,'2022-03-21'); 
 insert into request_complaints values(2,'requester seems indecisive and keeps pushing back disscussions for months without no explanation',0,'transaction denial', 2, 2,'2022-04-12');
 insert into request_complaints values(3,'requester is asking for a smaller area of land for a lower price compared to stated requirments',1,'false advertisement', 3, 3,'2022-04-13');
 
---sale_complaints
 insert into sale_complaints values(1,'seller is asking for a higher price than advertised maximum price',1,'false advertisement', 1, 1,'2022-04-01');
 insert into sale_complaints values(2,'Advertised photos were false ',1,'false advertisement', 2, 2,'2022-04-05');
 insert into sale_complaints values(3,'description about the advertised plot of land is false',0,'false information', 3, 3,'2022-04-10');
 insert into sale_complaints values(4,'Addres of the advertised plot of land is false',0,'false information', 4, 4,'2022-04-11');
 insert into sale_complaints values(5,'seller do not intend to sell the stated amount of land area',1,'transaction denial', 5, 5,'2022-04-18');
 
---user_phone
 insert into users_phone values(1, '0713456123');
 insert into users_phone values(1, '0771382373');
 insert into users_phone values(2, '0813983498');
@@ -233,35 +223,30 @@ insert into users_phone values(8, '0819191790');
 insert into users_phone values(9, '0816361934');
 insert into users_phone values(10,'0713456789');
 
---request_phone 
 insert into request_phone values(1,'0772345706');
 insert into request_phone values(2,'0714356348');
 insert into request_phone values(3,'0728523233');
 insert into request_phone values(4,'0312464937');
 insert into request_phone values(5,'0115493572');
 
---sale_phone 
 insert into request_phone values(1,'0712553404');
 insert into request_phone values(2,'0776768617');
 insert into request_phone values(3,'0771646814');
 insert into request_phone values(4,'0786948035');
 insert into request_phone values(5,'0113633672');
 
---sale_save 
-insert into saved_sale values(1,1)
-insert into saved_sale values(2,2)
-insert into saved_sale values(3,3)
-insert into saved_sale values(4,4)
-insert into saved_sale values(5,5)
+insert into saved_sale values(1,1);
+insert into saved_sale values(2,2);
+insert into saved_sale values(3,3);
+insert into saved_sale values(4,4);
+insert into saved_sale values(5,5);
 
---request_save 
-insert into saved_request values(1,10)
-insert into saved_request values(2,2)
-insert into saved_request values(3,7)
-insert into saved_request values(4,8)
-insert into saved_request values(5,5)
+insert into saved_request values(1,10);
+insert into saved_request values(2,2);
+insert into saved_request values(3,7);
+insert into saved_request values(4,8);
+insert into saved_request values(5,5);
 
---sale_media
 insert into sale_media values(4,'/media/32423.png');
 insert into sale_media values(3,'/media/52727.png');
 insert into sale_media values(2,'/media/78285.png');

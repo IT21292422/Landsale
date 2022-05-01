@@ -16,7 +16,7 @@
             <label>Title</label> <br>
             <input type="text" name="title" ><br><br> 
             <label>Cover Photo : </label>
-            <input type="file" name="cover_photo" accept="image/png, image/jpeg" multiple><br><br> 
+            <input type="file" name="cover_photo" accept="image/png, image/jpeg"><br><br> 
             <label>Location</label> <br>
             <input type="text" name="location" ><br><br> 
             <label>Description</label> <br>

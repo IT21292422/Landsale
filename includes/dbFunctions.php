@@ -23,18 +23,42 @@
 
         if ($results->num_rows < 1) return NULL;
 
-        return $results->fetch_array(MYSQLI_ASSOC);
+        return $results->fetch_assoc();
     }
 
-    function addUser($values)
+    function addUser($values)   //todo profile photo
     {
-        //todo
+        global $con;
+
+        $sql = "insert into users(email, first_name, last_name, password, about, profile_photo) values('{email}', '{first_name}', {'last_name}', '{password}', '{about}', '{profile_photo}')";
+        
+        foreach($values as $fieldName=>$value)
+        {
+            $sql = str_replace("{$fieldName}", $value, $sql);
+        }
+
+        if($con->query($sql))
+        {
+            return $con->insert_id;
+        }
+
         return NULL;
     }
 
     function doesEmailExist($email)
     {
-        //todo
+        global $con;
+        $email = strtolower($email);
+        $sql = "select user_id from users where email = '$email'";
+        $results = $con->query($sql);
+
+        if ($results->num_rows < 1) return False;
+
+        return True;
+    }
+
+    function addRequest($values)
+    {
         return False;
     }
 ?>
