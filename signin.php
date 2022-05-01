@@ -9,7 +9,7 @@
 <body>
    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
        <label for="email">E-mail</label>
-       <input type="text" name="email" value="<?php echo $values['email'] ?>">
+       <input type="email" name="email" value="<?php echo $values['email'] ?>">
        <br>
        <?php    if (!empty($errors['email'])) echo "<label>*".$errors['email']."</label><br>";    ?>
        <label for="pwd">Password</label>

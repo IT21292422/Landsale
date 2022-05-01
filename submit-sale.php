@@ -8,9 +8,9 @@
         include("templates/header.php");
     ?>
 
-    <!body
+    <!--body
         submit sale form [chathupa]
-    >
+    -->
 
     <?php
         include("templates/footer.php");

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Register</title>
+    <title>Sale Post</title>
 </head>
 <body>
     <?php
         include("templates/header.php");
     ?>
 
-    <!body
-        view another persons profile
-    >
+    <!--body
+        view a request post
+    -->
 
     <?php
         include("templates/footer.php");
