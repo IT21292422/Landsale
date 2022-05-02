@@ -1,8 +1,8 @@
 <?php 
-    require_once("includes/dbFunctions.php");
-    require_once("includes/utilFunctions.php");
-    require_once("includes/signinFunctions.php");
-    require_once("includes/validateFunctions.php");
+    require_once("php/includes/dbFunctions.php");
+    require_once("php/includes/utilFunctions.php");
+    require_once("php/includes/signinFunctions.php");
+    require_once("php/includes/validateFunctions.php");
     
     //array to store mandatoriness of each field of form
     $required = array(
@@ -12,12 +12,9 @@
         "city"=>True,
         "district"=>True,
         "province"=>True,
-        "max_price"=>False,
-        "min_price"=>False,
-        "min_area"=>False,
-        "max_area"=>False,
-        "distance"=>False,
-        "cover_photo"=>False
+        "price"=>False,
+        "area"=>True,
+        "address"=>False
     );
 
     $values = array();  //array to store values from form
@@ -48,12 +45,12 @@
         if (!checkEmpty($values, $required, $errors))
         {
             //check if numeric values are valid
-            if(checkNumericValues($values, $errors, array('max_price', 'min_price', 'max_area', 'min_area')))
+            if(checkNumericValues($values, $errors, array('price', 'area')))
             {
                 //assign current user as the owner of the post
                 $values['user_id'] = $_SESSION['user_id'];
             
-                if (addRequest($values))    //add request to the db
+                if (addSale($values))    //add request to the db
                 {
                     //todo success
                 }

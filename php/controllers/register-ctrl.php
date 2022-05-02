@@ -1,8 +1,8 @@
 <?php
-    require_once("includes/dbFunctions.php");
-    require_once("includes/utilFunctions.php");
-    require_once("includes/signinFunctions.php");
-    require_once("includes/validateFunctions.php");
+    require_once("php/includes/dbFunctions.php");
+    require_once("php/includes/utilFunctions.php");
+    require_once("php/includes/signinFunctions.php");
+    require_once("php/includes/validateFunctions.php");
 
     //array to store mandatoriness of each field of form
     $required = array(

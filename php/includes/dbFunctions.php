@@ -1,5 +1,5 @@
 <?php
-    require_once("includes/dbcon.php");
+    require_once("php/includes/dbcon.php");
 
     //generate an sql statement for the given values and table
     function generateInsertString($tableName, $values)

@@ -1,5 +1,5 @@
 <?php
-    require_once('includes/dbFunctions.php');
+    require_once('php/includes/dbFunctions.php');
 
     function signin($userId)
     {

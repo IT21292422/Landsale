@@ -1,4 +1,4 @@
-<?php include('controllers/submit-request-ctrl.php'); ?>
+<?php include('php/controllers/submit-request-ctrl.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +7,7 @@
 </head>
 <body>
     <?php
-        include("templates/header.php");
+        include("php/templates/header.php");
     ?>
 
     <fieldset>
@@ -79,7 +79,7 @@
     </fieldset>
 
     <?php
-        include("templates/footer.php");
+        include("php/templates/footer.php");
     ?>
 </body>
 </html>

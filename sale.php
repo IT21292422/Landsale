@@ -1,5 +1,5 @@
 <?php
-    include("controllers/sale-ctrl.php");
+    include("php/controllers/sale-ctrl.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +8,7 @@
 </head>
 <body>
     <?php
-        include("templates/header.php");
+        include("php/templates/header.php");
     ?>
 
     <!--body
@@ -19,7 +19,7 @@
     ?>
 
     <?php
-        include("templates/footer.php");
+        include("php/templates/footer.php");
     ?>
 </body>
 </html>

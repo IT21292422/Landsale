@@ -1,6 +1,6 @@
 <?php 
-    require_once("includes/dbFunctions.php");
-    require_once("includes/utilFunctions.php");
+    require_once("php/includes/dbFunctions.php");
+    require_once("php/includes/utilFunctions.php");
 
     $values = array(); //to store post details
 

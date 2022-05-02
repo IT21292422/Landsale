@@ -5,7 +5,7 @@
 </head>
 <body>
     <?php
-        include("templates/header.php");
+        include("php/templates/header.php");
     ?>
 
     <!--body
@@ -13,7 +13,7 @@
     -->
 
     <?php
-        include("templates/footer.php");
+        include("php/templates/footer.php");
     ?>
 </body>
 </html>
