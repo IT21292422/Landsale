@@ -1,6 +1,96 @@
 <?php
     require_once("includes/dbcon.php");
 
+    //generate an sql statement for the given values and table
+    function generateInsertString($tableName, $values)
+    {
+        $sql = "insert into $tableName ({fieldNames}) values ({values});";
+
+        $fieldNames = array_keys($values);  //get keys from array
+        $fieldValues = array_values($values);   //get values from array
+
+        $str_fieldNames = '';
+        $str_values = '';
+
+        for ($i = 0; $i < count($fieldNames); $i++)
+        {
+            $sep = ',';
+            if ($i === 0) $sep = '';
+
+            $str_fieldNames .= $sep.$fieldNames[$i];    //add field name to the fieldnames string
+            
+            if (is_null($fieldValues[$i]))  //if value is null add 'NULL' to the values string
+            {
+                $str_values .= $sep.'NULL';
+            }
+            elseif (gettype($fieldValues[$i]) == "integer") //if value is an int add the value to the values string
+            {
+                $str_values .= $sep.(int)$fieldValues[$i];
+            }
+            elseif (gettype($fieldValues[$i]) == "double")  //if value is an double add the value to the values string
+            {
+                $str_values .= $sep.(double)$fieldValues[$i];
+            }
+            else    //if value is an string add the string to the values string with quotes
+            {
+                $str_values .= $sep."'".$fieldValues[$i]."'";
+            }
+
+        }
+        //add field names and values to the sql statement
+        $sql = str_replace('{fieldNames}', $str_fieldNames, $sql);
+        $sql = str_replace('{values}', $str_values, $sql);
+
+        echo $sql;
+
+        return $sql;
+        
+    }
+
+    //generate an sql statement for the given table, values and conditions
+    function generateUpdateString($tableName, $values, $condition)
+    {
+        $sql = "update $tableName set {values} where $condition;";
+
+        $fieldNames = array_keys($values);  //get keys from array
+        $fieldValues = array_values($values);   //get values from array
+
+        $str_values = '';
+
+        for ($i = 0; $i < count($fieldNames); $i++)
+        {
+            $sep = ',';
+            if ($i === 0) $sep = '';
+
+            $str_values .= $sep.$fieldNames[$i].'=';    //add field name to the values string
+            
+            if (is_null($fieldValues[$i]))  //if value is null add 'NULL' to the values string
+            {
+                $str_values .= 'NULL';
+            }
+            elseif (gettype($fieldValues[$i]) == "integer") //if value is an int add the value to the values string
+            {
+                $str_values .= (int)$fieldValues[$i];
+            }
+            elseif (gettype($fieldValues[$i]) == "double")  //if value is an double add the value to the values string
+            {
+                $str_values .= (double)$fieldValues[$i];
+            }
+            else    //if value is an string add the string to the values string with quotes
+            {
+                $str_values .= "'".$fieldValues[$i]."'";
+            }
+
+        }
+        //add field names and values to the sql statement
+        $sql = str_replace('{values}', $str_values, $sql);
+
+        echo $sql;
+
+        return $sql;
+        
+    }
+
     function matchUserPassword($email, $pwd)
     {   
         global $con;
@@ -84,50 +174,7 @@
         return False;
     }
 
-    function generateInsertString($tableName, $values)
-    {
-        $sql = "insert into $tableName ({fieldNames}) values ({values});";
-
-        $fieldNames = array_keys($values);  //get keys from array
-        $fieldValues = array_values($values);   //get values from array
-
-        $str_fieldNames = '';
-        $str_values = '';
-
-        for ($i = 0; $i < count($fieldNames); $i++)
-        {
-            $sep = ',';
-            if ($i === 0) $sep = '';
-
-            $str_fieldNames .= $sep.$fieldNames[$i];    //add field name to the values string
-            
-            if (is_null($fieldValues[$i]))  //if value is null add 'NULL' to the values string
-            {
-                $str_values .= $sep.'NULL';
-            }
-            elseif (gettype($fieldValues[$i]) == "integer") //if value is an int add the value to the values string
-            {
-                $str_values .= $sep.(int)$fieldValues[$i];
-            }
-            elseif (gettype($fieldValues[$i]) == "double")  //if value is an double add the value to the values string
-            {
-                $str_values .= $sep.(double)$fieldValues[$i];
-            }
-            else    //if value is an string add the string to the values string
-            {
-                $str_values .= $sep."'".$fieldValues[$i]."'";
-            }
-
-        }
-        //add field names and values to the sql statement
-        $sql = str_replace('{fieldNames}', $str_fieldNames, $sql);
-        $sql = str_replace('{values}', $str_values, $sql);
-
-        echo $sql;
-
-        return $sql;
-        
-    }
+   
 
     function getSale($id)   //get sale details from db
     {
@@ -172,4 +219,5 @@
 
         return $results->fetch_array(MYSQLI_ASSOC);
     }
+
 ?>
