@@ -10,5 +10,4 @@
     {
         die("connection to database failed:". $con->connect_error);
     }
-
 ?>
