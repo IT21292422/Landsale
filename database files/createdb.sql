@@ -19,8 +19,7 @@ create table users_phone(
 	user_id int,
 	phone char(10),
 	constraint users_phone_pk primary key (user_id, phone),
-	constraint users_phone_fk_users foreign key (user_id) references users(user_id),
-	constraint users_phone_check_phone check (phone like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
+	constraint users_phone_fk_users foreign key (user_id) references users(user_id)
 );
 
 create table users_warnings(
@@ -80,6 +79,7 @@ create table sale(
 	price float,
 	land_area float not null,
 	address varchar(100),
+	cover_photo varchar(50),
 	type_id int not null,
 	user_id int not null,
 	create_date date default (curdate()),
@@ -93,17 +93,14 @@ create table request_phone(
 	request_id int,
 	phone char(10),
 	constraint request_phone_pk primary key (request_id, phone),
-	constraint request_phone_fk foreign key (request_id) references request(request_id),
-	constraint request_phone_check_phone check (phone like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
+	constraint request_phone_fk foreign key (request_id) references request(request_id)
 );
 
 create table sale_phone(
 	sale_id int,
 	phone char(10),
 	constraint sale_phone_pk primary key (sale_id, phone),
-	constraint sale_phone_fk foreign key (sale_id) references sale(sale_id),
-	constraint sale_phone_check_phone check (phone like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
-
+	constraint sale_phone_fk foreign key (sale_id) references sale(sale_id)
 );
 
 create table sale_media(
@@ -159,16 +156,16 @@ create table request_complaints(
 );
 
 
-insert into users values (1,'3k54jh5#$3jk','Mark','Bedwell','MarkBedwell@yahoo.com','valid','user','E:\Users\profiles\image\1001','Looking a land for build new house');
-insert into users values (2,'53kl5$#%fgv','Eric','Willey','EricWilley@gmail.com','banned','user','E:\Users\profiles\image\1002','Looking a land for build a warehouse');
-insert into users values (3,'jh34jh$453','Swett','Kevin','SwettKevin@outlook.com','valid','user','E:\Users\profiles\image\1003','Looking a land for build a shop');
-insert into users values (4,'453vV$54334V','Calvin','Walker','CalvinWalker@gmail.com','suspended','user','E:\Users\profiles\image\1004','Looking a land for build new house');
-insert into users values (5,'3v534V%54v','Slone','Carol','SloneCarol@outlook.com','valid','user','E:\Users\profiles\image\1005','Looking a land for build a farm');
-insert into users values (6,'54343v%$$3v','William','Ness','WilliamNess@gmail.com','valid','admin','E:\Users\profiles\image\1006','Administration task');
-insert into users values (7,'45vb#@$gt54','Toby','Ryan','TobyRyan@outlook.com','valid','user','E:\Users\profiles\image\1007','Looking a land for a farm');
-insert into users values (8,'t5435#$Gre','Sheena','Manly','SheenaManly@gmail.com','banned','user','E:\Users\profiles\image\1008','Looking a land for build a warehouse');
-insert into users values (9,'35v#$@c45v4','Clinton','Gerard','ClintonGerard@outlook.com','valid','mod','E:\Users\profiles\image\1009','Manage users');
-insert into users values (10,'v54#53fsf54','Lula','Bundy','LulaVBundy@telegmail.com','suspended','user','E:\Users\profiles\image\1010','Looking a land for build new house');
+insert into users values (1,'3k54jh5#$3jk','Mark','Bedwell','MarkBedwell@yahoo.com','valid','user','images/profile/1.jfif','Looking a land for build new house');
+insert into users values (2,'53kl5$#%fgv','Eric','Willey','EricWilley@gmail.com','banned','user','images/profile/1.jfif','Looking a land for build a warehouse');
+insert into users values (3,'jh34jh$453','Swett','Kevin','SwettKevin@outlook.com','valid','user','images/profile/1.jfif','Looking a land for build a shop');
+insert into users values (4,'453vV$54334V','Calvin','Walker','CalvinWalker@gmail.com','suspended','user','images/profile/1.jfif','Looking a land for build new house');
+insert into users values (5,'3v534V%54v','Slone','Carol','SloneCarol@outlook.com','valid','user','images/profile/1.jfif','Looking a land for build a farm');
+insert into users values (6,'54343v%$$3v','William','Ness','WilliamNess@gmail.com','valid','admin','images/profile/1.jfif','Administration task');
+insert into users values (7,'45vb#@$gt54','Toby','Ryan','TobyRyan@outlook.com','valid','user','images/profile/1.jfif','Looking a land for a farm');
+insert into users values (8,'t5435#$Gre','Sheena','Manly','SheenaManly@gmail.com','banned','user','images/profile/1.jfif','Looking a land for build a warehouse');
+insert into users values (9,'35v#$@c45v4','Clinton','Gerard','ClintonGerard@outlook.com','valid','mod','images/profile/1.jfif','Manage users');
+insert into users values (10,'v54#53fsf54','Lula','Bundy','LulaVBundy@telegmail.com','suspended','user','images/profile/1.jfif','Looking a land for build new house');
 
 
 insert into users_warnings values (1,'Usage of explicit images on posts is violating the rules and regulations and further use of such content will cause a permanent ban');
@@ -182,11 +179,11 @@ insert into sale_type values(1,'Basic plan is the Free and Standard Package, wit
 insert into sale_type values(2,'Budget plan is the Budget Package which is quite similar to the Basic Plan but with a validity period of 60 days',300.00,'Budget');
 insert into sale_type values(3,'Premium plan is the Premium Version to make you post featured in the home page with a validity period of 90 days',1000.00,'Premium');
 
-insert into sale values( 1,'Land for Sale in Maharagama','6.8511N,79.9212E', 'A 20 perches land in the heart of Maharagama is available for sale. Price Negotiable ','Maharagama', 'Colombo', 'Western Province', 750000,20, 'No.47, High Level Road, Maharagama ',1, 1,'2022-4-1');
-insert into sale values( 2,'Valuable land in Ja-ela for Sale ','7.0668N,79.9041E', 'A 15 perches bare land in Ja-ela which is 500m from Highway Exit is available for sale. Price Negotiable ','Ja-ela', 'Gampaha', 'Western Province', 500000,15, 'No.38/9, Seeduwa Road, Ja-ela ',2, 2,'2022-4-2');
-insert into sale values( 3,'25 Perch land for Sale in Kaduwela','6.9291N,79.9828E', 'A 25 perches, flat land in the Residential Area of Kaduwela is available for sale. Price Negotiable ','Kaduwela', 'Colombo', 'Western Province', 800000,25, 'No.13/5, High Level Road, Kaduwela',1, 3,'2022-4-2');
-insert into sale values( 4,'Valuable Scenic Land For Sale in Nuwara Eliya','6.9497N,80.7891E', 'A 8 perches land in the heart of Nuwara Eliya overlooking Gregory Lake is available for sale. Price Not Negotiable ','Nuwara Eliya', 'Nuwara Eliya', 'Central Province', 900000,8, 'No.5, Abepura, Nuwara Eliya ',3, 4,'2022-4-1');
-insert into sale values( 5,'Land for Sale in Pelawatte','6.8906N,79.9249E', 'A 10 perches land in the suburbs of Pelawatte closer to Battaramulla is available for sale. Price Negotiable ','Battaramulla', 'Colombo', 'Western Province', 950000,10, 'No.28, Pannipitiya Road, Pelawatte ',3, 5,'2022-4-5');
+insert into sale values( 1,'Land for Sale in Maharagama','6.8511N,79.9212E', 'A 20 perches land in the heart of Maharagama is available for sale. Price Negotiable ','Maharagama', 'Colombo', 'Western Province', 750000,20, 'No.47, High Level Road, Maharagama ', 'images/request/1.jpg',1, 1, '2022-4-1');
+insert into sale values( 2,'Valuable land in Ja-ela for Sale ','7.0668N,79.9041E', 'A 15 perches bare land in Ja-ela which is 500m from Highway Exit is available for sale. Price Negotiable ','Ja-ela', 'Gampaha', 'Western Province', 500000,15, 'No.38/9, Seeduwa Road, Ja-ela ','images/request/1.jpg', 2, 2,'2022-4-2');
+insert into sale values( 3,'25 Perch land for Sale in Kaduwela','6.9291N,79.9828E', 'A 25 perches, flat land in the Residential Area of Kaduwela is available for sale. Price Negotiable ','Kaduwela', 'Colombo', 'Western Province', 800000,25, 'No.13/5, High Level Road, Kaduwela','images/request/1.jpg', 1, 3,'2022-4-2');
+insert into sale values( 4,'Valuable Scenic Land For Sale in Nuwara Eliya','6.9497N,80.7891E', 'A 8 perches land in the heart of Nuwara Eliya overlooking Gregory Lake is available for sale. Price Not Negotiable ','Nuwara Eliya', 'Nuwara Eliya', 'Central Province', 900000,8, 'No.5, Abepura, Nuwara Eliya ','images/request/1.jpg',3, 4,'2022-4-1');
+insert into sale values( 5,'Land for Sale in Pelawatte','6.8906N,79.9249E', 'A 10 perches land in the suburbs of Pelawatte closer to Battaramulla is available for sale. Price Negotiable ','Battaramulla', 'Colombo', 'Western Province', 950000,10, 'No.28, Pannipitiya Road, Pelawatte ','images/request/1.jpg' ,3, 5,'2022-4-5');
 
 insert into request_type values(1,'Basic plan is the Free and Standard Package, with a validity period of 30 days',0.00,'Basic');
 insert into request_type values(2,'Budget plan is the Budget Package which is quite similar to the Basic Plan but with a validity period of 60 days',300.00,'Budget');
@@ -229,11 +226,11 @@ insert into request_phone values(3,'0728523233');
 insert into request_phone values(4,'0312464937');
 insert into request_phone values(5,'0115493572');
 
-insert into request_phone values(1,'0712553404');
-insert into request_phone values(2,'0776768617');
-insert into request_phone values(3,'0771646814');
-insert into request_phone values(4,'0786948035');
-insert into request_phone values(5,'0113633672');
+insert into sale_phone values(1,'0712553404');
+insert into sale_phone values(2,'0776768617');
+insert into sale_phone values(3,'0771646814');
+insert into sale_phone values(4,'0786948035');
+insert into sale_phone values(5,'0113633672');
 
 insert into saved_sale values(1,1);
 insert into saved_sale values(2,2);
@@ -247,9 +244,28 @@ insert into saved_request values(3,7);
 insert into saved_request values(4,8);
 insert into saved_request values(5,5);
 
-insert into sale_media values(4,'/media/32423.png');
-insert into sale_media values(3,'/media/52727.png');
-insert into sale_media values(2,'/media/78285.png');
-insert into sale_media values(1,'/media/27572.png');
-insert into sale_media values(5,'/media/75257.png');
+insert into sale_media values(1,'images/sale/1.jpg');
+insert into sale_media values(1,'images/sale/2.jpg');
+insert into sale_media values(1,'images/sale/3.jpg');
+insert into sale_media values(1,'images/sale/4.jpg');
+
+insert into sale_media values(2,'images/sale/1.jpg');
+insert into sale_media values(2,'images/sale/2.jpg');
+insert into sale_media values(2,'images/sale/3.jpg');
+insert into sale_media values(2,'images/sale/4.jpg');
+
+insert into sale_media values(3,'images/sale/1.jpg');
+insert into sale_media values(3,'images/sale/2.jpg');
+insert into sale_media values(3,'images/sale/3.jpg');
+insert into sale_media values(3,'images/sale/4.jpg');
+
+insert into sale_media values(4,'images/sale/1.jpg');
+insert into sale_media values(4,'images/sale/2.jpg');
+insert into sale_media values(4,'images/sale/3.jpg');
+insert into sale_media values(4,'images/sale/4.jpg');
+
+insert into sale_media values(5,'images/sale/1.jpg');
+insert into sale_media values(5,'images/sale/2.jpg');
+insert into sale_media values(5,'images/sale/3.jpg');
+insert into sale_media values(5,'images/sale/4.jpg');
 

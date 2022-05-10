@@ -1,18 +1,13 @@
-<?php
-    include("php/controllers/sale-ctrl.php");
-?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<!-- saved from url=(0044)http://localhost:8080/landsale/sale.php?id=1 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Sale Post</title>
     <link rel="stylesheet" href="styles/sale.css">
 </head>
 <body>
-    <?php
-        include("php/templates/header.php");
-    ?>
+           
 
-<div class="container">
+    <div class="container">
         <div class="title">
             <h1>Land for Sale in Maharagama</h1>
         </div>
@@ -38,46 +33,53 @@
             <h3>Details</h3>
             <div class="field-container">
                 <div class="info-field">
-                    <p>Land Area</p>
-                    <p><?php echo $values['land_area']?> Perches</p>
+                    <p>Price</p>
+                    <p>Rs. 200000</p>
                 </div>
                 <div class="info-field">
                     <p>Price</p>
-                    <p>Rs. <?php echo $values['price']?></p>
+                    <p>Rs. 200000</p>
                 </div>
                 <div class="info-field">
-                    <p>City</p>
-                    <p><?php echo $values['city']?></p>
+                    <p>Price</p>
+                    <p>Rs. 200000</p>
                 </div>
                 <div class="info-field">
-                    <p>District</p>
-                    <p><?php echo $values['district']?></p>
+                    <p>Price</p>
+                    <p>Rs. 200000</p>
                 </div>
                 <div class="info-field">
-                    <p>Province</p>
-                    <p><?php echo $values['province']?></p>
+                    <p>Price</p>
+                    <p>Rs. 200000</p>
                 </div>
                 <div class="info-field">
-                    <p>Address</p>
-                    <p><?php echo $values['address']?></p>
+                    <p>Price</p>
+                    <p>Rs. 200000</p>
+                </div>
+                <div class="info-field">
+                    <p>Price</p>
+                    <p>Rs. 200000</p>
                 </div>
             </div>
         </div>
 
         <div class="description">
             <h3>Description</h3>
-            <p><?php echo $values['description']?> </p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus voluptatibus tenetur asperiores, architecto eligendi ad fugit id veniam corrupti dicta nisi! Obcaecati quas ab exercitationem dolorum, voluptatem modi nulla! Possimus, autem. Dicta, a. Autem, nemo? Suscipit dolore sed et, qui beatae vel fuga voluptate alias quis nam nulla ut, odio reiciendis illum tenetur atque veritatis explicabo porro voluptates ab quasi eos nisi vitae enim? Omnis, dicta illum. Optio, hic dicta, ad in nisi neque iure molestias voluptates eos quibusdam quo dolores voluptatum ut. Modi dolor aspernatur autem adipisci ullam itaque reprehenderit est fuga cum, sit nemo libero! Eveniet in cum corporis cupiditate iusto obcaecati autem quam architecto maxime harum tenetur tempora maiores, totam sit, rem accusantium ratione inventore facere iure magnam reprehenderit? Voluptatibus ut quae esse deleniti officia vel ratione eum, assumenda quam repellat impedit voluptas eveniet quod, voluptatem non ipsum ullam eligendi dicta perspiciatis totam id nemo in doloremque eaque. Ratione dolorum perferendis amet ducimus eum quisquam obcaecati quae incidunt hic. Harum, dolorem. Eaque corrupti, quos explicabo animi pariatur iste sed? Tempora iure soluta libero doloribus excepturi, quod eum quasi dignissimos explicabo odio ex aspernatur laboriosam beatae, ea quidem quaerat ullam facere nesciunt velit ducimus debitis quia? Quam laboriosam cum tenetur, itaque asperiores dolore nam maxime fugit eaque eum voluptates sapiente et reiciendis provident fuga fugiat incidunt nobis sunt. Veniam nostrum esse maiores, temporibus aliquid labore aperiam itaque sapiente reprehenderit culpa voluptatum ipsum adipisci necessitatibus dolores ad assumenda sunt sit quae molestiae qui ut eum? Dolor maxime voluptates provident.</p>
         </div>
 
         <div class="contacts">
             <h3>Contacts</h3>
             <div class="field-container">
-            <?php 
-                foreach ($values['phone'] as $contact)
-                {
-                    echo "<div><p>$contact</p></div>";
-                }
-            ?> 
+                <div>
+                    <p>077-8767433</p>
+                </div>
+                <div>
+                    <p>077-8767433</p>
+                </div>
+                <div>
+                    <p>077-8767433</p>
+                </div>
             </div>
         </div>
 
@@ -104,14 +106,6 @@
             
         </div>
     </div>
-    
 
 
-
-
-
-    <?php
-        include("php/templates/footer.php");
-    ?>
-</body>
-</html>
+</body></html>

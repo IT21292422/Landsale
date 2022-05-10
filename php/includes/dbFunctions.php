@@ -179,23 +179,63 @@
     function getSale($id)   //get sale details from db
     {
         global $con;
+
+        //get sale details
         $sql = "select * from sale where sale_id = $id";
         $results = $con->query($sql);
 
+        //if sale doesnt exist
         if ($results and $results->num_rows < 1) return False;
 
-        return $results->fetch_assoc();
+        //fetch sale details
+        $sale = $results->fetch_assoc();
+
+        //get sale phone numbers
+        $sql = "select phone from sale_phone where sale_id = $id";
+        $results = $con->query($sql);
+        $phone = array();
+        $table = $results->fetch_all(MYSQLI_NUM);
+        foreach ($table as $row)
+        {
+            $phone[] = $row[0];
+        }
+        $sale['phone'] = $phone;
+
+        //get sale images
+        $sql = "select media from sale_media where sale_id = $id";
+        $results = $con->query($sql);
+        $images = array();
+        $table = $results->fetch_all(MYSQLI_NUM);
+        foreach ($table as $row)
+        {
+            $images[] = $row[0];
+        }
+        $sale['images'] = $images;
+
+        return $sale;
     }
 
-    function getRequest($id)    //get request details from db
+    function getRequest($id)   //get sale details from db
     {
         global $con;
-        $sql = "select * from request where sale_id = $id";
+
+        //get request details
+        $sql = "select * from request where request_id = $id";
         $results = $con->query($sql);
 
+        //if request doesnt exist
         if ($results and $results->num_rows < 1) return False;
 
-        return $results->fetch_assoc();
+        //fetch request details
+        $sale = $results->fetch_assoc();
+
+        //get request phone numbers
+        $sql = "select phone from request_phone where request_id = $id";
+        $results = $con->query($sql);
+        $phone = $results->fetch_array(MYSQLI_NUM);
+        $sale['phone'] = $phone;
+
+        return $sale;
     }
 
     function getSales($startFrom) //get list of sales from db

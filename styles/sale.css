@@ -1,0 +1,120 @@
+body{
+    background-color: #f9f9f9;
+}
+
+/*structure*/
+.container{
+    display: grid;
+    grid-template-columns: auto;
+    gap: 40px;
+    padding: 5%;
+
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+}
+
+.container > div{
+    box-shadow: 5px 5px 10px #b2b2b2;
+    background-color: white;
+}
+
+div.title{
+    background-color: transparent;
+    box-shadow: none;
+}
+
+div.btn-container{
+    background-color: transparent;
+    box-shadow: none;
+    justify-self: right;
+}
+
+div.images{
+    min-height: 0px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.field-container{
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.info-field{
+    display: grid;
+    grid-template-columns: minmax(125px, 15%) auto;
+}
+
+.info-field p:first-of-type:after{
+    content: " :";
+}
+
+.field-container > div:nth-child(odd){
+    background-color: #e7e7e7;
+}
+
+.container p{
+    padding-left: 10px;
+}
+
+.container h3{
+    padding-left: 10px;
+}
+
+/* profile image */
+.avatar{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.profile{
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 10px;
+    align-items: center;
+    padding-left: 10px;
+    padding-bottom: 10px;
+
+}
+
+/* buttons */
+.btn-simple{
+    padding: 10px 20px;
+    margin-right: 10px;
+}
+
+
+/* image slide show */
+.slide-show{
+    width:fit-content;
+    min-width: 80%;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.image{
+    display: none;
+    width:100%;
+}
+
+.image:first-of-type{
+    display: block;
+}
+
+.btn-image{
+    position: absolute;
+    top: 50%;
+}
+
+.btn-right{
+    right:0%;
+}
+
+.btn-left{
+    left:0%;
+}

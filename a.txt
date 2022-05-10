@@ -1,0 +1,32 @@
+rusira
+complaints - list of complaints for moderators - r, d
+admin - search for a user and add/remove/create moderators/admins - r, u, c
+about - static
+
+chathupa
+complaint - view a complaint and mod can ban/suspend/warn (can update "reviewed" field, can delete) - r, u, d
+register - new user form - c
+saved posts - list of saved posts (can delete) - r, d
+
+nimeth
+edit sale - edit an existing sale - u, d
+submit-sale - new sale form - c
+user view - information about a user - r 
+
+akmal
+submit-request - new request form - c
+edit request - edit an existing request - u, d
+owned posts - list of owned posts - r, d
+
+ravindu
+request view - view a request (can save and complain) - r, c, u
+sale view -  view a sale (can save and complain) - r, c, u
+account settings - view own account info and settings(can edit user details) - r, u, d
+
+
+
+
+
+
+index/home - list of sales - r
+requests - list of requests - r
