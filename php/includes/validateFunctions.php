@@ -1,8 +1,8 @@
 <?php
     //check for empty values in the array, assign null and add errors
-    function checkEmpty(&$values, $required, &$errors) 
+    function areRequiredFieldsProvided(&$values, $required, &$errors) 
     {
-        $foundEmpty = False;
+        $isProvided = True;
 
         foreach ($required as $fieldName=>$isRequired)
         {
@@ -13,36 +13,18 @@
                 //check if any mandatory field is missing and add errors
                 if ($isRequired) 
                 {
-                    $foundEmpty = True;
+                    $isProvided = False;
 
                     $errors[$fieldName] = 'This field is required';
                 }
             }
             
         }
-        return $foundEmpty;  
-    }
-
-    //check if the password is strong enough
-    function validatePassword($pwd, &$error)    
-    {
-        if (strlen($pwd) < 8)
-        {
-            $error = "Password should be minimum 8 characters long";
-            return false;
-        }
-
-        if (!(preg_match('*[A-Z]*', $pwd) and preg_match('*[a-z]*', $pwd) and preg_match('*[0-9]*', $pwd) and preg_match('*[^a-zA-Z0-9]*', $pwd)))
-        {
-            $error = "Password should contain one uppercase letter, one number and one special character";
-            return false;
-        }
-
-        return true;
+        return $isProvided;  
     }
 
     //check if provided numerica values are valid and if valid convert data type to numeric types
-    function checkNumericValues(&$values, &$errors, $fieldNames)    
+    function validateNumericValues(&$values, &$errors, $fieldNames)    
     {
         $isValid = True;
         foreach($fieldNames as $fieldName)

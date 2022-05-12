@@ -32,8 +32,7 @@
         //alter fields
         $values['email'] = strtolower($values['email']);
 
-        //check for empty fields
-        if (!checkEmpty($values, $required, $errors))
+        if(areRequiredFieldsProvided($values, $required, $errors))
         {
             //check for matching email password pair
             $userId = matchUserPassword($values['email'], $values['password']); 
@@ -46,18 +45,15 @@
             {
                 signin($userId);    //signin user
 
-
-                if(!empty($_POST['redirect']))
-                {
-                    //todo redirect
-                    header('Location: /landsale');  //redirect to homepage
-                }
-                else
-                {
-                    header('Location: /landsale');  //redirect to homepage
-                }
+                header('Location: /landsale');  //redirect to homepage
             }
         }
+        else
+        {
+
+        }
+
+       
     }
    
 

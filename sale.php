@@ -6,13 +6,48 @@
 <head>
     <title>Sale Post</title>
     <link rel="stylesheet" href="styles/sale.css">
+    <script src="js/sale.js"></script>
 </head>
 <body>
     <?php
         include("php/templates/header.php");
     ?>
 
-<div class="container">
+    <form class='hide' id="save-form">
+        <input type="text" name="sale_id" value="<?php echo $values['sale_id'] ?>">
+        <input type="text" name="action" value="save">
+    </form>
+
+    <form class='hide' id="unsave-form">
+        <input type="text" name="sale_id" value="<?php echo $values['sale_id'] ?>">
+        <input type="text" name="action" value="unsave">
+    </form>
+
+    <div class="popup-container" id="report-post">
+        <h2>Report Post</h2>
+        <form class="simple-form" id="report-form">
+            <label for="complaint_type">Reason</label>
+            <select name='complaint_type' id="complaint_type">
+                <option value="false advertisement">False advertisement</option>
+                <option value="spam and abuse">Spam and abuse</option>
+                <option value="false information">False information</option>
+                <option value="transaction denial">Transaction denial</option>
+            </select>
+            <label for="description">Description</label>
+            <textarea type="text" name='description' id="description" rows="7"></textarea>
+            <input type="hidden" name='sale_id' value="1">
+        </form>
+        <input class="btn-report" type="button" value="Submit" onclick="submitReport()">
+        <input class="btn-report" type="button" value="Cancel" id="cancel-report" onclick="hideReportForm()">
+    </div>       
+
+    <div class="popup-container" id="report-success">
+        <h2>Report Successful!</h2>
+        <h3>Thank you for the support</h3>
+        <input class="btn-report" type="button" value="Close" id="close-success" onclick="hideReportSuccess()">
+    </div>
+
+    <div class="container" id="container">
         <div class="title">
             <h1>Land for Sale in Maharagama</h1>
         </div>
@@ -30,8 +65,10 @@
 
                     
         <div class="btn-container">
-            <input class="btn-simple" type="button" value="Report">
-            <input class="btn-simple" type="button" value="Save">
+        <input class='btn-simple' type='button' value='Report' onclick='showReportForm()'>
+        <input class='btn-simple' type='button' value='Save' id='btn-save' onclick='save()'>
+        <input class='btn-simple hide' type='button' value='Saved' id='btn-unsave' onclick='unsave()'>
+
         </div>
     
         <div class="info">

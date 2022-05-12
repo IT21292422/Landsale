@@ -41,7 +41,6 @@
         $sql = str_replace('{fieldNames}', $str_fieldNames, $sql);
         $sql = str_replace('{values}', $str_values, $sql);
 
-        echo $sql;
 
         return $sql;
         
@@ -158,7 +157,7 @@
         return False;
     }
 
-    function addSale($values)
+    function addSale($values, $userId)
     {
         global $con;
 
@@ -258,6 +257,52 @@
         if ($results and $results->num_rows < 1) return False;
 
         return $results->fetch_array(MYSQLI_ASSOC);
+    }
+
+    function addSaleComplaint($values, $userId)
+    {
+        global $con;
+
+        $values['user_id'] = (int)$userId;
+
+        $sql = generateInsertString('sale_complaints', $values);
+
+        if($con->query($sql))
+        {
+            return True;
+        }
+
+        return False;
+    }
+
+    function saveSale($values)
+    {
+        global $con;
+
+        $action = $values['action'];
+        unset($values['action']);
+
+        switch ($action) {
+            case 'save':
+                $sql = generateInsertString('saved_sale', $values);
+                break;
+
+            case 'unsave':
+                $sql = 'delete from saved_sale where user_id = ' . $values['user_id'] . ' and sale_id = ' . $values['sale_id'];
+                break;
+
+            default:
+                return False;
+        }
+
+        if($con->query($sql)) //todo crashes on duplicate error
+        {
+            return True;
+        }
+
+        return True; //todo check error
+
+
     }
 
 ?>
