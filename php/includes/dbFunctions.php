@@ -175,7 +175,7 @@
 
    
 
-    function getSale($id)   //get sale details from db
+    function getSale($id, $userId)   //get sale details from db
     {
         global $con;
 
@@ -210,6 +210,40 @@
             $images[] = $row[0];
         }
         $sale['images'] = $images;
+
+        //get seller details
+        $sql = "select * from users where user_id = ". $sale['user_id'];
+        $results = $con->query($sql);
+        $sale['seller'] = NULL;
+        if ($results and $results->num_rows > 0)        //if seller exists
+        {
+            $sale['seller'] = $results->fetch_assoc();
+        }
+
+        //check if the sale is saved
+        $sql = "select * from saved_sale where user_id = $userId and sale_id = $id;";
+        $results = $con->query($sql);
+        if ($results and $results->num_rows > 0)        //if sale is saved
+        {
+            $sale['saved'] = True;
+        }
+        else
+        {
+            $sale['saved'] = False;
+        }
+
+        //get seller contacts
+        //get sale phone numbers
+        $sql = "select phone from users_phone where user_id = ". $sale['seller']['user_id']. " limit 1";
+        $results = $con->query($sql);
+        if ($results and $results->num_rows > 0)        //if sale is saved
+        {
+            $sale['seller']['contact'] = $results->fetch_array()[0];
+        }
+        else
+        {
+            $sale['seller']['contact'] = NULL;
+        }
 
         return $sale;
     }

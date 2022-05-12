@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("php/controllers/sale-ctrl.php");
 ?>
 <!DOCTYPE html>
@@ -49,7 +50,7 @@
 
     <div class="container" id="container">
         <div class="title">
-            <h1>Land for Sale in Maharagama</h1>
+            <h1><?php echo $values['title'] ?></h1>
         </div>
 
         <div class="images">
@@ -66,8 +67,19 @@
                     
         <div class="btn-container">
         <input class='btn-simple' type='button' value='Report' onclick='showReportForm()'>
-        <input class='btn-simple' type='button' value='Save' id='btn-save' onclick='save()'>
-        <input class='btn-simple hide' type='button' value='Saved' id='btn-unsave' onclick='unsave()'>
+
+        <?php 
+            if ($values['saved'])
+            {
+                echo "<input class='btn-simple hide' type='button' value='Saved' id='btn-unsave' onclick='unsave()'>";
+                echo "<input class='btn-simple' type='button' value='Save' id='btn-save' onclick='save()'>";
+            }
+            else
+            {
+                echo "<input class='btn-simple' type='button' value='Saved' id='btn-unsave' onclick='unsave()'>";
+                echo "<input class='btn-simple hide' type='button' value='Save' id='btn-save' onclick='save()'>";
+            }
+        ?>
 
         </div>
     
@@ -121,31 +133,26 @@
         <div class="user">
             <h3>Seller</h3>
             <div class="profile">
-                <img class="avatar" src="images\profile\1.jfif">
-                <p> Seller Name</p>
+                <img class="avatar" src="<?php echo $values['seller']['profile_photo'] ?>">
+                <p> <?php echo $values['seller']['first_name'] . $values['seller']['last_name'] ?></p>
             </div>
             <div class="field-container">
                 <div class="info-field">
                     <p>Contacts</p>
-                    <p>032-8987873</p>
+                    <p><?php echo $values['seller']['contact'] ?></p>
                 </div>
                 <div class="info-field">
                     <p>E-mail</p>
-                    <p>something@gmail.com</p>
+                    <p><?php echo $values['seller']['email'] ?></p>
                 </div>
                 <div class="info-field">
                     <p>About</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi maiores non odit! Qui porro dolor sunt aperiam at sint libero earum? Ad unde a quam voluptates error accusamus facilis dolorum animi laboriosam libero nesciunt officia fugit incidunt, deleniti ea tenetur exercitationem, hic magnam dolores eaque ut doloremque iusto. Necessitatibus nam quo deleniti beatae consequatur temporibus molestias praesentium dicta aliquam veniam, iusto tenetur ad saepe laudantium recusandae soluta est, maxime dignissimos dolores sapiente excepturi minus! Facilis accusantium eaque maxime temporibus aut hic ratione iure ipsa quibusdam veritatis distinctio facere dolore quam, dignissimos repellendus vel consectetur praesentium quae recusandae eligendi nobis! Iste.</p>
+                    <p><?php echo $values['seller']['about'] ?></p>
                 </div>
             </div>
             
         </div>
     </div>
-    
-
-
-
-
 
     <?php
         include("php/templates/footer.php");
