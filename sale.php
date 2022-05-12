@@ -71,12 +71,12 @@
         <?php 
             if ($values['saved'])
             {
-                echo "<input class='btn-simple hide' type='button' value='Saved' id='btn-unsave' onclick='unsave()'>";
-                echo "<input class='btn-simple' type='button' value='Save' id='btn-save' onclick='save()'>";
+                echo "<input class='btn-simple' type='button' value='Saved' id='btn-unsave' onclick='unsave()'>";
+                echo "<input class='btn-simple hide' type='button' value='Save' id='btn-save' onclick='save()'>";
             }
             else
             {
-                echo "<input class='btn-simple' type='button' value='Saved' id='btn-unsave' onclick='unsave()'>";
+                echo "<input class='btn-simple ' type='button' value='Saved' id='btn-unsave' onclick='unsave()'>";
                 echo "<input class='btn-simple hide' type='button' value='Save' id='btn-save' onclick='save()'>";
             }
         ?>
@@ -155,6 +155,7 @@
     </div>
 
     <?php
+        echo var_dump($values);
         include("php/templates/footer.php");
     ?>
 </body>
