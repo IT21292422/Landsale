@@ -7,8 +7,8 @@
 <head>
     <title>Sale Post</title>
     <link rel="stylesheet" href="styles/page-container.css">
-    <link rel="stylesheet" href="styles/sale.css">
-    <script src="js/sale.js"></script>
+    <link rel="stylesheet" href="styles/sale-request.css">
+    <script src="js/sale-request.js"></script>
 </head>
 <body>
     <?php
@@ -39,7 +39,7 @@
             <textarea type="text" name='description' id="description" rows="7"></textarea>
             <input type="hidden" name='sale_id' value="1">
         </form>
-        <input class="btn-report" type="button" value="Submit" onclick="submitReport()">
+        <input class="btn-report" type="button" value="Submit" onclick="submitReport('submit-sale-complaint.php')">
         <input class="btn-report" type="button" value="Cancel" id="cancel-report" onclick="hideReportForm()">
     </div>       
 
@@ -56,11 +56,18 @@
 
         <div class="images">
             <div class="slide-show">
-            <input class="btn-image btn-left" type="button" id="left" value="❮">
 
-            <img class="image" src="images/sale/1.jpg">
-            <img class="image" src="./Sale Post_files/1(1).jpg"><img class="image" src="./Sale Post_files/2.jpg"><img class="image" src="./Sale Post_files/3.jpg"><img class="image" src="./Sale Post_files/4.jpg">           
+            <input class="btn-image btn-left" type="button" id="left" value="❮">
             <input class="btn-image btn-right" type="button" id="left" value="❯">
+
+            <img class="image" src="<?php if(empty($values['cover_photo'])) echo "images/sale/default.png"; else echo $values['cover_photo'];?>">
+            
+            <?php
+                foreach ($values['images'] as $image)
+                {
+                    echo "<img class='image' src='$image'>";
+                }
+            ?>
 
             </div>
         </div>
@@ -69,18 +76,9 @@
         <div class="btn-container-ralign">
         <input class='btn-simple' type='button' value='Report' onclick='showReportForm()'>
 
-        <?php 
-            if ($values['saved'])
-            {
-                echo "<input class='btn-simple' type='button' value='Saved' id='btn-unsave' onclick='unsave()'>";
-                echo "<input class='btn-simple hide' type='button' value='Save' id='btn-save' onclick='save()'>";
-            }
-            else
-            {
-                echo "<input class='btn-simple ' type='button' value='Saved' id='btn-unsave' onclick='unsave()'>";
-                echo "<input class='btn-simple hide' type='button' value='Save' id='btn-save' onclick='save()'>";
-            }
-        ?>
+        <input class='btn-simple <?php if (!$values['saved']) echo 'hide' ?>' type='button' value='Saved' id='btn-unsave' onclick="unsave('save-sale.php')">
+        <input class='btn-simple <?php if ($values['saved']) echo 'hide' ?>' type='button' value='Save' id='btn-save' onclick="save('save-sale.php')">
+
 
         </div>
     

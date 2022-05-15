@@ -7,7 +7,14 @@
     {
         $id = $_GET['id'];  //get post id
 
-        $values = getRequest((int)$id); //get details from the database
+        if (isset($_SESSION['user_id']))
+        {
+            $values = getRequest((int)$id, $_SESSION['user_id']); //get details from the database
+        }
+        else
+        {
+            $values = getRequest((int)$id); //get details from the database
+        }
     }
     else
     {
@@ -15,4 +22,6 @@
         echo "could not find that post";
         die();
     }
+
+    echo var_dump($values);
 ?>

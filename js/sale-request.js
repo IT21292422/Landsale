@@ -1,9 +1,9 @@
-function submitReport()
+function submitReport(url)
 {
     let form = document.getElementById('report-form');
     let data = new FormData(form);
 
-    fetch('submit-sale-complaint.php', {
+    fetch(url, {
         method: "post",
         body: data
     })
@@ -19,12 +19,12 @@ function submitReport()
 
 }
 
-function save()
+function save(url)
 {
     let form = document.getElementById('save-form');
     let data = new FormData(form);
 
-    fetch('save-sale.php', {
+    fetch(url, {
         method: "post",
         body: data
     })
@@ -39,12 +39,12 @@ function save()
     });
 }
 
-function unsave()
+function unsave(url)
 {
     let form = document.getElementById('unsave-form');
     let data = new FormData(form);
 
-    fetch('save-sale.php', {
+    fetch(url, {
         method: "post",
         body: data
     })

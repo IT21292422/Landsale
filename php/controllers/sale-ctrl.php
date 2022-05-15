@@ -7,7 +7,14 @@
     {
         $id = $_GET['id'];  //get post id
 
-        $values = getSale((int)$id, $_SESSION['user_id']); //get details from the database
+        if (isset($_SESSION['user_id']))
+        {
+            $values = getSale((int)$id, $_SESSION['user_id']); //get details from the database
+        }
+        else
+        {
+            $values = getSale((int)$id); //get details from the database
+        }
     }
     else
     {

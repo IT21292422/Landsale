@@ -175,7 +175,7 @@
 
    
 
-    function getSale($id, $userId)   //get sale details from db
+    function getSale($id, $userId=NULL)   //get sale details from db
     {
         global $con;
 
@@ -228,17 +228,18 @@
         }
 
         //check if the sale is saved
-        $sql = "select * from saved_sale where user_id = $userId and sale_id = $id;";
-        $results = $con->query($sql);
-        if ($results and $results->num_rows > 0)        //if sale is saved
+        $sale['saved'] = False;
+        if ($userId !== NULL)
         {
-            $sale['saved'] = True;
-        }
-        else
-        {
-            $sale['saved'] = False;
-        }
+            $sql = "select * from saved_sale where user_id = $userId and sale_id = $id;";
+            $results = $con->query($sql);
+            if ($results and $results->num_rows > 0)        //if sale is saved
+            {
+                $sale['saved'] = True;
+            }
 
+        }
+        
         //get seller contacts
         //get sale phone numbers
         $sql = "select phone from users_phone where user_id = ". $sale['seller']['user_id']. " limit 1";
@@ -255,7 +256,7 @@
         return $sale;
     }
 
-    function getRequest($id)   //get sale details from db
+    function getRequest($id, $userId=NULL)   //get request details from db
     {
         global $con;
 
@@ -267,15 +268,58 @@
         if ($results and $results->num_rows < 1) return False;
 
         //fetch request details
-        $sale = $results->fetch_assoc();
+        $request = $results->fetch_assoc();
 
         //get request phone numbers
         $sql = "select phone from request_phone where request_id = $id";
         $results = $con->query($sql);
-        $phone = $results->fetch_array(MYSQLI_NUM);
-        $sale['phone'] = $phone;
+        $phone = array();
+        if ($results and $results->num_rows > 0)
+        {
+            $table = $results->fetch_all(MYSQLI_NUM);
+            foreach ($table as $row)
+            {
+                $phone[] = $row[0];
+            }
+        }
+        $request['phone'] = $phone;
 
-        return $sale;
+        //get requester details
+        $sql = "select * from users where user_id = ". $request['user_id'];
+        $results = $con->query($sql);
+        $request['seller'] = NULL;
+        if ($results and $results->num_rows > 0)        //if seller exists
+        {
+            $request['seller'] = $results->fetch_assoc();
+        }
+
+        //check if the request is saved
+        $request['saved'] = False;
+        if ($userId !== NULL)
+        {
+            $sql = "select * from saved_request where user_id = $userId and request_id = $id;";
+            $results = $con->query($sql);
+            if ($results and $results->num_rows > 0)        //if request is saved
+            {
+                $request['saved'] = True;
+            }
+
+        }
+        
+        //get seller contacts
+        //get request phone numbers
+        $sql = "select phone from users_phone where user_id = ". $request['seller']['user_id']. " limit 1";
+        $results = $con->query($sql);
+        if ($results and $results->num_rows > 0)        //if request is saved
+        {
+            $request['seller']['contact'] = $results->fetch_array()[0];
+        }
+        else
+        {
+            $request['seller']['contact'] = NULL;
+        }
+
+        return $request;
     }
 
     function getSales($startFrom) //get list of sales from db
@@ -316,6 +360,22 @@
         return False;
     }
 
+    function addRequestComplaint($values, $userId)
+    {
+        global $con;
+
+        $values['user_id'] = (int)$userId;
+
+        $sql = generateInsertString('request_complaints', $values);
+
+        if($con->query($sql))
+        {
+            return True;
+        }
+
+        return False;
+    }
+
     function saveSale($values)
     {
         global $con;
@@ -330,6 +390,34 @@
 
             case 'unsave':
                 $sql = 'delete from saved_sale where user_id = ' . $values['user_id'] . ' and sale_id = ' . $values['sale_id'];
+                break;
+
+            default:
+                return False;
+        }
+
+        if($con->query($sql)) //todo crashes on duplicate error
+        {
+            return True;
+        }
+
+        return True; //todo check error
+    }
+
+    function saveRequest($values)
+    {
+        global $con;
+
+        $action = $values['action'];
+        unset($values['action']);
+
+        switch ($action) {
+            case 'save':
+                $sql = generateInsertString('saved_request', $values);
+                break;
+
+            case 'unsave':
+                $sql = 'delete from saved_request where user_id = ' . $values['user_id'] . ' and request_id = ' . $values['request_id'];
                 break;
 
             default:
