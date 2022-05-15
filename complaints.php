@@ -1,3 +1,4 @@
+// Data base name is "register" and table name is "user" and colunms are id and name
 <!DOCTYPE html>
 <html lang="en">
 <head>
