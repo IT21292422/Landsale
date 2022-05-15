@@ -24,7 +24,7 @@
     if(isset($_POST["email"])) //check for a post method
     {
         //get values from user
-        foreach ($values as $fieldName=>$value)
+        foreach ($required as $fieldName=>$_)
         {
             $values[$fieldName] = $_POST[$fieldName];
         }
@@ -47,10 +47,6 @@
 
                 header('Location: /landsale');  //redirect to homepage
             }
-        }
-        else
-        {
-
         }
 
        

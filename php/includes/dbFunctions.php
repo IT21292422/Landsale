@@ -193,10 +193,13 @@
         $sql = "select phone from sale_phone where sale_id = $id";
         $results = $con->query($sql);
         $phone = array();
-        $table = $results->fetch_all(MYSQLI_NUM);
-        foreach ($table as $row)
+        if ($results and $results->num_rows > 0)
         {
-            $phone[] = $row[0];
+            $table = $results->fetch_all(MYSQLI_NUM);
+            foreach ($table as $row)
+            {
+                $phone[] = $row[0];
+            }
         }
         $sale['phone'] = $phone;
 
@@ -204,11 +207,15 @@
         $sql = "select media from sale_media where sale_id = $id";
         $results = $con->query($sql);
         $images = array();
-        $table = $results->fetch_all(MYSQLI_NUM);
-        foreach ($table as $row)
+        if ($results and $results->num_rows > 0)
         {
-            $images[] = $row[0];
+            $table = $results->fetch_all(MYSQLI_NUM);
+            foreach ($table as $row)
+            {
+                $images[] = $row[0];
+            }
         }
+       
         $sale['images'] = $images;
 
         //get seller details
@@ -335,8 +342,67 @@
         }
 
         return True; //todo check error
+    }
 
+    function getUser($userId)
+    {
+        global $con;
 
+        //get data from database
+        $sql = "select * from users where user_id = $userId";
+        $results = $con->query($sql);
+
+        //if user is not found
+        if ($results and $results->num_rows < 1) return NULL;
+
+        //get assoc array
+        $user = $results->fetch_assoc();
+
+        //get contacts from database
+        $sql = "select phone from users_phone where user_id = $userId";
+        $results = $con->query($sql);
+        $phone = array();
+        if ($results and $results->num_rows > 0)
+        {
+            $table = $results->fetch_all(MYSQLI_NUM);
+            foreach ($table as $row)
+            {
+                $phone[] = $row[0];
+            }
+        }
+        $user['phone'] = $phone;
+
+        return $user;
+        
+
+    }
+
+    function updateUser($values, $userId)
+    {
+        global $con;
+
+        if (count($values['phone']) > 0)
+        {
+            $sql = "delete from users_phone where user_id = $userId";
+            $con->query($sql);
+            
+            foreach($values['phone'] as $phone)
+            {
+                $sql = "insert into users_phone(user_id, phone) values($userId, '$phone')";
+                $con->query($sql);
+            }
+        }
+
+        unset($values['phone']);
+
+        $sql = generateUpdateString('users', $values, "user_id = $userId");
+
+        if($con->query($sql))
+        {
+            return True;
+        }
+
+        return False;
     }
 
 ?>

@@ -8,7 +8,7 @@ create table users(
 	account_status varchar(10) default 'valid',
 	account_type varchar(10) default 'user',
 	profile_photo varchar(50),
-	about varchar (200),
+	about varchar (500),
 	constraint user_pk primary key (user_id),
 	constraint users_email_unique unique(email),
 	constraint users_status_check check (account_status in ('suspended','banned','valid')),

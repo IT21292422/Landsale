@@ -6,6 +6,7 @@
 <html lang="en">
 <head>
     <title>Sale Post</title>
+    <link rel="stylesheet" href="styles/page-container.css">
     <link rel="stylesheet" href="styles/sale.css">
     <script src="js/sale.js"></script>
 </head>
@@ -65,7 +66,7 @@
         </div>
 
                     
-        <div class="btn-container">
+        <div class="btn-container-ralign">
         <input class='btn-simple' type='button' value='Report' onclick='showReportForm()'>
 
         <?php 
@@ -134,7 +135,7 @@
             <h3>Seller</h3>
             <div class="profile">
                 <img class="avatar" src="<?php echo $values['seller']['profile_photo'] ?>">
-                <p> <?php echo $values['seller']['first_name'] . $values['seller']['last_name'] ?></p>
+                <p> <?php echo $values['seller']['first_name'] . ' ' . $values['seller']['last_name'] ?></p>
             </div>
             <div class="field-container">
                 <div class="info-field">
@@ -155,7 +156,6 @@
     </div>
 
     <?php
-        echo var_dump($values);
         include("php/templates/footer.php");
     ?>
 </body>

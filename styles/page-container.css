@@ -1,0 +1,67 @@
+
+.hide
+{
+    display: none;
+}
+
+/*structure*/
+.container{
+    display: grid;
+    grid-template-columns: auto;
+    gap: 40px;
+    padding: 5%;
+
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+}
+
+.container > div{
+    box-shadow: 5px 5px 10px #b2b2b2;
+    background-color: white;
+}
+
+.container p{
+    padding-left: 10px;
+}
+
+.container h3{
+    padding-left: 10px;
+}
+
+div.title{
+    background-color: transparent;
+    box-shadow: none;
+}
+
+div.btn-container-ralign{
+    background-color: transparent;
+    box-shadow: none;
+    justify-self: right;
+}
+
+div.images{
+    min-height: 0px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.field-container{
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.info-field{
+    display: grid;
+    grid-template-columns: minmax(125px, 15%) auto;
+}
+
+.info-field p:first-of-type:after{
+    content: " :";
+}
+
+.field-container > div:nth-child(odd), .field-container > a:nth-child(odd){
+    background-color: #e7e7e7;
+}
+
+
