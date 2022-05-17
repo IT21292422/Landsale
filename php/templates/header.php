@@ -2,7 +2,7 @@
 
         <div class="head1">
         <!--Company logo-->
-        <img class="logo" src="logo.png" alt="Golden Lands">
+        <img class="logo" src="images/headerfooter/logo.png" alt="Golden Lands">
         </div>
 
         <!--Main Menu or Navigation Bar-->
@@ -13,7 +13,7 @@
             <a href="#" onclick="breadCrumbFunctio('submit')">Submit a Request</a>
         
             <!--User's image-->
-            <a href="#" class="right"><img class="profilepic" src="profile.png" alt="UserImg"></img></a>
+            <a href="#" class="right"><img class="profilepic" src="images/headerfooter/profile.png" alt="UserImg"></img></a>
             <a href="#" class="right">Login</a>
             <a href="#" class="right">Register</a>
              
