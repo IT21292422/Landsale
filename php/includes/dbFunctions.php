@@ -84,8 +84,6 @@
         //add field names and values to the sql statement
         $sql = str_replace('{values}', $str_values, $sql);
 
-        echo $sql;
-
         return $sql;
         
     }
@@ -140,40 +138,6 @@
 
         return True;
     }
-
-    function addRequest($values, $userId)
-    {
-        global $con;
-
-        $values['user_id'] = (int)$userId;
-
-        $sql = generateInsertString('request', $values);
-
-        if($con->query($sql))
-        {
-            return True;
-        }
-
-        return False;
-    }
-
-    function addSale($values, $userId)
-    {
-        global $con;
-
-        $values['user_id'] = (int)$userId;
-
-        $sql = generateInsertString('sale', $values);
-
-        if($con->query($sql))
-        {
-            return True;
-        }
-
-        return False;
-    }
-
-   
 
     function getSale($id, $userId=NULL)   //get sale details from db
     {
@@ -320,28 +284,6 @@
         }
 
         return $request;
-    }
-
-    function getSales($startFrom) //get list of sales from db
-    {
-        global $con;
-        $sql = "select (sale_id, price, province, district, city, title, land_area) from sale limit $startFrom, 10";
-        $results = $con->query($sql);
-
-        if ($results and $results->num_rows < 1) return False;
-
-        return $results->fetch_array(MYSQLI_ASSOC);
-    }
-
-    function getRequests($startFrom)  //get list of requests from db
-    {
-        global $con;
-        $sql = "select (sale_id, max_price, min_price, province, district, city, title, max_area, min_area) from request limit $startFrom,10";
-        $results = $con->query($sql);
-
-        if ($results and $results->num_rows < 1) return False;
-
-        return $results->fetch_array(MYSQLI_ASSOC);
     }
 
     function addSaleComplaint($values, $userId)
@@ -491,6 +433,28 @@
         }
 
         return False;
+    }
+
+    function getSales($startFrom) //get list of sales from db
+    {
+        global $con;
+        $sql = "select (sale_id, price, province, district, city, title, land_area) from sale limit $startFrom, 10";
+        $results = $con->query($sql);
+
+        if ($results and $results->num_rows < 1) return False;
+
+        return $results->fetch_array(MYSQLI_ASSOC);
+    }
+
+    function getRequests($startFrom)  //get list of requests from db
+    {
+        global $con;
+        $sql = "select (sale_id, max_price, min_price, province, district, city, title, max_area, min_area) from request limit $startFrom,10";
+        $results = $con->query($sql);
+
+        if ($results and $results->num_rows < 1) return False;
+
+        return $results->fetch_array(MYSQLI_ASSOC);
     }
 
 ?>

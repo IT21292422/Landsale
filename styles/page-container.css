@@ -1,7 +1,7 @@
 
 .hide
 {
-    display: none;
+    display: none !important;
 }
 
 /*structure*/
@@ -56,7 +56,7 @@ div.images{
     grid-template-columns: minmax(125px, 15%) auto;
 }
 
-.info-field p:first-of-type:after{
+.info-field > p:first-of-type:after{
     content: " :";
 }
 
@@ -64,4 +64,24 @@ div.images{
     background-color: #e7e7e7;
 }
 
+.field-container  a:hover {
+    background-color: #a1a1a1 !important;
+    color: white;
+}
 
+.field-container  a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+
+}
+
+.container > div > a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.container > div > a:hover, .container > div > a:hover > *{
+    background-color:#a1a1a1;
+    color: white;
+}

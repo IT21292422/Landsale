@@ -9,48 +9,42 @@
 <body>
     <?php
 
-    $con= new mysqli("localhost","root","","register");
+    require_once("php/includes/dbcon.php");
 
-    $result1=$con->connect_error;
+    $sql1="SELECT user_id,first_name FROM users";
 
-    if($result1){
-        die("failed".$result1);
-    }
+    $result2=$con->query($sql1);
 
-$sql1="SELECT id,name FROM user ";
+    //Shows the Request table details 
+    if ($result2->num_rows > 0) {
 
-$result2=$con->query($sql1);
+        echo("<h1>Request Complaints</h1>");
 
-//Shows the Request table details 
-if ($result2->num_rows > 0) {
+        echo("<table border='1'>");
+        echo("<th>id</th>");
+        echo("<th>name</th>");
+        echo("<th></th>");
+        while($row = $result2->fetch_assoc()) {
+            echo ("<tr>");
+            echo ("<td>".$row["id"]."</td>");
+            echo ("<td>".$row["name"]."</td>");
 
-    echo("<h1>Request Complaints</h1>");
+            echo '<td><form action="" method="POST"><button name="submit" value='.$row['id'].'>Delete</button></form></td>';
+            echo ("</tr>");
+        }
+        echo ("</table>");
 
-    echo("<table border='1'>");
-    echo("<th>id</th>");
-    echo("<th>name</th>");
-    echo("<th></th>");
-    while($row = $result2->fetch_assoc()) {
-        echo ("<tr>");
-        echo ("<td>".$row["id"]."</td>");
-        echo ("<td>".$row["name"]."</td>");
+        }else{
+            echo ('<h1 class="warnings">The Request complaint table is empty</h1>');
+        }
 
-        echo '<td><form action="" method="POST"><button name="submit" value='.$row['id'].'>Delete</button></form></td>';
-        echo ("</tr>");
-    }
-    echo ("</table>");
-
-    }else{
-        echo ('<h1 class="warnings">The Request complaint table is empty</h1>');
-    }
-
-    if(isset($_POST['submit'])){
-   $sql2='DELETE FROM user WHERE id=$row["id"];';
-   }
-    $con->query($sql2);
-    
-    echo '<script type="text/javascript">alert("Recode was deleted!!!");</script>';
-$con->close();
+        if(isset($_POST['submit'])){
+            $sql2='DELETE FROM user WHERE id='.$_POST['submit'].';';
+        }
+        $con->query($sql2);
+        
+        echo '<script type="text/javascript">alert("Recode was deleted!!!");</script>';
+    $con->close();
 ?>
 </body>
 </html>

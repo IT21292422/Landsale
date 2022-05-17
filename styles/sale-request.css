@@ -20,8 +20,7 @@ body{
     grid-template-columns: max-content max-content;
     gap: 10px;
     align-items: center;
-    padding-left: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
 
 }
 
@@ -79,17 +78,14 @@ body{
 }
 
 .image{
-    display: none;
     width:100%;
-}
-
-.image:first-of-type{
-    display: block;
 }
 
 .btn-image{
     position: absolute;
     top: 50%;
+    transform:translate(0, -50%);
+    height: 15%;
 }
 
 .btn-right{

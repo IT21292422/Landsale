@@ -108,26 +108,32 @@
             <?php 
                 foreach ($values['phone'] as $contact)
                 {
-                    echo "<div><p>$contact</p></div>";
+                    echo "<a href='tel:$contact'><div><p>$contact</p></div></a>";
                 }
             ?> 
             </div>
         </div>
 
         <div class="user">
-            <h3>Seller</h3>
-            <div class="profile">
-                <img class="avatar" src="<?php echo $values['seller']['profile_photo'] ?>">
-                <p> <?php echo $values['seller']['first_name'] . ' ' . $values['seller']['last_name'] ?></p>
-            </div>
+            <h3>Requester</h3>
+            <a href="user?id=<?php echo $values['seller']['user_id'] ?>">
+                <div class="profile">
+                    <img class="avatar" src="<?php echo $values['seller']['profile_photo'] ?>">
+                    <p> <?php echo $values['seller']['first_name'] . ' ' . $values['seller']['last_name'] ?></p>
+                </div>
+            </a>
             <div class="field-container">
                 <div class="info-field">
                     <p>Contacts</p>
-                    <p><?php echo $values['seller']['contact'] ?></p>
+                    <a href="tel:<?php echo $values['seller']['contact'] ?>">
+                        <p><?php echo $values['seller']['contact'] ?></p>
+                    </a>
                 </div>
                 <div class="info-field">
                     <p>E-mail</p>
-                    <p><?php echo $values['seller']['email'] ?></p>
+                    <a href="mailto:<?php echo $values['seller']['email'] ?>">
+                        <p><?php echo $values['seller']['email'] ?></p>
+                    </a>
                 </div>
                 <div class="info-field">
                     <p>About</p>

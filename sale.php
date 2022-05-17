@@ -57,15 +57,15 @@
         <div class="images">
             <div class="slide-show">
 
-            <input class="btn-image btn-left" type="button" id="left" value="❮">
-            <input class="btn-image btn-right" type="button" id="left" value="❯">
+            <input class="btn-image btn-left" type="button" id="left" value="❮" onclick=changeImage(-1)>
+            <input class="btn-image btn-right" type="button" id="left" value="❯" onclick=changeImage(1)>
 
             <img class="image" src="<?php if(empty($values['cover_photo'])) echo "images/sale/default.png"; else echo $values['cover_photo'];?>">
             
             <?php
                 foreach ($values['images'] as $image)
                 {
-                    echo "<img class='image' src='$image'>";
+                    echo "<img class='image hide' src='$image'>";
                 }
             ?>
 
@@ -123,7 +123,7 @@
             <?php 
                 foreach ($values['phone'] as $contact)
                 {
-                    echo "<div><p>$contact</p></div>";
+                    echo "<a href='tel:$contact'><div><p>$contact</p></div></a>";
                 }
             ?> 
             </div>
@@ -131,18 +131,24 @@
 
         <div class="user">
             <h3>Seller</h3>
-            <div class="profile">
-                <img class="avatar" src="<?php echo $values['seller']['profile_photo'] ?>">
-                <p> <?php echo $values['seller']['first_name'] . ' ' . $values['seller']['last_name'] ?></p>
-            </div>
+            <a href="user?id=<?php echo $values['seller']['user_id'] ?>">
+                <div class="profile">
+                    <img class="avatar" src="<?php echo $values['seller']['profile_photo'] ?>">
+                    <p> <?php echo $values['seller']['first_name'] . ' ' . $values['seller']['last_name'] ?></p>
+                </div>
+            </a>
             <div class="field-container">
                 <div class="info-field">
                     <p>Contacts</p>
-                    <p><?php echo $values['seller']['contact'] ?></p>
+                    <a href="tel:<?php echo $values['seller']['contact'] ?>">
+                        <p><?php echo $values['seller']['contact'] ?></p>
+                    </a>
                 </div>
                 <div class="info-field">
                     <p>E-mail</p>
-                    <p><?php echo $values['seller']['email'] ?></p>
+                    <a href="mailto:<?php echo $values['seller']['email'] ?>">
+                        <p><?php echo $values['seller']['email'] ?></p>
+                    </a>
                 </div>
                 <div class="info-field">
                     <p>About</p>

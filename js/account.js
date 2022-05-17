@@ -38,3 +38,30 @@ function removeProfilePicture()
     document.getElementById('photo-input').disabled = false;
     document.getElementById('profile-img').src = 'images/profile/default.png';
 }
+
+function deletePhone(phone)
+{
+    document.getElementById(phone).remove();
+}
+
+function addPhone()
+{
+    
+    let i = 0;
+    let found = false;
+    while (!found)
+    {
+        i++;
+        e = document.getElementById(String(i));
+        if (e === null) found = true;
+    }
+
+    document.getElementById('phone-container').insertAdjacentHTML('beforeend', `
+        <div class='phone' id='${i}'>
+            <div class='form-field edit'>
+                <input type='text' name='phone[]'>
+            </div>
+            <input type='button' class='edit btn-image delete-background' onclick=\"deletePhone('${i}')\">
+        </div>
+    `)
+}

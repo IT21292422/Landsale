@@ -59,6 +59,32 @@ function unsave(url)
     });
 }
 
+let pos = 0;
+function changeImage(num)
+{
+    let images = document.getElementsByClassName('image');
+
+    pos += num;
+
+    if (pos > images.length - 1 )
+    {
+        pos = 0;
+    }
+    else if (pos < 0)
+    {
+        pos = images.length;
+    }
+
+    for (let image of images)
+    {
+        image.classList.add('hide');
+    }
+    console.log(pos)
+    images[pos].classList.remove('hide');
+
+    
+}
+
 function showReportForm()
 {
     document.getElementById('report-post').style.display = 'block';

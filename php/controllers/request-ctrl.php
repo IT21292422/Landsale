@@ -22,6 +22,4 @@
         echo "could not find that post";
         die();
     }
-
-    echo var_dump($values);
 ?>
