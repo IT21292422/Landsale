@@ -29,12 +29,10 @@
                             <p>
                             Follow Us
                             </p>
-                            <span>
-                            <img class="brands"src="barnds/Instagram.png" alt="instagram">
-                            </span>
-                            <img class="brands"src="barnds/linkedin.png" alt="linkedin">
-                            <img class="brands"src="barnds/twitter.png" alt="twitter">
-                            <img class="brands"src="barnds/facebook.png" alt="facebook">
+                            <img class="brands"src="images/headerfooter/barnds/Instagram.png" alt="instagram">
+                            <img class="brands"src="images/headerfooter/barnds/linkedin.png" alt="linkedin">
+                            <img class="brands"src="images/headerfooter/barnds/twitter.png" alt="twitter">
+                            <img class="brands"src="images/headerfooter/barnds/facebook.png" alt="facebook">
                 </div>
                         </div>
         </footer>

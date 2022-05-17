@@ -7,7 +7,7 @@
 
     .head1 {
         background-color: rgb(11, 6, 0);
-        background-image: url('lands/land7.jpg');
+        background-image: url('images/headerfooter/lands/land7.jpg');
         margin: -15px;
         display: flex;
     }
@@ -105,7 +105,7 @@
         padding-left: 10px;
         width: 1900px;
         padding-top: 150px;
-        background-image:url('lands/land2.jpg');
+        background-image:url('images/headerfooter/lands/land2.jpg');
         background-repeat:no-repeat;
         position: absolute;
         left: 0;
