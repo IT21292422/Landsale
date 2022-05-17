@@ -3,6 +3,7 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" href="styles/headerfooter.css"/>
+    
 </head>
 <body>
     <?php
