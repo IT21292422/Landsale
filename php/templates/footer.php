@@ -1,5 +1,19 @@
  <!-- Bottom part of the body -->
         <footer class="foot">
+        <style>
+        .foot {
+                padding-left: 10px;
+                width: 1900px;
+                padding-top: 150px;
+                background-image:url('images/headerfooter/lands/land2.jpg');
+                background-repeat:no-repeat;
+                position: absolute;
+                left: 0;
+                bottom: auto;
+                width: 100%;
+                color: rgb(202, 253, 172);
+        }
+        </style>
             <div class="image">
                 <div class="contact">
                         <span class="topic">Contact Us</span>

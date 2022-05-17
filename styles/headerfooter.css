@@ -5,13 +5,6 @@
 
     /* from here header area */
 
-    .head1 {
-        background-color: rgb(11, 6, 0);
-        background-image: url('images/headerfooter/lands/land7.jpg');
-        margin: -15px;
-        display: flex;
-    }
-
     .logo {
         display: block;
         margin-left: auto;
@@ -65,13 +58,14 @@
         padding: 5px;
     }
 
-    /* from here the main content */
+    /* from here the main content and paragrahp for p*/
 
-    .mainpage {
+    .mainpage p {
         border-radius: 5px;
         background-color: white;
         width: fit-content;
-        margin-left: 10px;
+        margin: 10px;
+        padding: 20px;
     }
 
     /* from here the footer area */
@@ -101,18 +95,7 @@
         width: 35px;
     }
 
-    .foot {
-        padding-left: 10px;
-        width: 1900px;
-        padding-top: 150px;
-        background-image:url('images/headerfooter/lands/land2.jpg');
-        background-repeat:no-repeat;
-        position: absolute;
-        left: 0;
-        bottom: auto;
-        width: 100%;
-        color: rgb(202, 253, 172);
-    }
+   
     
     .contact{
         position: absolute;

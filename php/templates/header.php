@@ -1,5 +1,14 @@
 <header>
 
+<style>
+.head1{
+        /*background-color: rgb(11, 6, 0);*/
+        background-image: url('images/headerfooter/lands/land7.jpg');
+        margin: -15px;
+        display: flex;
+}
+</style>
+
         <div class="head1">
         <!--Company logo-->
         <img class="logo" src="images/headerfooter/logo.png" alt="Golden Lands">
@@ -23,5 +32,5 @@
         <div><p id="breadcumbs">
         </p>
         </div>
-        
+       
         </header>
