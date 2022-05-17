@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/page-container.css">
     <link rel="stylesheet" href="styles/account.css">
     <link rel="stylesheet" href="styles/forms.css">
+    <link rel="stylesheet" href="styles/headerfooter.css"/>
 
     <script>
         let originalImage = "<?php echo $values['profile_photo']  ?>";

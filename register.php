@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
     <title>Register</title>
+    <link rel="stylesheet" href="styles/headerfooter.css"/>
 </head>
     <body>
         <?php

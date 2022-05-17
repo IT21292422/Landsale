@@ -5,6 +5,8 @@
 <html lang="en">
 <head>
     <title>Sign in</title>
+    <link rel="stylesheet" href="styles/headerfooter.css"/>
+
 </head>
 <body>
    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">

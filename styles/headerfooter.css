@@ -1,0 +1,135 @@
+ body {
+        background: linear-gradient(rgba(95, 217, 250, 0.7), rgba(128, 255, 38, 0.749));
+        color: rgb(0, 0, 0);
+    }
+
+    /* from here header area */
+
+    .head1 {
+        background-color: rgb(11, 6, 0);
+        background-image: url('lands/land7.jpg');
+        margin: -15px;
+        display: flex;
+    }
+
+    .logo {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+    }
+
+    .navbar {
+        border-radius: 5px;
+        overflow: hidden;
+        background: linear-gradient(rgba(245, 250, 95), rgb(33, 190, 175));
+    }
+
+    /* Style the navigation bar links */
+    .navbar a {
+        float: left;
+        display: block;
+        color: rgb(15, 12, 12);
+        text-align: center;
+        padding: 14px 14px;
+        text-decoration: none;
+
+    }
+
+    /* Right-aligned link */
+    .navbar a.right {
+        float: right;
+    }
+
+    /* Change color on hover/mouse-over */
+    .navbar a:hover {
+        border-radius: 5px;
+        background-color: rgb(213, 246, 48);
+        color: black;
+    }
+
+    .logins {
+        position: absolute;
+        right: 50px;
+    }
+
+    .profilepic {
+        width: 20px;
+        position: relative;
+    }
+
+    .breadcumbs {
+        color:aliceblue
+        background-color: rgb(4, 8, 4);
+        margin: 0px -5px 0px -5px;
+        padding: 5px;
+    }
+
+    /* from here the main content */
+
+    .mainpage {
+        border-radius: 5px;
+        background-color: white;
+        width: fit-content;
+        margin-left: 10px;
+    }
+
+    /* from here the footer area */
+
+    .topic {
+        font-size:larger;
+        font-weight: 600;
+    }
+    .topic:hover {
+        color: rgb(125, 253, 123);
+    }
+
+    .socialmedia{
+        position: relative;
+        bottom: 10px;
+        left:90%;
+    }
+
+    .brands {
+        width: 30px;
+        padding: auto;
+        flex: 33%;
+    }
+
+    .brands:hover {
+        position: relative;
+        width: 35px;
+    }
+
+    .foot {
+        padding-left: 10px;
+        width: 1900px;
+        padding-top: 150px;
+        background-image:url('lands/land2.jpg');
+        background-repeat:no-repeat;
+        position: absolute;
+        left: 0;
+        bottom: auto;
+        width: 100%;
+        color: rgb(202, 253, 172);
+    }
+    
+    .contact{
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        width: auto;
+        padding: 10px;
+        background-color:rgba(221, 115, 28, 0.5);
+        border-radius: 10px;
+    }
+    
+    .about{
+        position: absolute;
+        bottom: 10px;
+        left: 300px;
+        padding: 10px;
+        background-color: rgb(247, 189, 119,0.5);
+        border-radius: 10px;
+    }
+

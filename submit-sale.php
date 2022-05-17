@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <title>Submit sale</title>
+    <link rel="stylesheet" href="styles/headerfooter.css"/>
+    
 </head>
 <body>
     <?php

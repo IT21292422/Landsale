@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="styles/page-container.css">
     <link rel="stylesheet" href="styles/sale-request.css">
     <script src="js/sale-request.js"></script>
+    <link rel="stylesheet" href="styles/headerfooter.css"/>
+
 </head>
 <body>
     <?php
