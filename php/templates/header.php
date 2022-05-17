@@ -1,4 +1,4 @@
-        <header>
+<header>
 
         <div class="head1">
         <!--Company logo-->
@@ -6,29 +6,22 @@
         </div>
 
         <!--Main Menu or Navigation Bar-->
-        <div class="toolbar">
-        <ul>
-            <li class="">Home</li>
-            <li class="">Land Request</li>
-            <li class="">Sell Your Land</li>
-            <li class="">Submit a Request</li>
-        </ul>
+        <div class="navbar">
+            <a href="#" onclick="breadCrumbFunctio('home')">Home</a>
+            <a href="#" onclick="breadCrumbFunctio('request')">Land Request</a>
+            <a href="#" onclick="breadCrumbFunctio('sell')">Sell Your Land</a>
+            <a href="#" onclick="breadCrumbFunctio('submit')">Submit a Request</a>
         
-        <ul class="logins">
-            <li>Register</li>
-            <li>Login</li>
-             <!--User's image-->
-            <li><img class="profilepic" src="profile.png" alt="UserImg"></li>
+            <!--User's image-->
+            <a href="#" class="right"><img class="profilepic" src="profile.png" alt="UserImg"></img></a>
+            <a href="#" class="right">Login</a>
+            <a href="#" class="right">Register</a>
+             
         </ul>
         </div>
-        
-        <!-- Breadcrumbs are here -->
-        <div class="navigation">
             
-           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Pens</a></li>
-            <li class="breadcrumb-item"><a href="#">Loved</a></li>
-           </ul> 
+        <div><p id="breadcumbs">
+        </p>
         </div>
+        
         </header>
