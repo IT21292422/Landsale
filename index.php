@@ -11,13 +11,24 @@
 
     <!--body-->
     <div class="mainpage">
-    <p>What is Lorem Ipsum?
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-<a href="complaint.php" style="color: red; padding:10px;">Complaint</a>
-Why do we use it?
-It is a long established 
-<a href="admin.php" style="color: red; padding:10px;">admin</a>
-fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+    <p>
+        <a href="about.php" style="color: red; padding:10px;">about</a><br>
+        <a href="account.php" style="color: red; padding:10px;">account</a><br>
+        <a href="admin.php" style="color: red; padding:10px;">admin</a><br>
+        <a href="complaint.php" style="color: red; padding:10px;">complaint</a><br>
+        <a href="complaints.php" style="color: red; padding:10px;">complaints</a><br>
+        <a href="register.php" style="color: red; padding:10px;">register</a><br>
+        <a href="request.php" style="color: red; padding:10px;">request</a><br>
+        <a href="requests.php" style="color: red; padding:10px;">requests</a><br>
+        <a href="sale.php" style="color: red; padding:10px;">sale</a><br>
+        <a href="save-request.php" style="color: red; padding:10px;">save-request</a><br>
+        <a href="save-sale.php" style="color: red; padding:10px;">save-sale</a><br>
+        <a href="signin.php" style="color: red; padding:10px;">signin</a><br>
+        <a href="submit-request-complaint.php" style="color: red; padding:10px;">submit-request-comp</a><br>
+        <a href="submit-request.php" style="color: red; padding:10px;">submit-request</a><br>
+        <a href="submit-sale-complaint.php" style="color: red; padding:10px;">submit-sale-comp</a><br>
+        <a href="submit-sale.php" style="color: red; padding:10px;">submit-sale</a><br>
+    </p>
     </div>
 
     <?php 
