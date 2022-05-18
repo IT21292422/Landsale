@@ -1,4 +1,8 @@
 <?php
+        include("php/templates/header.php");
+    ?>
+
+<?php
     include("php/controllers/signin-ctrl.php");
 ?>
 <!DOCTYPE html>
@@ -22,5 +26,8 @@
        <?php    if (!empty($_GET['redirect'])) echo "<input type='hidden' name='redirect' value='".$_GET['redirect']."'>";    ?>
        <input type="submit" name="submit" value="Submit">
    </form> 
+<?php
+        include("php/templates/footer.php");
+    ?>
 </body>
 </html>
