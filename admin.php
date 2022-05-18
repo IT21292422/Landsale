@@ -12,37 +12,50 @@
   <?php
         include("php/templates/header.php");
         ?> 
-    
-    <div>
-        <style>
-    form{
-        width: auto;
-        padding: 10px;
-        background-color:rgba(221, 115, 28, 0.5);
-        border-radius: 10px
-            }
+    <style>
+       .hcenter{
+           width:550px;
+            padding: 2em 0 2em 0;
+            border:solid 5px #F1F1F1;
+            margin-top: 10px;
+            margin-right: auto;
+            margin-bottom: 0;
+            margin-left: auto;
+            background-color:rgba(220, 220, 220, 0.7);
+       } 
+       label{
+            padding: 20px;
+            margin-top: 100px;
+            margin-bottom: 0;
+       }
+       input{
+            padding: 0px;
+            margin: 0px 0px 0px 10px;
+       }
         </style>
+    <div class="hcenter">
+        
         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
             <label>User ID :</label>
-            <input type="text" name="user_id" ><br>
+            <input type="text" name="user_id" ><br><br>
             <label>Firest Name :</label>
-            <input type="text" name="first_name" ><br>
+            <input type="text" name="first_name" ><br><br>
             <label>Last Name :</label>
-            <input type="text" name="last_name" ><br>
+            <input type="text" name="last_name" ><br><br>
             <label>E-mail :</label>
-            <input type="text" name="email" ><br>
+            <input type="text" name="email" ><br><br>
             <label>Account Status:</label>
             <select name="status">
-                <option value="valid">valid</option>
+                <option value="valid">Valid</option>
                 <option value="suspend">Suspended</option>
                 <option value="banned">Banned</option>
-            </select><br>
+            </select><br><br>
             <label>Account Type:</label>
             <select name="status">
                 <option value="user">User</option>
                 <option value="mod">Mod</option>
                 <option value="Admin">Admin</option>
-            </select><br>
+            </select><br><br>
             <input type="button" value="Create">
             <input type="button" value="Update">
 
@@ -61,14 +74,34 @@ $result2=$con->query($sql1);
 //Shows the Request table details
 if ($result2->num_rows > 0) {
 
-    echo("<h1>All Users</h1>");
+    echo("<h1 style='text-align:center;'>All Users</h1>");
     ?>
     <style>
-        table{
-            left: 50%;
-
+       table{
+            padding: 2px;
+        }
+        th{
+            padding: 5px;
+        }
+        tr{
+            text-align: center;
+        }
+        .delete{
+            background-color:rgba(221, 0, 0, 0.7) ;
+        }
+        .delete:hover{
+            background-color:rgba(0, 0, 200, 0.9) ;
+        }
+        .table1{
+            width:550px;
+            border:solid 5px #F1F1F1;
+            margin-right: auto;
+            margin-left: auto;
+            background-color:rgba(220, 220, 220, 0.7);
         }
     </style>
+
+    <div class="table1">
     <?php
     
     echo("<table border='5'>");
@@ -87,10 +120,10 @@ if ($result2->num_rows > 0) {
         echo "<td>".$row["user_id"]."</td>";
         echo "<td>".$row["date"]."</td>";
         echo "<td>".$row["type"]."</td>";
-        echo "<th>".$row["review"]."</th>";
-        echo "<th>".$row["description"]."</th>";
+        echo "<td>".$row["review"]."</td>";
+        echo "<td>".$row["description"]."</td>";
         ?>
-        <td><a href="php\controllers\complaint-ctrl.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\complaint-ctrl.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
         <?php
         echo "</tr>";
     }
@@ -104,5 +137,6 @@ $con->close();
 
         include("php/templates/footer.php");
     ?>
+    </div>
 </body>
 </html>

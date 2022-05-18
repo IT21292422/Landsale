@@ -16,6 +16,7 @@
 
 include_once 'php\includes\dbcon.php';
 
+//Request table
 $sql1="SELECT id,user_id,date,type,review,description FROM complaint";
 
 $result2=$con->query($sql1);
@@ -54,6 +55,7 @@ if ($result2->num_rows > 0) {
         echo ('<h1 class="warnings">The Request complaint table is empty</h1>');
     }
 ////////////////////////////////////////////////////////////
+    //Sales table
     $sql1="SELECT id,user_id,date,type,review,description FROM complaint";
 
 $result2=$con->query($sql1);
