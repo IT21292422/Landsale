@@ -93,7 +93,7 @@ if ($result2->num_rows > 0) {
             background-color:rgba(0, 0, 200, 0.9) ;
         }
         .table1{
-            width:550px;
+            width:470px;
             border:solid 5px #F1F1F1;
             margin-right: auto;
             margin-left: auto;
