@@ -16,15 +16,15 @@
 
         <!--Main Menu or Navigation Bar-->
         <div class="navbar">
-            <a href="#" onclick="breadCrumbFunctio('home')">Home</a>
-            <a href="#" onclick="breadCrumbFunctio('request')">Land Request</a>
-            <a href="#" onclick="breadCrumbFunctio('sell')">Sell Your Land</a>
-            <a href="#" onclick="breadCrumbFunctio('submit')">Submit a Request</a>
+            <a href="index.php" onclick="breadCrumbFunctio('home')">Home</a>
+            <a href="requests.php" onclick="breadCrumbFunctio('request')">Land Requests</a>
+            <a href="submit-sale.php" onclick="breadCrumbFunctio('sell')">Sell Your Land</a>
+            <a href="submit-request.php" onclick="breadCrumbFunctio('submit')">Submit a Request</a>
         
             <!--User's image-->
-            <a href="#" class="right"><img class="profilepic" src="images/headerfooter/profile.png" alt="UserImg"></img></a>
-            <a href="#" class="right">Login</a>
-            <a href="#" class="right">Register</a>
+            <a href="account.php" class="right"><img class="profilepic" src="images/headerfooter/profile.png" alt="UserImg"></img></a>
+            <a href="signin.php" class="right">Login</a>
+            <a href="register.php" class="right">Register</a>
              
         </ul>
         </div>

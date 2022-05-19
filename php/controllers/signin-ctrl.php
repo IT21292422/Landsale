@@ -1,6 +1,5 @@
 <?php
     require_once("php/includes/dbFunctions.php");
-    require_once("php/includes/utilFunctions.php");
     require_once("php/includes/signinFunctions.php");
     require_once("php/includes/validateFunctions.php");
 
@@ -44,8 +43,14 @@
             else    //if user is valid
             {
                 signin($userId);    //signin user
+                if (isset($_POST['redirect']))
+                {
+                   header('Location: '.$_POST['redirect']);  //redirect to requested page
 
-                header('Location: /landsale');  //redirect to homepage
+                }
+                else{
+                   header('Location: /landsale');  //redirect to homepage
+                }
             }
         }
 

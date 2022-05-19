@@ -1,6 +1,5 @@
 
 <?php
-    session_start();
     require_once('php/includes/dbFunctions.php');
 
     $values = getUser($_SESSION['user_id']);

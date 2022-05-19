@@ -64,16 +64,12 @@ div.images{
     background-color: #e7e7e7;
 }
 
-.field-container  a:hover {
-    background-color: #a1a1a1 !important;
-    color: white;
-}
 
 .field-container  a {
     text-decoration: none;
     cursor: pointer;
     color: inherit;
-
+    
 }
 
 .container > div > a{
@@ -81,7 +77,12 @@ div.images{
     color: inherit;
 }
 
+.field-container  a:hover {
+    background-image: linear-gradient(to right, #a1a1a1, white) !important;
+    color: white;
+}
+
 .container > div > a:hover, .container > div > a:hover > *{
-    background-color:#a1a1a1;
+    background-image: linear-gradient(to right, #a1a1a1, white) !important;
     color: white;
 }

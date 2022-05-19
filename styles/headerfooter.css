@@ -1,7 +1,7 @@
- body {
-        background: linear-gradient(rgba(95, 217, 250, 0.7), rgba(128, 255, 38, 0.749));
-        color: rgb(0, 0, 0);
-    }
+body {
+    background: linear-gradient(rgba(95, 217, 250, 0.7), rgba(128, 255, 38, 0.749));
+    color: rgb(0, 0, 0);
+}
 
     /* from here header area */
 
@@ -52,7 +52,7 @@
     }
 
     .breadcumbs {
-        color:aliceblue
+        color:aliceblue;
         background-color: rgb(4, 8, 4);
         margin: 0px -5px 0px -5px;
         padding: 5px;

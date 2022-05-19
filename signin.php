@@ -10,6 +10,7 @@
 <head>
     <title>Sign in</title>
     <link rel="stylesheet" href="styles/headerfooter.css"/>
+    <link rel="stylesheet" href="signin.css">
 
 </head>
 <body>
