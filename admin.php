@@ -77,14 +77,12 @@ if ($result2->num_rows > 0) {
     echo("<h1 style='text-align:center;'>All Users</h1>");
     ?>
     <style>
-       table{
-            padding: 2px;
+        .table1 th{
+            padding: 10px;
         }
-        th{
-            padding: 5px;
-        }
-        tr{
-            text-align: center;
+        .table1 tr{
+            inline-size: auto;
+            overflow-wrap: break-all;
         }
         .delete{
             background-color:rgba(221, 0, 0, 0.7) ;
@@ -93,18 +91,21 @@ if ($result2->num_rows > 0) {
             background-color:rgba(0, 0, 200, 0.9) ;
         }
         .table1{
+            padding: 20px;
+            margin-bottom: 20px;
             width:470px;
             border:solid 5px #F1F1F1;
             margin-right: auto;
             margin-left: auto;
+            text-align: center;
             background-color:rgba(220, 220, 220, 0.7);
         }
     </style>
 
-    <div class="table1">
+    <div >
     <?php
     
-    echo("<table border='5'>");
+    echo("<table border='5' class='table1'>");
 
     echo("<th>ID</th>");
     echo("<th>User ID</th>");
