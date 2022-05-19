@@ -5,7 +5,7 @@
 
     if (isset($_GET['id']) and is_numeric($_GET['id'])) //check if page is accessed with correct parameters
     {
-        $id = $_GET['id'];  //get post id
+        $id = (int)$_GET['id'];  //get post id
 
         if (isset($_SESSION['user_id']))
         {
@@ -14,6 +14,12 @@
         else
         {
             $values = getSale((int)$id); //get details from the database
+        }
+
+        if ($values === False)
+        {
+            echo "could not find that post";
+            die();
         }
     }
     else

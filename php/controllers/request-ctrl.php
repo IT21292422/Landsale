@@ -15,6 +15,12 @@
         {
             $values = getRequest((int)$id); //get details from the database
         }
+
+        if ($values === False)
+        {
+            echo "could not find that post";
+            die();
+        }
     }
     else
     {

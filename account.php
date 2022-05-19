@@ -1,4 +1,7 @@
 <?php
+    session_start();
+    require_once('php\includes\signinFunctions.php');
+    accessLevel('user');
     require_once('php\controllers\account.ctrl.php');
 ?>
 
@@ -17,6 +20,8 @@
 
 </head>
 <body>
+
+    <?php include('php\templates\header.php'); ?>
 
     <form class="simple-form" enctype="multipart/form-data" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="edit-profile-form">
         <input id="photo-input" class="hide" type="file" name="profile_photo" onchange="photoSelected()" disabled>
@@ -114,7 +119,7 @@
                             <p>My posts</p>
                         </div>
                     </a>
-                    <a>
+                    <a href="delete-account.php">
                         <div>
                             <p>Delete Account</p>
                         </div>
@@ -127,6 +132,8 @@
 
         </div>
     </form>
+    
+    <?php include('php\templates\footer.php'); ?>
 
     <?php if ($editMode) echo "<script> editMode(); </script>"?>
 </body>
