@@ -35,7 +35,7 @@
         </style>
     <div class="hcenter">
         
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+        <form method="post" action="admin-ctrl.php">
             <label>User ID :</label>
             <input type="text" name="user_id" ><br><br>
             <label>Firest Name :</label>
@@ -79,6 +79,7 @@ if ($result2->num_rows > 0) {
     <style>
         .table1 th{
             padding: 10px;
+            background-color: rosybrown;
         }
         .table1 tr{
             inline-size: auto;
@@ -93,12 +94,13 @@ if ($result2->num_rows > 0) {
         .table1{
             padding: 20px;
             margin-bottom: 20px;
-            width:470px;
+            width:auto;
             border:solid 5px #F1F1F1;
             margin-right: auto;
             margin-left: auto;
             text-align: center;
             background-color:rgba(220, 220, 220, 0.7);
+            border-collapse: collapse;
         }
         .table1 tr:nth-child(even){
             background-color: beige;
