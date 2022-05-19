@@ -100,6 +100,9 @@ if ($result2->num_rows > 0) {
             text-align: center;
             background-color:rgba(220, 220, 220, 0.7);
         }
+        .table1 tr:nth-child(even){
+            background-color: beige;
+        }
     </style>
 
     <div >
