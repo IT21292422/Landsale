@@ -124,7 +124,7 @@ if ($result2->num_rows > 0) {
         echo "<td>".$row["review"]."</td>";
         echo "<td>".$row["description"]."</td>";
         ?>
-        <td class="delete"><a style="text-decoration: none;" href="php\controllers\complaint-ctrl.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
         <?php
         echo "</tr>";
     }
