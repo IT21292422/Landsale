@@ -9,7 +9,38 @@
     <title>Document</title>
 </head>
 <body>
-    
+   
+<style>
+        .table1 th{
+            padding: 10px;
+            background-color: rosybrown;
+        }
+        .table1 tr{
+            inline-size: auto;
+            overflow-wrap: break-all;
+        }
+        .delete1{
+            background-color:rgba(221, 0, 0, 0.7) ;
+        }
+        .delete1:hover{
+            background-color:rgba(0, 0, 200, 0.9) ;
+        }
+        .table1{
+            padding: 20px;
+            margin-bottom: 20px;
+            width:auto;
+            border:solid 5px #F1F1F1;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+            background-color:rgba(220, 220, 220, 0.7);
+            border-collapse: collapse;
+        }
+        .table1 tr:nth-child(even){
+            background-color: beige;
+        }
+    </style>
+
     <?php
 
         include("php/templates/header.php");
@@ -26,7 +57,7 @@ if ($result2->num_rows > 0) {
 
     echo("<h1>Request Complaints</h1>");
     
-    echo("<table border='1'>");
+    echo("<table class='table1'>");
 
     echo("<th>ID</th>");
     echo("<th>User ID</th>");
@@ -42,10 +73,10 @@ if ($result2->num_rows > 0) {
         echo "<td>".$row["user_id"]."</td>";
         echo "<td>".$row["date"]."</td>";
         echo "<td>".$row["type"]."</td>";
-        echo "<th>".$row["review"]."</th>";
-        echo "<th>".$row["description"]."</th>";
+        echo "<td>".$row["review"]."</td>";
+        echo "<td>".$row["description"]."</td>";
         ?>
-        <td><a href="php\controllers\complaint-ctrl.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
+        <td><a class="delete1" href="php\controllers\complaint-ctrl.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
         <?php
         echo "</tr>";
     }
@@ -65,7 +96,7 @@ if ($result2->num_rows > 0) {
 
     echo("<h1>Sale Complaints</h1>");
     
-    echo("<table border='1'>");
+    echo("<table class='table1'>");
 
     echo("<th>ID</th>");
     echo("<th>User ID</th>");
@@ -81,10 +112,10 @@ if ($result2->num_rows > 0) {
         echo "<td>".$row["user_id"]."</td>";
         echo "<td>".$row["date"]."</td>";
         echo "<td>".$row["type"]."</td>";
-        echo "<th>".$row["review"]."</th>";
-        echo "<th>".$row["description"]."</th>";
+        echo "<td>".$row["review"]."</td>";
+        echo "<td>".$row["description"]."</td>";
         ?>
-        <td><a href="php\controllers\complaint-ctrl.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
+        <td><a class="delete1" href="php\controllers\complaint-ctrl.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
         <?php
         echo "</tr>";
     }

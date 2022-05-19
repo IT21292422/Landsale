@@ -35,7 +35,7 @@
         </style>
     <div class="hcenter">
         
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+        <form method="post" action="admin-ctrl.php">
             <label>User ID :</label>
             <input type="text" name="user_id" ><br><br>
             <label>Firest Name :</label>
@@ -77,14 +77,13 @@ if ($result2->num_rows > 0) {
     echo("<h1 style='text-align:center;'>All Users</h1>");
     ?>
     <style>
-       table{
-            padding: 2px;
+        .table1 th{
+            padding: 10px;
+            background-color: rosybrown;
         }
-        th{
-            padding: 5px;
-        }
-        tr{
-            text-align: center;
+        .table1 tr{
+            inline-size: auto;
+            overflow-wrap: break-all;
         }
         .delete{
             background-color:rgba(221, 0, 0, 0.7) ;
@@ -93,18 +92,25 @@ if ($result2->num_rows > 0) {
             background-color:rgba(0, 0, 200, 0.9) ;
         }
         .table1{
-            width:550px;
+            padding: 20px;
+            margin-bottom: 20px;
+            width:auto;
             border:solid 5px #F1F1F1;
             margin-right: auto;
             margin-left: auto;
+            text-align: center;
             background-color:rgba(220, 220, 220, 0.7);
+            border-collapse: collapse;
+        }
+        .table1 tr:nth-child(even){
+            background-color: beige;
         }
     </style>
 
-    <div class="table1">
+    <div >
     <?php
     
-    echo("<table border='5'>");
+    echo("<table border='5' class='table1'>");
 
     echo("<th>ID</th>");
     echo("<th>User ID</th>");
@@ -123,7 +129,7 @@ if ($result2->num_rows > 0) {
         echo "<td>".$row["review"]."</td>";
         echo "<td>".$row["description"]."</td>";
         ?>
-        <td class="delete"><a style="text-decoration: none;" href="php\controllers\complaint-ctrl.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
         <?php
         echo "</tr>";
     }
