@@ -77,6 +77,7 @@ $result2=$con->query($sql1);
 if ($result2->num_rows > 0) {
 
     echo("<h1 style='text-align:center;'>All Users</h1>");
+
     ?>
     <style>
         .table1 th{
