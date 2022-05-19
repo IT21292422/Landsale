@@ -66,17 +66,17 @@ div.phone{
     grid-row-start: 3;
 }
 
-.simple-form{
+.account-form{
     
 }
 
-.form-field{
+.account-form .form-field{
     display: grid;
     grid-template-columns: auto;
     gap: 5px;
 }
 
-.simple-form .form-field > input, .simple-form .form-field > textarea{
+.account-form .form-field > input, .account-form .form-field > textarea{
     border: 0;
     outline: none;
     border-bottom: 1px solid grey;
@@ -85,15 +85,15 @@ div.phone{
     background-color: transparent;
 }
 
-.simple-form .form-field > textarea{
+.account-form .form-field > textarea{
     height: 10em;
     border-left: 5px solid lightgrey;
 }
 
-.simple-form .form-field > .error{
+.account-form .form-field > .error{
     color: #e13535
 }
 
-.simple-form .form-field > input:focus , .simple-form .form-field > textarea:focus{
+.account-form .form-field > input:focus , .account-form .form-field > textarea:focus{
     border-bottom: 2px solid #1a1a1a;
 }

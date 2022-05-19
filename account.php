@@ -23,7 +23,7 @@
 
     <?php include('php\templates\header.php'); ?>
 
-    <form class="simple-form" enctype="multipart/form-data" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="edit-profile-form">
+    <form class="account-form" enctype="multipart/form-data" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="edit-profile-form">
         <input id="photo-input" class="hide" type="file" name="profile_photo" onchange="photoSelected()" disabled>
 
         <div class="container" id="report-post">
