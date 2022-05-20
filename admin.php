@@ -18,7 +18,7 @@
         </style>
     <div class="hcenter">
         
-        <form method="post" action="admin-ctrl.php">
+        <form method="post" action="admin-ctrl.php?attempt">
             <label class="admin">User ID :</label>
             <input class="admins" type="text" name="user_id" ><br><br>
             <label class="admin">Firest Name :</label>
@@ -28,13 +28,13 @@
             <label class="admin">E-mail :</label>
             <input class="admins" type="text" name="email" ><br><br>
             <label class="admin">Account Status:</label>
-            <select name="status">
+            <select name="status1">
                 <option value="valid">Valid</option>
                 <option value="suspend">Suspended</option>
                 <option value="banned">Banned</option>
             </select><br><br>
             <label>Account Type:</label>
-            <select name="status">
+            <select name="status2">
                 <option value="user">User</option>
                 <option value="mod">Mod</option>
                 <option value="admin">Admin</option>
@@ -90,7 +90,7 @@ if ($result2->num_rows > 0) {
         echo "<td>".$row["account_type"]."</td>";
         echo "<td>".$row["about"]."</td>";
         ?>
-        <td class="delete"><a style="text-decoration: none;" <?php $userId=$row["user_id"]; ?>>Delete</a></td>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?user_id=<?php echo $row["user_id"]; ?>">Delete</a></td>
         <?php
         echo "</tr>";
     }
@@ -99,29 +99,7 @@ if ($result2->num_rows > 0) {
     }else{
         echo ('<h1 class="warnings">The User table is empty</h1>');
     }
-/*
-     $sql = "delete from saved_request where request_id in (select request_id from request where user_id = $userId) or user_id = $userId;".
-            "delete from saved_sale where sale_id in (select sale_id from sale where user_id = $userId) or user_id = $userId;".
-            "delete from request_complaints where request_id in (select request_id from request where user_id = $userId) or user_id = $userId;".
-            "delete from sale_complaints where sale_id in (select sale_id from sale where user_id = $userId) or user_id = $userId;".
-            "delete from request_phone where request_id in (select request_id from request where user_id = $userId);".
-            "delete from sale_phone where sale_id in (select sale_id from sale where user_id = $userId);".
-            "delete from sale_media where sale_id in (select sale_id from sale where user_id = $userId);".
-            "delete from sale where user_id = $userId;".
-            "delete from request where user_id = $userId;".
-            "delete from users_phone where user_id = $userId;".
-            "delete from users_warnings where user_id = $userId;".
-            "delete from users where user_id = $userId;";
 
-
-        $resul=$con->multi_query($sql);
-
-        if ($resul) {
-            echo '<script type="text/javascript">alert("Recode was deleted!!!");</script>';
-        } else {
-            echo "Error deleting record: " . mysqli_error($con);
-        }
-*/
 $con->close();
 
         include("php/templates/footer.php");
