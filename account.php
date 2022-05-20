@@ -99,9 +99,30 @@
             </div>
 
             <div class="btn-container-ralign hide edit">            
-                <input type="submit" value="Save changes">
+                <input type="submit" value="Save changes" name="profile">
 
             </div>
+            
+            <?php if (!empty($values['warnings'])) : ?>
+
+                <div class="warnings">
+                    <div class="h-with-button">
+                        <h3>Warnings</h3>
+                        <form action="account.php" method="post">
+                            <input type="submit" value="Clear Warnings" name="clear-warnings">
+                        </form>
+                    </div>
+                    
+                    <?php
+                        foreach($values['warnings'] as $warning)
+                        {
+                            echo "<p>$warning</p>";
+                        }
+                    ?>
+
+                </div>
+
+            <?php endif; ?>
 
             <div class="options">
                 <h3>Options</h3>
@@ -121,7 +142,12 @@
                             <p>My posts</p>
                         </div>
                     </a>
-                    <a href="delete-account.php">
+                    <a href="signout.php">
+                        <div>
+                            <p>Sign out</p>
+                        </div>
+                    </a>
+                    <a href="delete-account.php"  class='delete'>
                         <div>
                             <p>Delete Account</p>
                         </div>

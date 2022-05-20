@@ -69,7 +69,7 @@
         <input class='btn-simple' type='button' value='Report' onclick='showReportForm()'>
 
         <input class='btn-simple <?php if (!$values['saved']) echo 'hide' ?>' type='button' value='Saved' id='btn-unsave' onclick="unsave('save-request.php')">
-        <input class='btn-simple <?php if ($values['saved']) echo 'hide' ?>' type='button' value='Save' id='btn-save' onclick="save('save-request.php')">
+        <input class='btn-simple <?php if ($values['saved']) echo 'hide' ?>' type='button' value='Save' id='btn-save' onclick="save('save-request.php')" <?php echo isset($_SESSION['user_id']) ? '' : "disabled title = 'Sign in to save posts'" ?>>
 
         </div>
     

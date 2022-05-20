@@ -88,16 +88,19 @@
         
     }
 
-    function matchUserPassword($email, $pwd)
+    function checkAccount($email, $pwd)
     {   
         global $con;
+
         $email = strtolower($email);
-        $sql = "select user_id from users where email= '$email' and password= '$pwd'";
+        $sql = "select user_id,account_status from users where email= '$email' and password= '$pwd'";
         $results = $con->query($sql);
 
         if ($results->num_rows < 1) return NULL;
 
-        return $results->fetch_assoc()['user_id'];
+        $toReturn = $results->fetch_assoc();
+
+        return $toReturn;
     }
 
     function getBasicUserDetails($userId)
@@ -388,6 +391,20 @@
         }
         $user['phone'] = $phone;
 
+        //get warnings from database
+        $sql = "select warning from users_warnings where user_id = $userId";
+        $results = $con->query($sql);
+        $warnings = array();
+        if ($results and $results->num_rows > 0)
+        {
+            $table = $results->fetch_all(MYSQLI_NUM);
+            foreach ($table as $row)
+            {
+                $warnings[] = $row[0];
+            }
+        }
+        $user['warnings'] = $warnings;
+
         return $user;
         
 
@@ -488,6 +505,15 @@
 
         return $results->fetch_all(MYSQLI_ASSOC);
         
+    }
+
+    function deleteWarning($userId)
+    {
+        global $con;
+
+        $sql = "delete from users_warnings where user_id = $userId;";
+
+        $con->query($sql);
     }
 
 ?>

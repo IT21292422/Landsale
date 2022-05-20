@@ -55,7 +55,7 @@ div.phone{
 
 .h-with-button{
     display: grid;
-    grid-template-columns: auto 60px;
+    grid-template-columns:auto min-content;
 }
 
 .profile-img{
@@ -97,4 +97,20 @@ div.phone{
 
 .account-form .form-field > input:focus , .account-form .form-field > textarea:focus{
     border-bottom: 2px solid #1a1a1a;
+}
+
+.h-with-button input{
+    margin: 10px;
+}
+
+div.warnings{
+    background-color: #ffc3c3;
+}
+
+a.delete{
+    background-color: #ffc3c3 !important;
+}
+
+.delete:hover{
+    background-image: linear-gradient(to right, #fca4a4, #ffc3c3) !important;
 }
