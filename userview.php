@@ -12,12 +12,12 @@
     ?>
 <?Php
 $id=$_GET['id'];
-// Checking data it is a number or not
+// Checking id is a integer or not
 if(!is_numeric($id)){
 echo "ID must be a integer";
 exit;
 }
-// MySQL connection string
+// Database connection 
 require 'php/includes/dbcon.php'; 
 
 $path="SELECT*FROM users where user_id=?";
