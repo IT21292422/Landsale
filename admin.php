@@ -54,8 +54,10 @@
             <select name="status">
                 <option value="user">User</option>
                 <option value="mod">Mod</option>
-                <option value="Admin">Admin</option>
+                <option value="admin">Admin</option>
             </select><br><br>
+            <label>About:</label>
+            <input type="text" name="about"><br><br>
             <input type="button" value="Create">
             <input type="button" value="Update">
 
@@ -67,7 +69,7 @@
 
 include_once 'php\includes\dbcon.php';
 
-$sql1="SELECT id,user_id,date,type,review,description FROM complaint";
+$sql1="SELECT user_id,first_name,last_name,email,account_status,account_type,about FROM users";
 
 $result2=$con->query($sql1);
 
@@ -75,6 +77,7 @@ $result2=$con->query($sql1);
 if ($result2->num_rows > 0) {
 
     echo("<h1 style='text-align:center;'>All Users</h1>");
+
     ?>
     <style>
         .table1 th{
@@ -84,6 +87,9 @@ if ($result2->num_rows > 0) {
         .table1 tr{
             inline-size: auto;
             overflow-wrap: break-all;
+        }
+        .table1 td{
+            padding: 10px;
         }
         .delete{
             background-color:rgba(221, 0, 0, 0.7) ;
@@ -112,24 +118,26 @@ if ($result2->num_rows > 0) {
     
     echo("<table border='5' class='table1'>");
 
-    echo("<th>ID</th>");
     echo("<th>User ID</th>");
-    echo("<th>Created date</th>");
-    echo("<th>Type</th>");
-    echo("<th>Review</th>");
-    echo("<th>Description</th>");
+    echo("<th>First Name</th>");
+    echo("<th>Last Name</th>");
+    echo("<th>E-mail</th>");
+    echo("<th>Account Status</th>");
+    echo("<th>Account Type</th>");
+    echo("<th>About</th>");
     echo("<th>Action</th>");
 
     while($row = $result2->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>".$row["id"]."</td>";
         echo "<td>".$row["user_id"]."</td>";
-        echo "<td>".$row["date"]."</td>";
-        echo "<td>".$row["type"]."</td>";
-        echo "<td>".$row["review"]."</td>";
-        echo "<td>".$row["description"]."</td>";
+        echo "<td>".$row["first_name"]."</td>";
+        echo "<td>".$row["last_name"]."</td>";
+        echo "<td>".$row["email"]."</td>";
+        echo "<td>".$row["account_status"]."</td>";
+        echo "<td>".$row["account_type"]."</td>";
+        echo "<td>".$row["about"]."</td>";
         ?>
-        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?id=<?php echo $row["user_id"]; ?>">Delete</a></td>
         <?php
         echo "</tr>";
     }

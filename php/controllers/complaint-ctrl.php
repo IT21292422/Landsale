@@ -1,11 +1,11 @@
 <?php
-   // require_once("php/includes/dbcon.php");
+require_once("php/includes/dbcon.php");
 
 echo $_GET["id"];
 
-$sqli = "DELETE FROM complaint WHERE id='". $_GET["id"]."'";
+$sql1 = "DELETE FROM complaint WHERE id='". $_GET["id"]."'";
 
-if ($con->query($sqli)) {
+if ($con->query($sql1)) {
     //echo "Record deleted successfully";
     echo '<script type="text/javascript">alert("Recode was deleted!!!");</script>';
 
