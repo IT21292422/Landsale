@@ -1,6 +1,6 @@
 <?php
 
-require 'php/includes/dbcon.php';
+require '../includes/dbcon.php';
 //echo $_GET["id"];
 
 $sql2 = "DELETE FROM users WHERE user_id=". $_GET["id"]."";

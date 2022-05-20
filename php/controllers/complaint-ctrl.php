@@ -3,7 +3,7 @@ require_once("php/includes/dbcon.php");
 
 echo $_GET["id"];
 
-$sql1 = "DELETE FROM complaint WHERE id='". $_GET["id"]."'";
+$sql1 = "DELETE FROM  WHERE id='". $_GET["id"]."'";
 
 if ($con->query($sql1)) {
     //echo "Record deleted successfully";
