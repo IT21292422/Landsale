@@ -9,7 +9,7 @@
     display: grid;
     grid-template-columns: auto;
     gap: 40px;
-    padding: 5%;
+    padding: 20px 5%;
 
     margin-left: auto;
     margin-right: auto;
@@ -19,6 +19,8 @@
 .container > div{
     box-shadow: 5px 5px 10px #b2b2b2;
     background-color: white;
+    border-radius: 7px;
+    overflow: hidden;
 }
 
 .container p{
@@ -38,6 +40,7 @@ div.btn-container-ralign{
     background-color: transparent;
     box-shadow: none;
     justify-self: right;
+    overflow: visible;
 }
 
 div.images{

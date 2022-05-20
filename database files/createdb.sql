@@ -192,11 +192,11 @@ insert into request_type values(1,'Basic plan is the Free and Standard Package, 
 insert into request_type values(2,'Budget plan is the Budget Package which is quite similar to the Basic Plan but with a validity period of 60 days',300.00,'Budget');
 insert into request_type values(3,'Premium plan is the Premium Version to make you post featured in the home page with a validity period of 90 days',1000.00,'Premium');
 
-insert into request values (1, 'Land needed from Kandy', '7.2906N,80.6337E', 'Should be close by to the city and 10mins driving distance to the city maximum', 'Kandy', 'Kandy','Central', -1, -1, 400, 300, 5, 'data/image/img_34518.jpg', 1, 7, '2022-04-02');
+insert into request values (1, 'Land needed from Kandy', '7.2906N,80.6337E', 'Should be close by to the city and 10mins driving distance to the city maximum', 'Kandy', 'Kandy','Central', NULL, NULL, 400, 300, 5, 'data/image/img_34518.jpg', 1, 7, '2022-04-02');
 insert into request values (2, '200perch land wanted from Malbe, Colombo', '6.9064N,79.9692E', 'Need a 200purchase land from Malabe, Should be close to the E02 highway', 'Malabe', 'Colombo', 'Western', 30000000, 10000000, 250, 100, 15, 'data/image/img_45679.jpeg', 3, 8, '2022-03-21');
-insert into request values (3, 'Small land wanted from mawathagama', '7.4318N,80.4426E', 'Land wanted from Mawathagama area. Should be witin 20km of the city','Mawathagama', 'Kurunegala', 'North Western', -1, -1, 150, 70, 20, 'data/image/img_89456.jpeg', 2, 10, '2022-04-09');
+insert into request values (3, 'Small land wanted from mawathagama', '7.4318N,80.4426E', 'Land wanted from Mawathagama area. Should be witin 20km of the city','Mawathagama', 'Kurunegala', 'North Western', NULL, NULL, 150, 70, 20, 'data/image/img_89456.jpeg', 2, 10, '2022-04-09');
 insert into request values (4, 'Land wanted from Ambalangoda', '6.2442N,80.0585E', 'Should be close to the Sharmashoka college and A2 road', 'Ambalangoda', 'Galle', 'Southern', 80000000, 25000000, 600, 400, 15, 'data/image/img_89345.jpeg', 3, 4, '2022-03-30');
-insert into request values (5, 'Land wanted from Peradeniya area', '7.2698N,80.5938E', 'Preferred if the land is close to the main road and the Peradeniya University', 'Peradeniya', 'Kandy', 'Central', -1, -1, 280, 150, 25, 'data/image/img_44628.jpg', 2, 1, '2022-04-14');
+insert into request values (5, 'Land wanted from Peradeniya area', '7.2698N,80.5938E', 'Preferred if the land is close to the main road and the Peradeniya University', 'Peradeniya', 'Kandy', 'Central', NULL, NULL, 280, 150, 25, 'data/image/img_44628.jpg', 2, 1, '2022-04-14');
 
 insert into request_complaints values(1,'requester is asking for a lower price than advertised minimum price',0,'false advertisement',1, 1,'2022-03-21'); 
 insert into request_complaints values(2,'requester seems indecisive and keeps pushing back disscussions for months without no explanation',0,'transaction denial', 2, 2,'2022-04-12');

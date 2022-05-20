@@ -90,8 +90,9 @@ div.phone{
     border-left: 5px solid lightgrey;
 }
 
-.account-form .form-field > .error{
-    color: #e13535
+.error{
+    color: #e13535;
+    padding-left: 5px; 
 }
 
 .account-form .form-field > input:focus , .account-form .form-field > textarea:focus{

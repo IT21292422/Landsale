@@ -42,6 +42,7 @@ body{
     height: 300px;
     width: 75%;
     display: none;
+    border-radius: 10px;
 
 }
 

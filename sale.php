@@ -93,7 +93,7 @@
                 </div>
                 <div class="info-field">
                     <p>Price</p>
-                    <p>Rs. <?php echo $values['price']?></p>
+                    <p><?php echo $values['price'] ? 'Rs. '.$values['price'] : 'Negligible' ?></p>
                 </div>
                 <div class="info-field">
                     <p>City</p>

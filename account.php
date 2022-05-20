@@ -34,20 +34,21 @@
 
             <div class="user-details">
                 <div class="profile-container">
-                    <img id="profile-img" class='profile-img' src="<?php echo $values['profile_photo']  ?>" alt="">
+                    <img id="profile-img" class='profile-img' src="<?php echo $values['profile_photo'] ? $values['profile_photo'] : 'images/profile/default.png'  ?>" alt="">
                     <h2 class="display"><?php echo $values['first_name'] . ' ' . $values['last_name']  ?></h2>
                     <div class="edit hide">
                         <div class="form-field">
                             <input type="text" name="first_name" value="<?php echo $values['first_name']  ?>">
-                            <label class="error"></label>
+                            <?php if ($errors['first_name']) echo "<label class='error'>".$errors['first_name']."</label>"; ?>
                         </div>
                         <div class="form-field">
                             <input type="text" name="last_name" class="edit hide" value="<?php echo $values['last_name']  ?>">
-                            <label class="error"></label>
+                            <?php if ($errors['last_name']) echo "<label class='error'>".$errors['last_name']."</label>"; ?>
                         </div>
                     </div>
                     <input onclick="chooseFile()" type="button" class="edit picture-edit hide"  value="Change profile picture">
                     <input id="remove-pic" onclick="removeProfilePicture()" type="button" class="edit picture-edit hide"  value="Remove profile picture">
+                    <?php if ($errors['profile_photo']) echo "<label class='error'>".$errors['profile_photo']."</label>"; ?>
                 </div>
 
                 <div class="field-container">
@@ -55,7 +56,7 @@
                         <p>Email</p>
                         <div class="form-field edit hide">
                             <input type="text" name="email" value="<?php echo $values['email']  ?>">
-                            <label class="error"></label>
+                            <?php if ($errors['email']) echo "<label class='error'>".$errors['email']."</label>"; ?>
                         </div>
                         <a class="display" href="mailto:<?php echo $values['email']  ?>">
                             <p ><?php echo $values['email']  ?></p>
@@ -65,7 +66,7 @@
                         <p>About</p>
                         <div class="form-field edit hide">
                             <textarea type="text" name="about"><?php echo $values['about']  ?></textarea>
-                            <label class="error"></label>
+                            <?php if ($errors['about']) echo "<label class='error'>".$errors['about']."</label>"; ?>
                         </div>
                         <p class="display"><?php echo $values['about']  ?></p>
                     </div>
@@ -76,6 +77,7 @@
                 <div class="h-with-button">
                     <h3>Contacts</h3>
                     <input type="button" class="edit btn-image plus-background hide" onclick="addPhone()">
+                    <?php if ($errors['phone']) echo "<label class='error'>".$errors['phone']."</label>"; ?>
                 </div>
                 <div class="field-container" id="phone-container">
                     <?php

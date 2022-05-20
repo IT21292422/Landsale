@@ -78,11 +78,11 @@
             <div class="field-container">
                 <div class="info-field">
                     <p>Land Area</p>
-                    <p><?php echo $values['min_area'] . ' - ' .$values['max_area'] ?> Perches</p>
+                    <p><?php echo $values['min_area'] ? $values['min_area'] . ' - ' .$values['max_area']. ' Perch' : 'Neglibible' ?></p>
                 </div>
                 <div class="info-field">
                     <p>Price</p>
-                    <p>Rs. <?php echo $values['min_price'] . ' - ' . $values['max_price']?></p>
+                    <p><?php echo $values['min_price'] ? 'Rs. '.$values['min_price'] . ' - ' . $values['max_price'] : 'Negligible'?></p>
                 </div>
                 <div class="info-field">
                     <p>City</p>

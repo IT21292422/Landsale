@@ -8,6 +8,7 @@
     border-radius: 5px;
     transition: transform 0.2s;
     cursor: pointer;
+    overflow: hidden;
 
 }
 
@@ -70,8 +71,9 @@
 }
 
 .search-form input[type='submit']{
-    padding: 8px 30px;
+    padding: 10px 0;
     margin-left: 5px;
+    width: 15%;
 }
 
 .nodec{
