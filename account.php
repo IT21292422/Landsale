@@ -2,7 +2,7 @@
     session_start();
     require_once('php\includes\signinFunctions.php');
     accessLevel('user');
-    require_once('php\controllers\account.ctrl.php');
+    require_once('php\controllers\account-ctrl.php');
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
 
     <?php include('php\templates\header.php'); ?>
 
-    <form class="simple-form" enctype="multipart/form-data" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="edit-profile-form">
+    <form class="account-form" enctype="multipart/form-data" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="edit-profile-form">
         <input id="photo-input" class="hide" type="file" name="profile_photo" onchange="photoSelected()" disabled>
 
         <div class="container" id="report-post">
@@ -109,7 +109,7 @@
                             <p>Edit account</p>
                         </div>
                     </a>
-                    <a href="saved.php">
+                    <a href="saved-posts.php">
                         <div>
                             <p>Saved posts</p>
                         </div>
