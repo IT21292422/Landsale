@@ -92,12 +92,12 @@ $con->close();
 include_once 'php\includes\dbcon.php';
 
 //Request table
-$sql1="SELECT complaint_id,description,reviewed,complaint_type,sale_id,user_id,create_date FROM request_complaints ";
+$sql5="SELECT complaint_id,description,reviewed,complaint_type,sale_id,user_id,create_date FROM request_complaints ";
 
-$result2=$con->query($sql1);
+$result5=$con->query($sql5);
 
 //Shows the Request table details
-if ($result2->num_rows > 0) {
+if ($result5->num_rows > 0) {
 
     echo("<h1>Request Complaints</h1>");
     
