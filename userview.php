@@ -3,7 +3,7 @@
 <head>
     <title>User Details</title>
     <link rel="stylesheet" href="styles/headerfooter.css"/>
-    <link rel="stylesheet" href="styles/sale-request.css">
+    
     
 </head>
 <body>
