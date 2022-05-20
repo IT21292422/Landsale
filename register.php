@@ -38,7 +38,7 @@
                 <label for="repass">Re-Enter Password</label><br>
                 <input type="password" name="pass" id="repass"><br><br>
 
-                <label for="ToS">Accept Privacy Policy and Terms & COnditions</label><br>
+                <label for="ToS">Accept Privacy Policy and Terms & Conditions</label><br>
                 <input type="checkbox" class="tos" name="tos" onclick="enableButton()"><br><br>
 
                 <center>
