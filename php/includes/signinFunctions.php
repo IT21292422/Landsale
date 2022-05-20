@@ -25,9 +25,8 @@
         }
     }
 
-    function accessLevel($type)//todo add redirect option
+    function accessLevel($type)
     {
-        $level = 0;
         switch ($_SESSION['account_type']) {
             case 'admin':
                 if ($type == 'admin') return;

@@ -47,12 +47,12 @@ create table request_type(
 
 create table request(
 	request_id int AUTO_INCREMENT,
-	title varchar(50) not null,
+	title varchar(50) not null ,
 	location varchar(30),
 	description varchar(500),
-	city varchar(40) not null,
-	district varchar(30) not null,
-	province varchar(20) not null,
+	city varchar(40) not null ,
+	district varchar(30) not null ,
+	province varchar(20) not null ,
 	max_price float,
 	min_price float,
 	max_area float,
@@ -64,18 +64,20 @@ create table request(
 	create_date date default (curdate()),
 	constraint request_pk primary key (request_id),
 	constraint request_fk_request_type foreign key (type_id) references request_type(type_id),
-	constraint request_fk_users foreign key (user_id) references users(user_id)
+	constraint request_fk_users foreign key (user_id) references users(user_id),
+	fulltext key (title, city, district, province)
+
 
 );
 
 create table sale(
 	sale_id int AUTO_INCREMENT,
-	title varchar(50) not null,
+	title varchar(50) not null ,
 	location varchar(30),
 	description varchar(500),
-	city varchar(40) not null,
-	district varchar(30) not null,
-	province varchar(20) not null,
+	city varchar(40) not null ,
+	district varchar(30) not null ,
+	province varchar(20) not null ,
 	price float,
 	land_area float not null,
 	address varchar(100),
@@ -85,7 +87,8 @@ create table sale(
 	create_date date default (curdate()),
 	constraint sale_pk primary key (sale_id),
 	constraint sale_fk_request_type foreign key (type_id) references sale_type(type_id),
-	constraint sale_fk_users foreign key (user_id) references users(user_id)
+	constraint sale_fk_users foreign key (user_id) references users(user_id),
+	fulltext key (title, city, district, province)
 
 );
 

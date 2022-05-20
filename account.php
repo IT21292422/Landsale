@@ -2,7 +2,7 @@
     session_start();
     require_once('php\includes\signinFunctions.php');
     accessLevel('user');
-    require_once('php\controllers\account.ctrl.php');
+    require_once('php\controllers\account-ctrl.php');
 ?>
 
 <!DOCTYPE html>
@@ -109,7 +109,7 @@
                             <p>Edit account</p>
                         </div>
                     </a>
-                    <a href="saved.php">
+                    <a href="saved-posts.php">
                         <div>
                             <p>Saved posts</p>
                         </div>

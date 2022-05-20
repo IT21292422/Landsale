@@ -1,5 +1,4 @@
 <?php
-    include("php/controllers/register-ctrl.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

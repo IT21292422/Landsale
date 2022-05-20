@@ -40,14 +40,6 @@
 
 }
 
-.price::before{
-    content: 'Rs. ';
-}
-
-.area::after{
-    content: ' Perch';
-}
-
 .place{
     justify-items: center;
 }
@@ -60,4 +52,29 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 200px);
     gap: 10px;
+    padding: 20px 5px;
+}
+
+.search-form{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 20px;
+}
+
+.search-form input[type='search']{
+    padding: 10px;
+    width: 80%;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.search-form input[type='submit']{
+    padding: 8px 30px;
+    margin-left: 5px;
+}
+
+.nodec{
+    text-decoration: none;
+    color: inherit;
 }

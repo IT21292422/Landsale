@@ -444,26 +444,50 @@
 
     }
 
-    function getSales($startFrom) //get list of sales from db
+    function searchSale($searchString='', $startFrom=0)
     {
         global $con;
-        $sql = "select (sale_id, price, province, district, city, title, land_area) from sale limit $startFrom, 10";
+
+        $sql = '';
+
+        if (empty($searchString))
+        {
+            $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale limit $startFrom, 10;";
+        }
+        else
+        {
+            $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where match(title, city, district, province) against ('$searchString') limit $startFrom, 10;";
+        }
+
+        
         $results = $con->query($sql);
 
         if ($results and $results->num_rows < 1) return False;
 
-        return $results->fetch_array(MYSQLI_ASSOC);
+        return $results->fetch_all(MYSQLI_ASSOC);
+        
     }
 
-    function getRequests($startFrom)  //get list of requests from db
+    function searchRequest($searchString='', $startFrom=0)
     {
         global $con;
-        $sql = "select (sale_id, max_price, min_price, province, district, city, title, max_area, min_area) from request limit $startFrom,10";
+
+        if (empty($searchString))
+        {
+            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request limit $startFrom, 10;";
+        }
+        else
+        {
+            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where match(title, city, district, province) against ('$searchString') limit $startFrom, 10;";
+
+        }
+        
         $results = $con->query($sql);
 
         if ($results and $results->num_rows < 1) return False;
 
-        return $results->fetch_array(MYSQLI_ASSOC);
+        return $results->fetch_all(MYSQLI_ASSOC);
+        
     }
 
 ?>

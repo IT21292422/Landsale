@@ -99,7 +99,7 @@ function hideReportForm()
 
 function showReportSuccess()
 {
-    document.getElementById('report-success').style.display = 'block';
+    document.getElementById('report-success').style.display = 'grid';
     document.getElementById('container').classList.add('blur');
 }
 

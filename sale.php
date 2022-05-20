@@ -39,7 +39,7 @@
             </select>
             <label for="description">Description</label>
             <textarea type="text" name='description' id="description" rows="7"></textarea>
-            <input type="hidden" name='sale_id' value="1">
+            <input type="hidden" name='sale_id' value="<?php echo $values['sale_id'] ?>">
         </form>
         <input class="btn-report" type="button" value="Submit" onclick="submitReport('submit-sale-complaint.php')">
         <input class="btn-report" type="button" value="Cancel" id="cancel-report" onclick="hideReportForm()">

@@ -95,3 +95,16 @@ body{
 .btn-left{
     left:0%;
 }
+
+#report-success {
+    grid-template-columns: auto;
+}
+
+#report-success h2, #report-success h3{
+    justify-self: center ;
+}
+
+#report-success input{
+    justify-self: right ;
+    align-self: end;
+}
