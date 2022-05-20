@@ -11,6 +11,9 @@
 <body>
    
 <style>
+        .texts{
+            text-align: center;
+        }
         .table1 th{
             padding: 10px;
             background-color: rosybrown;
@@ -48,14 +51,14 @@
 include_once 'php\includes\dbcon.php';
 
 //Sale table
-$sql1="SELECT complaint_id,description,reviewed,complaint_type,sale_id,user_id,create_date FROM sale_complaints";
+$sql1="SELECT complaint_id,description,reviewed,complaint_type,request_id,user_id,create_date FROM request_complaints ";
 
 $result2=$con->query($sql1);
 
-//Shows the Request table details
+//Shows the Sale table details
 if ($result2->num_rows > 0) {
 
-    echo("<h1>Sale Complaints</h1>");
+    echo("<h1 class='texts'>Sale Complaints</h1>");
     
     echo("<table class='table1'>");
 
@@ -72,7 +75,7 @@ if ($result2->num_rows > 0) {
         echo "<tr>";
         echo "<td>".$row["complaint_id"]."</td>";
         echo "<td>".$row["complaint_type"]."</td>";
-        echo "<td>".$row["sale_id"]."</td>";
+        echo "<td>".$row["request_id"]."</td>";
        // echo "<td>".$row["create date"]."</td>";
         echo "<td>".$row["user_id"]."</td>";
         echo "<td>".$row["description"]."</td>";
@@ -86,20 +89,22 @@ if ($result2->num_rows > 0) {
         echo ('<h1 class="warnings">The Sale complaint table is empty</h1>');
     }
 
-$con->close();
+//$con->close();
+
+echo "<hr>";
 
 /////////////////////////////////////////////////////////////////////////////
 include_once 'php\includes\dbcon.php';
 
 //Request table
-$sql5="SELECT complaint_id,description,reviewed,complaint_type,sale_id,user_id,create_date FROM request_complaints ";
+$sql1="SELECT complaint_id,description,reviewed,complaint_type,sale_id,user_id,create_date FROM sale_complaints ";
 
-$result5=$con->query($sql5);
+$result2=$con->query($sql1);
 
 //Shows the Request table details
-if ($result5->num_rows > 0) {
+if ($result2->num_rows > 0) {
 
-    echo("<h1>Request Complaints</h1>");
+    echo("<h1 class='texts'>Request Complaints</h1>");
     
     echo("<table class='table1'>");
 

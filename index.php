@@ -36,8 +36,10 @@
         }
     ?>
     </div>
-
-
+<!--
+<div><a href="admin.php">Admin</a></div>
+<div><a href="complaint.php">complaint</a></div>
+    -->
     <?php
         include("php/templates/footer.php");
     ?>
