@@ -3,7 +3,7 @@
 <head>
     <title>User Details</title>
     <link rel="stylesheet" href="styles/headerfooter.css"/>
-    
+    <link rel="stylesheet" href="styles/sale-request.css">
     
 </head>
 <body>
@@ -12,13 +12,13 @@
     ?>
 <?Php
 $id=$_GET['id'];
-// Checking id is a integer or not
+// Checking data it is a number or not
 if(!is_numeric($id)){
 echo "ID must be a integer";
 exit;
 }
-// Database connection 
-require 'php/includes/dbcon.php'; 
+// MySQL connection string
+include 'php/includes/dbcon.php'; 
 
 $path="SELECT*FROM users where user_id=?";
 
@@ -54,6 +54,24 @@ if($stmt = $con->prepare($path)){
     <?php  echo $value->about?>
   </p>
 </h3>
+
+
+<?php
+include 'php/includes/dbcon.php';
+$path1="SELECT*FROM users_phone where user_id=?";
+if($stmt = $con->prepare($path1)){
+    $stmt->bind_param('i',$id);
+     $stmt->execute();
+     $result1 = $stmt->get_result();
+     $value1=$result1->fetch_object();
+  
+  }else{
+      echo $connection->error;
+      }
+      ?>
+<p> Contact Number :
+    <?php  echo $value1->phone ?>
+ </p>
 
     <?php
         include("php/templates/footer.php");
