@@ -34,23 +34,31 @@
         if(areRequiredFieldsProvided($values, $required, $errors))
         {
             //check for matching email password pair
-            $userId = matchUserPassword($values['email'], $values['password']); 
+            $info = checkAccount($values['email'], $values['password']); 
 
-            if ($userId === NULL)    // if user is not valid
+            if ($info === NULL)    // if user is not valid
             {
                 $errors['form'] = "Email and password do not match";
             }
             else    //if user is valid
             {
-                signin($userId);    //signin user
-                if (isset($_POST['redirect']))
+                if ($info['account_status'] === 'valid')
                 {
-                   header('Location: '.$_POST['redirect']);  //redirect to requested page
-
+                    signin($info['user_id']);    //signin user
+                    if (isset($_POST['redirect']))
+                    {
+                       header('Location: '.$_POST['redirect']);  //redirect to requested page
+    
+                    }
+                    else{
+                       header('Location: /landsale');  //redirect to homepage
+                    }
                 }
-                else{
-                   header('Location: /landsale');  //redirect to homepage
+                else
+                {
+                    $errors['form'] = 'Your account is ' . $info['account_status'];
                 }
+                
             }
         }
 
