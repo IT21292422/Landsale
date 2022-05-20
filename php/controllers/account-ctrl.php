@@ -61,15 +61,26 @@
                 //validate phone numbers
                 if ($isValid)
                 {
-                    foreach ($values['phone'] as $phone)
+                    //check for duplicates
+                    if (count(array_unique($values['phone'])) < count($values['phone']))
                     {
-                        if (!preg_match("/[0-9]{10}/", $phone))
+                        $isValid = false;
+                        $errors['phone'] = 'duplicate phone numbers!';
+                    }
+                    else
+                    {
+                        //validate each phone number
+                        foreach ($values['phone'] as $phone)
                         {
-                            $errors['phone'] = 'incorrect phone number(s)';
-                            $isValid = False;
-                            break;
+                            if (!preg_match("/[0-9]{10}/", $phone))
+                            {
+                                $errors['phone'] = 'incorrect phone number(s)';
+                                $isValid = False;
+                                break;
+                            }
                         }
                     }
+                    
 
                 }
 
@@ -105,7 +116,7 @@
                         }
                     }
 
-                    //move file if form is valid
+                    //add new file if form is valid
                     if($isValid)
                     {
                         //remove old profile photo
