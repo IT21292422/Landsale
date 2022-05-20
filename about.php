@@ -10,14 +10,9 @@
         include("php/templates/header.php");
     ?>
 
-    <!--body-->
-    <h1>About Us</h1>
-
-    <p>pppppp</p>
-
-    <h1>Terms and Conditions<h1>
-    
-    <p>ppppp</p>
+    <div class="mainpage">
+        <h2>About Us</h2>
+    </div>
 
     <?php
         include("php/templates/footer.php");
