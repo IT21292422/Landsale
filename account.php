@@ -99,7 +99,7 @@
             </div>
 
             <div class="btn-container-ralign hide edit">            
-                <input type="submit" value="Save changes">
+                <input type="submit" value="Save changes" name="profile">
 
             </div>
             

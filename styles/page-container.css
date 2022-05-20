@@ -82,10 +82,12 @@ div.images{
 
 .field-container  a:hover {
     background-image: linear-gradient(to right, #a1a1a1, white);
+    background-color: none !important;
     color: white;
 }
 
 .container > div > a:hover, .container > div > a:hover > *{
     background-image: linear-gradient(to right, #a1a1a1, white);
+    background-color: none !important;
     color: white;
 }

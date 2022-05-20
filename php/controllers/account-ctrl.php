@@ -97,7 +97,8 @@
                         $isValid = False;
                     }
     
-                    $valuesToDB = $values;
+                    $valuesToDB = $values;//get a copy of the values to send to database
+                    unset($valuesToDB['warnings']); //remove warnings from the list
     
                     //photo validation
                     if(isset($_FILES['profile_photo']))  //if profile photo is changed save the file
