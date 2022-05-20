@@ -17,7 +17,7 @@ $fk2="2";
 //inserting data into table in order of columns 
 $sql = "INSERT INTO sale (title,location,description,city,district,province,price,land_area,address,cover_photo,type_id,user_id)   VALUES ('$stitle' ,'$sloc' ,'$sdesc' ,'$scity' ,'$sdist','$sprovince','$sprice','$sarea','$saddress' ,'$sphoto','$fk1','$fk2')";
 //checking if query excuted or not
-if($conn->query($sql)){
+if($con->query($sql)){
     echo "<script> alert ('Added Successfully')</script>";
 }
 else{
