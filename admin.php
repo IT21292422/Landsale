@@ -95,7 +95,7 @@ if ($result2->num_rows > 0) {
             background-color:rgba(221, 0, 0, 0.7) ;
         }
         .delete:hover{
-            background-color:rgba(0, 0, 200, 0.9) ;
+            background-color: rgba(95, 70, 144, 0.8) ;
         }
         .table1{
             padding: 20px;
