@@ -1,8 +1,13 @@
+body {
+    background-image: linear-gradient(to bottom right, #e8ecf1, #e8ecf1);
+}
+
 .nav {
     display: grid;
     grid-template-columns: max-content auto max-content max-content;
     align-items: center;
-    background-color:#e8ecf1;
+    background-color:#d2dff0;
+    background-image: linear-gradient(to bottom, #c2d5ee, #e8ecf1);
     gap: 10px;
     padding-right: 15px;
 }

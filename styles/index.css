@@ -86,6 +86,7 @@
 
 div.container > div{
     box-shadow: none ;
+    background-color: transparent;
     padding-bottom: 15px;
     
 }
