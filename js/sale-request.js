@@ -72,7 +72,7 @@ function changeImage(num)
     }
     else if (pos < 0)
     {
-        pos = images.length;
+        pos = images.length - 1;
     }
 
     for (let image of images)
