@@ -54,7 +54,7 @@ if ($result2->num_rows > 0) {
         }
 
         ?>
-        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?user_id=<?php echo $row["user_id"]; ?>">Delete</a></td>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\request-complaints-ctrl.php?complaint_id=<?php echo $row["complaint_id"]; ?>">Delete</a></td>
       <?php
 
         echo "</tr>";
@@ -107,7 +107,7 @@ if ($result2->num_rows > 0) {
         }
 
       ?>
-        <td class="delete"><a style="text-decoration: none;" href="php\controllers\complaint-ctrl.php?complaint_id=<?php echo $row["complaint_id"]; ?>">Delete</a></td>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\sale-complaint-ctrl.php?complaint_id=<?php echo $row["complaint_id"]; ?>">Delete</a></td>
       <?php
 
        echo "</tr>";
