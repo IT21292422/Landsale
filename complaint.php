@@ -50,7 +50,7 @@
 
 include_once 'php\includes\dbcon.php';
 
-//Sale table
+//Request table
 $sql1="SELECT complaint_id,description,reviewed,complaint_type,request_id,user_id,create_date FROM request_complaints ";
 
 $result2=$con->query($sql1);
@@ -79,7 +79,13 @@ if ($result2->num_rows > 0) {
        // echo "<td>".$row["create date"]."</td>";
         echo "<td>".$row["user_id"]."</td>";
         echo "<td>".$row["description"]."</td>";
-        echo "<td>".$row["reviewed"]."</td>";
+    
+        if($row["reviewed"]==1){
+            echo "<td>Yes</th>";
+        }else{
+            echo "<td>No</th>";
+        }
+
         echo "<th>delete</th>";
         echo "</tr>";
     }
@@ -94,7 +100,7 @@ echo "<hr>";
 /////////////////////////////////////////////////////////////////////////////
 include_once 'php\includes\dbcon.php';
 
-//Request table
+//Sale table
 $sql1="SELECT complaint_id,description,reviewed,complaint_type,sale_id,user_id,create_date FROM sale_complaints ";
 
 $result2=$con->query($sql1);
@@ -123,9 +129,16 @@ if ($result2->num_rows > 0) {
        // echo "<td>".$row["create date"]."</td>";
         echo "<td>".$row["user_id"]."</td>";
         echo "<td>".$row["description"]."</td>";
-        echo "<td>".$row["reviewed"]."</td>";
-        echo "<th>delete</th>";
-        echo "</tr>";
+
+        if($row["reviewed"]==1){
+            echo "<td>Yes</th>";
+        }else{
+            echo "<td>No</th>";
+        }
+      ?>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?user_id=<?php echo $row["user_id"]; ?>">Delete</a></td>
+      <?php
+       echo "</tr>";
     }
     echo ("</table>");
 
