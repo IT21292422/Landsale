@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php 
     //connecting to the DB
     require 'php/includes/dbcon.php';

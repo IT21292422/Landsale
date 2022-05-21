@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!--NRH-->
 <?php
 //checking  if id is set or not

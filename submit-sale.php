@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!--NRH-->
 <!DOCTYPE html>
 <html lang="en">
