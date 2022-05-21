@@ -416,11 +416,11 @@
     {
         global $con;
 
-        if (count($values['phone']) > 0)
+        $sql = "delete from users_phone where user_id = $userId";
+        $con->query($sql);
+
+        if ($values['phone'] and count($values['phone']) > 0)
         {
-            $sql = "delete from users_phone where user_id = $userId";
-            $con->query($sql);
-            
             foreach($values['phone'] as $phone)
             {
                 $sql = "insert into users_phone(user_id, phone) values($userId, '$phone')";

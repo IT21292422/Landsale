@@ -20,7 +20,7 @@
                 
                 <?php if (isset($_SESSION['user_id'])) : ?>
                         <div class="profile">
-                                <a href="account.php" class=""><img src="<?php echo isset($_SESSION['profile_photo']) ? $_SESSION['profile_photo'] : 'images/profile/default.png' ?>" class="profile-img" alt=""></a>
+                                <a href="account.php" class=""><img src="<?php echo (isset($_SESSION['profile_photo']) and !empty($_SESSION['profile_photo'])) ? $_SESSION['profile_photo'] : 'images/profile/default.png' ?>" class="profile-img" alt=""></a>
                         </div>
                 <?php else : ?>
                         <div class="links r-align">

@@ -11,7 +11,7 @@
         "last_name"=>True,
         "email"=>True,
         "about"=>False,
-        "phone"=>True
+        "phone"=>False
     );
 
     $errors = array();  //array to store errors relevent to each field
@@ -40,8 +40,10 @@
                 //get values from user
                 foreach ($required as $fieldName=>$_) 
                 {
-                    $values[$fieldName] = $_POST[$fieldName];
+                    $values[$fieldName] = isset($_POST[$fieldName]) ? $_POST[$fieldName] : NULL;
                 }
+
+                if ($values['phone'] == NULL) $values['phone'] = [];
                 
                 //alter fields
                 $values['email'] = strtolower($values['email']);
@@ -52,7 +54,7 @@
                     $isValid = True;
     
                     //validate phone
-                    if(count($values['phone']) > 5)
+                    if($values['phone'] and count($values['phone']) > 5)
                     {
                         $errors['phone'] = 'maximum number of contacts is 5';
                         
@@ -60,7 +62,7 @@
                     }
                     
                     //validate phone numbers
-                    if ($isValid)
+                    if ($isValid and $values['phone'] and count($values['phone']) > 0)
                     {
                         //check for duplicates
                         if (count(array_unique($values['phone'])) < count($values['phone']))
