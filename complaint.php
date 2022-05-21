@@ -6,43 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css" >
     <?php include_once('php/includes/common-css-js.php'); ?>
+    <link rel="stylesheet" href="styles/admintable.css"/>
     <title>Complaints</title>
 </head>
 <body>
-   
-<style>
-        .texts{
-            text-align: center;
-        }
-        .table1 th{
-            padding: 10px;
-            background-color: rosybrown;
-        }
-        .table1 tr{
-            inline-size: auto;
-            overflow-wrap: break-all;
-        }
-        .delete1{
-            background-color:rgba(221, 0, 0, 0.7) ;
-        }
-        .delete1:hover{
-            background-color:rgba(0, 0, 200, 0.9) ;
-        }
-        .table1{
-            padding: 20px;
-            margin-bottom: 20px;
-            width:auto;
-            border:solid 5px #F1F1F1;
-            margin-right: auto;
-            margin-left: auto;
-            text-align: center;
-            background-color:rgba(220, 220, 220, 0.7);
-            border-collapse: collapse;
-        }
-        .table1 tr:nth-child(even){
-            background-color: beige;
-        }
-    </style>
 
     <?php
 
@@ -86,7 +53,10 @@ if ($result2->num_rows > 0) {
             echo "<td>No</th>";
         }
 
-        echo "<th>delete</th>";
+        ?>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?user_id=<?php echo $row["user_id"]; ?>">Delete</a></td>
+      <?php
+
         echo "</tr>";
     }
     echo ("</table>");
@@ -135,9 +105,11 @@ if ($result2->num_rows > 0) {
         }else{
             echo "<td>No</th>";
         }
+
       ?>
-        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?user_id=<?php echo $row["user_id"]; ?>">Delete</a></td>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\complaint-ctrl.php?complaint_id=<?php echo $row["complaint_id"]; ?>">Delete</a></td>
       <?php
+
        echo "</tr>";
     }
     echo ("</table>");

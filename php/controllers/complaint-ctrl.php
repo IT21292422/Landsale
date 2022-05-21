@@ -1,9 +1,9 @@
 <?php
-require_once("php/includes/dbcon.php");
+require '../includes/dbcon.php';
 
-echo $_GET["id"];
+echo $_GET["complaint_id"];
 
-$sql1 = "DELETE FROM  WHERE id='". $_GET["id"]."'";
+$sql1 = "DELETE FROM sale_complaints WHERE complaint_id='". $_GET["complaint_id"]."'";
 
 if ($con->query($sql1)) {
     
