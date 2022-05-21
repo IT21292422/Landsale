@@ -25,7 +25,7 @@ $result2=$con->query($sql1);
 //Shows the Request table details
 if ($result2->num_rows > 0) {
 
-    echo("<h1 class='texts'>Request Complaints</h1>");
+    echo("<h1 style='text-align:center;'>Request Complaints</h1>");
     
     echo("<table class='table1'>");
 
@@ -54,7 +54,7 @@ if ($result2->num_rows > 0) {
         }
 
         ?>
-        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?user_id=<?php echo $row["user_id"]; ?>">Delete</a></td>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\request-complaints-ctrl.php?complaint_id=<?php echo $row["complaint_id"]; ?>">Delete</a></td>
       <?php
 
         echo "</tr>";
@@ -78,7 +78,7 @@ $result2=$con->query($sql1);
 //Shows the Sale table details
 if ($result2->num_rows > 0) {
 
-    echo("<h1 class='texts'>Sale Complaints</h1>");
+    echo("<h1 style='text-align:center;'>Sale Complaints</h1>");
     
     echo("<table class='table1'>");
 
@@ -107,7 +107,7 @@ if ($result2->num_rows > 0) {
         }
 
       ?>
-        <td class="delete"><a style="text-decoration: none;" href="php\controllers\complaint-ctrl.php?complaint_id=<?php echo $row["complaint_id"]; ?>">Delete</a></td>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\sale-complaint-ctrl.php?complaint_id=<?php echo $row["complaint_id"]; ?>">Delete</a></td>
       <?php
 
        echo "</tr>";

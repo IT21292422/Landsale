@@ -48,3 +48,11 @@
         .table1 tr:nth-child(even){
             background-color: beige;
         }
+        
+        .viewws{
+            background-color:rgba(14, 140, 243, 0.737) ;
+        }
+        .viewws:hover{
+            background-color:rgba(41, 240, 140, 0.7) ;
+        }
+        
