@@ -63,7 +63,7 @@
                             //echo "<a href='sale.php?id=1'>view</a>";
                             //echo "<a href='sale.php?id=.$sID>view</a>";
 
-                            echo "<a href='sale.php?id={$sID]}'>view</a>";
+                            echo "<a href='sale.php?id={[$sID]}'>view</a>";
                             "</td>";
 
                     echo "<br/>";
