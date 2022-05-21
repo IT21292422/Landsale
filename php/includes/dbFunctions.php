@@ -116,11 +116,13 @@
         return $results->fetch_assoc();
     }
     
-    function doesEmailExist($email)
+    function doesEmailExist($email, $userId=NULL)
     {
         global $con;
         $email = strtolower($email);
-        $sql = "select user_id from users where email = '$email'";
+        if ($userId === NULL)   $sql = "select user_id from users where email = '$email'";
+        else    $sql = "select user_id from users where email = '$email' and user_id <> $userId";
+        
         $results = $con->query($sql);
 
         if ($results->num_rows < 1) return False;
