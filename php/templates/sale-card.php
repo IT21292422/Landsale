@@ -1,3 +1,9 @@
+<!-- 
+    //Name: H.A.R.S. Hapuarachchi
+    //IT Number: it21296246
+    //Center: Malabe
+    //Group: MLB_05.02_09    
+!-->
 <a class="nodec" href="sale.php?id=<?php echo $cardData['sale_id'] ?>">
     <div class="card">
         <img class="card-image" src="<?php echo $cardData['cover_photo'] ?>" alt="">

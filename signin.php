@@ -10,10 +10,14 @@
 <head>
     <title>Sign in</title>
     <link rel="stylesheet" href="styles/signin.css">
-    <link rel="stylesheet" href="styles/forms.css">
+    <link rel="stylesheet" href="styles/forms.css">    
+    <?php include_once('php/includes/common-css-js.php'); ?>
+
 
 </head>
 <body>
+    <?php include('php\templates\header.php'); ?>
+
    <form class="simple-form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
         <div class="form-field">
             <div for="email">E-mail</div>
@@ -41,6 +45,7 @@
         </div>
 
    </form> 
+   <?php include('php\templates\footer.php'); ?>
 
 </body>
 </html>

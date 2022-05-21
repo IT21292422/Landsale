@@ -80,7 +80,7 @@
 
                     
         <div class="btn-container-ralign">
-        <input class='btn-simple' type='button' value='Report' onclick='showReportForm()'>
+        <input class='btn-simple' type='button' value='Report' onclick='showReportForm()' <?php echo isset($_SESSION['user_id']) ? '' : "disabled title = 'Sign in to report posts'" ?>>
 
         <input class='btn-simple <?php echo !$values['saved'] ?'hide' : '' ?>' type='button' value='Saved' id='btn-unsave' onclick="unsave('save-sale.php')">
         <input class='btn-simple <?php echo $values['saved'] ? 'hide' : '' ?>' type='button' value='Save' id='btn-save' onclick="save('save-sale.php')" <?php echo isset($_SESSION['user_id']) ? '' : "disabled title = 'Sign in to save posts'" ?>>
