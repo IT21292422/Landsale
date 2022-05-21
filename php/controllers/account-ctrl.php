@@ -87,7 +87,12 @@
     
                     if(!filter_var($values['email'], FILTER_VALIDATE_EMAIL))
                     {
-                        $errors['email'] = 'invalid email address';
+                        $errors['email'] = 'Invalid email address';
+                        $isValid = False;
+                    }
+                    elseif(doesEmailExist($values['email'], $values['user_id']))
+                    {
+                        $errors['email'] = 'Provided email is already register';
                         $isValid = False;
                     }
     
