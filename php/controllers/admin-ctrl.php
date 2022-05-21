@@ -1,6 +1,6 @@
 <?php
 
-include_once 'php\includes\dbcon.php';
+include_once '\php\includes\dbcon.php';
 
 if(isset($_POST["Create"])){
 
