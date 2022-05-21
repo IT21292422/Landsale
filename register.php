@@ -31,7 +31,7 @@
 <html>
 	<head>
     <?php include_once('php/includes/common-css-js.php'); ?>
-
+    <link rel="stylesheet" href="styles/register.css">
 	</head>
 	
 	<body>
@@ -42,33 +42,33 @@
 		<hr>
 
             <center><h1 id="cheader">Registration Form</h1></center>
-            <div>
-            <form onsubmit="return checkPassword()" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <div class="icontainer">
+            <form onsubmit="return checkPassword()" method="post" class="regform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
-                <label for="fname">First Name<br></label>
+                <label for="fname" class="label">First Name<br></label>
 				<input type="text" id="fname" name="fname" placeholder="First Name" required><br><br>
 				
-				<label for="lName">Last Name<br></label>
+				<label for="lName" class="label">Last Name<br></label>
 				<input type="text" id="lName" name="lname" placeholder="Last Name" required><br><br>
 
-                <label for="email">Email<br></label>
+                <label for="email" class="label">Email<br></label>
 				<input type="text" id="email" name="email" placeholder="abc@xyz.com" pattern="[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,3}" required><br><br>
 				
-                <label for="about">About<br></label>
+                <label for="about" class="label">About<br></label>
 				<textarea id="about" rows="4" cols="25" name="about" placeholder="Add a small description about yourself"></textarea><br><br>
 
-                <label for="photo">Upload a profile picture</label>
+                <label for="photo" class="label">Upload a profile picture</label>
                 <input type="file" name="pPhoto" id="photo" ><br><br>
 
-                <label for="pass">Password</label><br>
+                <label for="pass" class="label">Password</label><br>
                 <input type="password" name="pass" id="pass" pattern="(?=.+\d)(?=.+[a-z])(?=.+[A-Z]).{8,20}" required
                 title="Password should be leaset 8 characters long and include at least
                 One lowercase letter, One Uppercase letter and One number" ><br><br>
 
-                <label for="repass">Re-Enter Password</label><br>
+                <label for="repass" class="label">Re-Enter Password</label><br>
                 <input type="password" name="pass" id="repass"><br><br>
 
-                <label for="ToS">Accept Privacy Policy and Terms & Conditions</label><br>
+                <label for="ToS" class="label">Accept Privacy Policy and Terms & Conditions</label><br>
                 <input type="checkbox" class="tos" name="tos" onclick="enableButton()"><br><br>
 
                 <center>
