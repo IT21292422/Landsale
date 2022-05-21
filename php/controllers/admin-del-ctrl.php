@@ -2,6 +2,7 @@
 
 require '../includes/dbcon.php';
 
+echo "Index of the Deleted recode is >>>> ";
 
 $userId=$_GET["user_id"];
 
@@ -25,7 +26,18 @@ echo $userId;
 
 if ($resul) {
     echo '<script type="text/javascript">alert("Recode was deleted!!!");</script>';
+    ?>
+        <style>
+            .box1 a{
+                padding: 20px;
+                background-color: aquamarine;
+                position: absolute;
+                left: auto;
+            }
+        </style>
 
+        <div class="box1"><a href="admin.php">Click here to go back to the Admin page</a></div>
+    <?php
 } else {
     // goes to the error page
     echo "Error deleting record: " . mysqli_error($con);
