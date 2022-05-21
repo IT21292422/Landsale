@@ -1,4 +1,3 @@
-<?php include('php/controllers/submit-request-ctrl.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
