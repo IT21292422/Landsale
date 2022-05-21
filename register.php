@@ -12,7 +12,7 @@
                 $photo = $_POST["pPhoto"];
             
                 $query="INSERT INTO users(user_id, password, first_name, last_name, email, account_status, account_type, 
-                profile_photo, about) VALUES ('', '$pass', '$fName', '$lName', '$email', 'valid', 'User', '$photo', '$about' )";
+                profile_photo, about) VALUES ('', '$pass', '$fName', '$lName', '$email', 'valid', 'user', '$photo', '$about' )";
                 
                 if($con->query($query))
                 {
