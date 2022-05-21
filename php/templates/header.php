@@ -13,7 +13,7 @@
                 </div>
                         <div class="links r-align">
                                 <a href="signin.php" class="link">Sign in</a>
-                                <a href="signin.php" class="link">Register</a>
+                                <a href="register.php" class="link">Register</a>
                         </div>
                 <div class="profile">
                 <a href="" class=""><img src="images/profile/default.png" class="profile-img" alt=""></a>
