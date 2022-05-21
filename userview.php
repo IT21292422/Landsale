@@ -57,7 +57,8 @@ if($stmt = $con->prepare($path)){
 
 
 <?php
-include 'php/includes/dbcon.php';
+include("php/controllers/sale-ctrl.php");
+
 $path1="SELECT*FROM users_phone where user_id=?";
 if($stmt = $con->prepare($path1)){
     $stmt->bind_param('i',$id);
@@ -70,7 +71,12 @@ if($stmt = $con->prepare($path1)){
       }
       ?>
 <p> Contact Number :
-    <?php  echo $value1->phone ?>
+    <?php
+        
+     echo $value1->phone;
+    
+      ?>
+
  </p>
 
     <?php

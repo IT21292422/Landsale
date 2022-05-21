@@ -89,8 +89,6 @@ if ($result2->num_rows > 0) {
         echo ('<h1 class="warnings">The Sale complaint table is empty</h1>');
     }
 
-//$con->close();
-
 echo "<hr>";
 
 /////////////////////////////////////////////////////////////////////////////
