@@ -91,7 +91,7 @@ if ($result2->num_rows > 0) {
             background-color:rgba(41, 240, 140, 0.7) ;
         }
         </style>
-        <td class="viewws"><a style="text-decoration: none;" href='userview.php?id=$row["user_id"]'>View</a></td>
+        <td class="viewws"><a style="text-decoration: none;" href="userview.php?id=<?php echo $row["user_id"]; ?>">View</a></td>
         <?php
         echo "</tr>";
     }
