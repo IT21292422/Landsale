@@ -25,15 +25,16 @@ echo $userId;
         $resul=$con->multi_query($sql);
         
 if (!empty($referer)) {
-		
-    echo '<script type="text/javascript">alert("Recode was deleted!!!");</script>';
-		echo '<p><a href="'. $referer .'" title="Return to the previous page">« Go back</a></p>';
-		
-	} else {
-		
-        echo '<script type="text/javascript">alert("Recode was deleted!!!");</script>';
+    
+        echo '<script type="text/javascript">alert("Recode was not deleted!!!");</script>';
 		echo '<p><a href="javascript:history.go(-1)" title="Return to the previous page">« Go back</a></p>';
 		
+	} else {
+
+        if (isset($_SERVER["HTTP_REFERER"])){
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+        }
+        
 	}
 
 $con->close();

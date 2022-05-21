@@ -4,98 +4,64 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <?php include_once('php/includes/common-css-js.php'); ?>
+    <link rel="stylesheet" href="styles\index.css">
+</head>
 
-    <head>
-        <?php include_once('php/includes/common-css-js.php'); ?>
-    </head>
-  
 <body>
+    <?php
+            //linking header
+            include("php/templates/header.php");
 
-<style>
-
-  table
-  { 
-    border-style: groove;
-    border: 5px solid black;
-  }
-
-  tr{
-  border: 5px solid black;
-  border-right: 5px solid black;
-}
-</style>
-  <?php
-
-  //linking header
-    include("php/templates/header.php");
-
-  //retrieving saved post data from the DB
-  $sql1="SELECT sale_id, user_id FROM saved_sale";
-  $sql2="SELECT request_id, user_id FROM saved_request";
-
-  $sData=$con->query($sql1);
-  $rData=$con->query($sql2);
+            //retrieving saved post data from the DB
+            //$sql1="SELECT sale_id, user_id FROM saved_sale";
 
 
-  ?>
+            //retrieving data from sale and request tables
+            $sql1="SELECT sale_id, title, location, description, city, district, province, price, land_area, address,
+            cover_photo, type_id, user_id, create_date FROM sale";
 
-  <div class="reviewPage" >
-    <center>
-        <table class="table">
-          <tr> <!--ading -->
-            <?php 
+            $sql2="SELECT request_id, title, location, description, city, district, province, max_price,
+            min_price, max_area, min_area, distance, cover_photo, type_id, user_id, create_date FROM request";
+
+            //executing query
+            $sData=$con->query($sql1);
+            $rData=$con->query($sql2);
+    ?>
+    <div class="card-container">
+        <?php 
 
             if($sData->num_rows > 0)
+ 
+                //printing sale data as cards
+                foreach ($sData as $cardData)
+                {
+                    include('php\templates\sale-card.php');
+                }
+            else
             {
-                //printing table frow qureied data
-                echo "<th class=\"heading1\">Reported User ID</th>";
-                echo "<th class=\"heading1\">Reported Post ID</th>";
-                echo "</tr>";
-
-                while($sRows = $sData->fetch_assoc())
-                {
-                    $sID=$sRows['sale_id'];
-
-                    echo "<tr>";
-                    echo "<td  class=\"rows\">".$sRows["user_id"]."</td>";
-
-                    echo "<td  class=\"rows\">".$sRows["sale_id"];  
-                            //echo "<a href='sale.php?id=1'>view</a>";
-                            //echo "<a href='sale.php?id=.$sID>view</a>";
-                            echo "<a href='sale.php?id={$sID}'>view</a>";
-                            "</td>";
-
-                    echo "<br/>";
-                    echo "</tr>";
-                }
-                    echo "<td colspan=\"2\">";
-                while($rRows = $rData->fetch_assoc())
-                {
-                    $rID=$rRows['request_id'];
-
-                    echo "<tr>";
-                    echo "<td  class=\"rows\">".$rRows["user_id"]."</td>";
-                    echo "<td  class=\"rows\">".$rRows["request_id"];
-                            echo "<a href='request.php?id={$rID}'>view</a>";
-                            "</td>";
-
-                    echo "<br/>";
-                    echo "</tr>";
-                }
+                echo "No Data";
             }
-              else
-              {
-                echo "<br/>This table is currently empty<br/>";
-              }
-            
-          ?>
-        </table>
-    </center>  
-  
-  </div>
 
+            if($rData->num_rows > 0)
+
+                //printing request data as cards
+                foreach ($rData as $cardData)
+                {
+                    include('php\templates\request-card.php');
+                }
+            else
+            {
+                echo "No Data";
+            }
+        ?>
+
+    </div>
 </body>
 
-</html>
 
+
+
+</html>
