@@ -6,8 +6,8 @@
 <html lang="en">
 <head>
     <title>Home</title>
-    <link rel="stylesheet" href="styles/headerfooter.css"/>
     <link rel="stylesheet" href="styles\index.css">
+    <?php include_once('php/includes/common-css-js.php'); ?>
 </head>
 <body>
     <?php
@@ -39,6 +39,7 @@
 
 <div><a href="admin.php">Admin</a></div>
 <div><a href="complaint.php">complaint</a></div>
+<div><a href="saved-posts.php">review complaint page</a></div>
     
     <?php
         include("php/templates/footer.php");
