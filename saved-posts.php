@@ -6,9 +6,9 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <link rel="stylesheet" href="styles/headerfooter.css"/>
-	</head>
+    <head>
+        <?php include_once('php/includes/common-css-js.php'); ?>
+    </head>
   
 <body>
 
@@ -56,13 +56,14 @@
                 while($sRows = $sData->fetch_assoc())
                 {
                     $sID=$sRows['sale_id'];
+
                     echo "<tr>";
                     echo "<td  class=\"rows\">".$sRows["user_id"]."</td>";
 
                     echo "<td  class=\"rows\">".$sRows["sale_id"];  
                             //echo "<a href='sale.php?id=1'>view</a>";
                             //echo "<a href='sale.php?id=.$sID>view</a>";
-                            echo "<a href='sale.php?id=$sID' class=\"viewPostBtn\">View Post</a>";
+                            echo "<a href='sale.php?id={$sID}'>view</a>";
                             "</td>";
 
                     echo "<br/>";
@@ -71,9 +72,14 @@
                     echo "<td colspan=\"2\">";
                 while($rRows = $rData->fetch_assoc())
                 {
+                    $rID=$rRows['request_id'];
+
                     echo "<tr>";
                     echo "<td  class=\"rows\">".$rRows["user_id"]."</td>";
-                    echo "<td  class=\"rows\">".$rRows["request_id"]."</td>";
+                    echo "<td  class=\"rows\">".$rRows["request_id"];
+                            echo "<a href='request.php?id={$rID}'>view</a>";
+                            "</td>";
+
                     echo "<br/>";
                     echo "</tr>";
                 }
