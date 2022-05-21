@@ -62,8 +62,7 @@
                     echo "<td  class=\"rows\">".$sRows["sale_id"];  
                             //echo "<a href='sale.php?id=1'>view</a>";
                             //echo "<a href='sale.php?id=.$sID>view</a>";
-
-                            echo "<a href='sale.php?id={[$sID]}'>view</a>";
+                            echo "<a href='sale.php?id=$sID' class=\"viewPostBtn\">View Post</a>";
                             "</td>";
 
                     echo "<br/>";
