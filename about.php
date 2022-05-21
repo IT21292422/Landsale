@@ -9,7 +9,13 @@
     <?php
         include("php/templates/header.php");
     ?>
-    <div>Home => About</div>
+
+    <style>
+        .bread{
+
+        }
+    </style>
+    <div class="bread"><a style="text-decoration: none;" href="index.php">Home</a> => About</div>
 
     <div class="mainpage">
         <h2>About Us</h2>
