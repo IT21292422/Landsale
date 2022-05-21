@@ -465,45 +465,61 @@
     {
         global $con;
 
-        $sql = '';
+        $toReturn = array();
 
         if (empty($searchString))
         {
+            $sql = "select count(*) as num from sale;";
+            $results = $con->query($sql);
+            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
+
             $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale limit $startFrom, 30;";
+            $results = $con->query($sql);
+            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
         }
         else
         {
+            $sql = "select count(*) as num from sale where match(title, city, district, province) against ('$searchString');";
+            $results = $con->query($sql);
+            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
+
             $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
+            $results = $con->query($sql);
+            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
         }
 
-        
-        $results = $con->query($sql);
-
-        if ($results and $results->num_rows < 1) return False;
-
-        return $results->fetch_all(MYSQLI_ASSOC);
-        
+        return $toReturn;
     }
 
     function searchRequest($searchString='', $startFrom=0)
     {
         global $con;
 
+        $toReturn = array();
+
         if (empty($searchString))
         {
+            $sql = "select count(*) as num from request;";
+            $results = $con->query($sql);
+            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
+
             $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request limit $startFrom, 30;";
+            $results = $con->query($sql);
+            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
+
         }
         else
         {
-            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
+            $sql = "select count(*) as num from request where match(title, city, district, province) against ('$searchString');";
+            $results = $con->query($sql);
+            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
+            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
+            $results = $con->query($sql);
+            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
         }
         
-        $results = $con->query($sql);
-
-        if ($results and $results->num_rows < 1) return False;
-
-        return $results->fetch_all(MYSQLI_ASSOC);
+        return $toReturn;
         
     }
 
@@ -512,6 +528,10 @@
         global $con;
 
         $toReturn = array();
+
+        $sql = "select count(*) as num from sale;";     
+        $results = $con->query($sql);
+        $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
         $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where type_id = 1 limit $startFrom, 15;";     
         $results = $con->query($sql);
@@ -530,6 +550,10 @@
         global $con;
 
         $toReturn = array();
+
+        $sql = "select count(*) as num from request;";     
+        $results = $con->query($sql);
+        $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
         $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id = 1 limit $startFrom, 30;";
         $results = $con->query($sql);

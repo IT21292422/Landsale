@@ -62,7 +62,7 @@
                     ?>
                 </div>
             </div>
-            <div class="first">
+            <div class="second">
                 <h3>Sales</h3>
                 <div class="card-container">
                     <?php 
@@ -81,6 +81,25 @@
                 </div>
             </div>
         <?php endif; ?>
+
+        <div class="btn-container-ralign">
+            <?php
+                $uri =  $_SERVER['REQUEST_URI'];
+                if (preg_match("/page=/", $uri))
+                {
+                    $page = (int)$_GET['page'];
+                    if ($page > 1)
+                    {
+                        echo "<input type='button' value='Prev Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page - 1, $uri)."' \">";
+                    }
+                    echo "<input type='button' value='Next Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page + 1, $uri)."' \">";
+                }
+                else{
+                    echo "<input type='button' value='Next Page' onclick=\"window.location.href = '".preg_replace("/php.?/",'php?page=2&', $uri)."' \">";
+                    
+                }
+            ?>
+        </div>
     </div>
 
 
