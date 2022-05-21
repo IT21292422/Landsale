@@ -16,7 +16,7 @@
         </style>
             <div class="image">
                 <div class="contact">
-                        <span class="topic">Contact Us</span>
+                        <span class="topic"><a style="text-decoration: none" href="about.php">Contact Us</a></span>
                         <p>
                         <span>If you are having an issue we are happy</span> 
                         <br>
@@ -27,7 +27,7 @@
                 </div>
         
                 <div class="about"> 
-                        <span class="topic">About Us</span>
+                        <span class="topic"><a style="text-decoration: none" href="about.php">About Us</a></span>
                         <p>
                         <span>Our approach gives our users a better</span> 
                         <br>
