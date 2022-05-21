@@ -1,6 +1,6 @@
 <?php
 require 'php/includes/dbcon.php';
-$target_dir = "images/Request/";
+$target_dir = "images/request/";
 $target_file = $target_dir . basename($_FILES["coverphoto"]["name"]);
 if (isset($_FILES["coverphoto"])){
     if (move_uploaded_file($_FILES["coverphoto"]["tmp_name"], $target_file)){
@@ -26,14 +26,14 @@ $max_area=$_POST["max_area"];
 $min_area=$_POST["min_area"];
 $distance=$_POST["distance"];
 $type_id=1;
-$user_id=5;
+$user_id=$_GET['id'];
 $create_date="5-4-2022";
 
-$sql="INSERT INTO request(request_id,title,location,description,city,district,province,max_price,min_price,max_area,min_area,distance,cover_photo,type_id,user_id,create_date) VALUES(6,'$title','$location','$description','$city','$district','$province','$max_price','$min_price','$max_area','$min_area','$distance','$target_file','$type_id','$user_id','$create_date')";
+$sql="UPDATE request SET title='$title',location='$location',description='$description',city='$city',district='$district',province='$province',max_price='$max_price',min_price='$min_price',max_area='max_area',min_area='$min_area',distance='$distance',cover_photo='$target_file' WHERE user_id='$user_id'";
 if($con->query($sql))
 {
-    echo "Form Submitted Successfully";
-    header("Location:index.html");
+    echo "Form Updated Successfully";
+    header("Location:owned-posts.php");
 }
 else 
 {
