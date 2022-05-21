@@ -31,6 +31,7 @@
 <html>
 	<head>
     <?php include_once('php/includes/common-css-js.php'); ?>
+
 	</head>
 	
 	<body>
