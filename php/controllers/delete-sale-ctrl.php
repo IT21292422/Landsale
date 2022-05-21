@@ -6,8 +6,13 @@ require_once('../includes/dbcon.php');
 if(isset($_GET['id'])){
 
     $id=$_GET['id'];
-    $sql= "DELETE FROM sale WHERE sale_id = $id";
-    if($con->query($sql)){
+    $sql=  "DELETE FROM saved_sale WHERE sale_id = $id;".
+         "DELETE FROM sale_phone WHERE sale_id = $id;".
+            "DELETE FROM sale_media WHERE sale_id = $id;".
+            "DELETE FROM sale_complaints WHERE sale_id = $id;".
+            "DELETE FROM sale WHERE sale_id = $id;";
+            
+    if($con->multi_query($sql)){
         echo "<script> alert ('Deleted Successfully')</script>";
         
     }

@@ -74,9 +74,12 @@ $values=$result->fetch_assoc();//fetches result row as an associative array
        </fieldset>
        <br>
        <input type="submit" value="Update"  name="submit" >
+       <button>
+   <a  href="php/controllers/delete-sale-ctrl.php?id=<?= $id?>">Delete2</a>
+</button>
        
    </form>
-   <a  href="php/controllers/delete-sale-ctrl.php?id=<?= $id?>">Delete2</a>
+   
 
     <?php
         include("php/templates/footer.php");
