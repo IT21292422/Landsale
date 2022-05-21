@@ -91,7 +91,7 @@ if ($result2->num_rows > 0) {
         echo "<td>".$row["about"]."</td>";
         ?>
         <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?user_id=<?php echo $row["user_id"]; ?>">Delete</a></td>
-        <th><a href='sale.php?id=$row["user_id"]'>View</a></th>
+        <th><a href='sale.php?$id=$row["user_id"]'>View</a></th>
         <?php
         echo "</tr>";
     }

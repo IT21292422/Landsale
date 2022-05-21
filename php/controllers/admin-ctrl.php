@@ -17,7 +17,11 @@ $sql2="UPDATE users SET first_name='$first_name',last_name='$last_name',email='$
 $result2=$con->query($sql2);
 
 if($result2){
-    echo "added!!!!!!!!";
+
+  if (isset($_SERVER["HTTP_REFERER"])) {
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
+}
+
 }else {
     echo "failed!!!!!!!!!".$con->error;
 }
