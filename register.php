@@ -2,7 +2,7 @@
     //connecting to the DB
     require 'php/includes/dbcon.php';
 
-    if(isset($_POST['first_name']))
+    if(isset($_POST['fname']))
     {
                 $fName = $_POST['fname'];
                 $lName = $_POST["lname"];
@@ -22,7 +22,7 @@
                 {
                     echo "<script> alert ('Error: query was not Successful')</script>";
                 }
-                include("php/templates/footer.php");
+
     }
                 
 ?>
@@ -53,8 +53,8 @@
                 <label for="email">Email<br></label>
 				<input type="text" id="email" name="email" placeholder="abc@xyz.com" pattern="[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,3}" required><br><br>
 				
-                <label for="about">Add a small description about yourself<br></label>
-				<textarea id="aabout" rows="4" cols="25" name="about"></textarea><br><br>
+                <label for="about">About<br></label>
+				<textarea id="about" rows="4" cols="25" name="about" placeholder="Add a small description about yourself"></textarea><br><br>
 
                 <label for="photo">Upload a profile picture</label>
                 <input type="file" name="pPhoto" id="photo" ><br><br>
@@ -76,6 +76,6 @@
             </form>
             </div>
 		<hr>
-		<!-- adding footer (g)-->
+        <?php include("php/templates/footer.php"); ?>
 	</body>
 </html>
