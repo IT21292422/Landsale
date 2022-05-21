@@ -23,25 +23,18 @@ echo $userId;
 
 
         $resul=$con->multi_query($sql);
-
-if ($resul) {
+        
+if (!empty($referer)) {
+		
     echo '<script type="text/javascript">alert("Recode was deleted!!!");</script>';
-    ?>
-        <style>
-            .box1 a{
-                padding: 20px;
-                background-color: aquamarine;
-                position: absolute;
-                left: auto;
-            }
-        </style>
-
-        <div class="box1"><a href="admin.php">Click here to go back to the Admin page</a></div>
-    <?php
-} else {
-    // goes to the error page
-    echo "Error deleting record: " . mysqli_error($con);
-}
+		echo '<p><a href="'. $referer .'" title="Return to the previous page">« Go back</a></p>';
+		
+	} else {
+		
+        echo '<script type="text/javascript">alert("Recode was deleted!!!");</script>';
+		echo '<p><a href="javascript:history.go(-1)" title="Return to the previous page">« Go back</a></p>';
+		
+	}
 
 $con->close();
 
