@@ -4,13 +4,6 @@ body {
 
     /* from here header area */
 
-    .logo {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 30%;
-    }
-
     .navbar {
         border-radius: 5px;
         overflow: hidden;

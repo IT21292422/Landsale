@@ -6,8 +6,8 @@
 <html lang="en">
 <head>
     <title>Home</title>
-    <link rel="stylesheet" href="styles/headerfooter.css"/>
     <link rel="stylesheet" href="styles\index.css">
+    <?php include_once('php/includes/common-css-js.php'); ?>
 </head>
 <body>
     <?php

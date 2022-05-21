@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <title>Requests</title>
-    <link rel="stylesheet" href="styles/headerfooter.css"/>
+    <?php include_once('php/includes/common-css-js.php'); ?>
     <link rel="stylesheet" href="styles\index.css">
 </head>
 <body>

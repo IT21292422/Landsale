@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>User Details</title>
-    <link rel="stylesheet" href="styles/headerfooter.css"/>
+    <?php include_once('php/includes/common-css-js.php'); ?>
     <link rel="stylesheet" href="styles/sale-request.css">
     
 </head>
