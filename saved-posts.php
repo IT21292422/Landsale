@@ -7,7 +7,7 @@
 <html>
 
   <head>
-    <link rel="stylesheet" href="styles/headerfooter.css"/>
+  <?php include_once('php/includes/common-css-js.php'); ?>
 	</head>
   
 <body>
