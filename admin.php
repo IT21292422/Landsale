@@ -90,7 +90,7 @@ if ($result2->num_rows > 0) {
         echo "<td>".$row["account_type"]."</td>";
         echo "<td>".$row["about"]."</td>";
         ?>
-        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?user_id=<?php echo "<h1>".$row["user_id"]."</h1>"; ?>">Delete</a></td>
+        <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?user_id=<?php echo $row["user_id"]; ?>">Delete</a></td>
         <?php
         echo "</tr>";
     }
