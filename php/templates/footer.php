@@ -38,15 +38,52 @@
                         <span>third party person or company.</span> 
                         </p>
                 </div>
-        
-                <div class="socialmedia">
-                            <p>
-                            Follow Us
-                            </p>
-                            <img class="brands"src="images/headerfooter/barnds/Instagram.png" alt="instagram">
-                            <img class="brands"src="images/headerfooter/barnds/linkedin.png" alt="linkedin">
-                            <img class="brands"src="images/headerfooter/barnds/twitter.png" alt="twitter">
-                            <img class="brands"src="images/headerfooter/barnds/facebook.png" alt="facebook">
+        <style>
+                .fa-facebook {
+                background: #3B5998;
+                color: white;
+                }
+
+                .fa-twitter {
+                background: #55ACEE;
+                color: white;
+                }
+                .fa-linkedin {
+                background: #007bb5;
+                color: white;
+                }
+                .fa-instagram {
+                background: red;
+                color: white;
+                }
+                .fa {
+                padding: 5px;
+                font-size: 30px;
+                width: 30px;
+                text-align: center;
+                text-decoration: none;
+                margin: 5px 2px;
+                border-radius: 50%;
+                }
+                 .socialmedia{
+                        width: 13%;
+                        left: 85%;
+                        top: 0%;
+                        position: relative;
+                        padding-bottom:150px ;
+                }
+                .fallows{
+                        margin: auto;
+                        color: wheat;
+                }
+
+        </style>
+                 <div class="socialmedia">
+                        <a href="www.facebook.com" class="fa fa-facebook"></a>
+                       <a href="www.instergram.com" class="fa fa-instagram"></a>
+                        <a href="www.twitter.com" class="fa fa-twitter"></a>
+                        <a href="www.linkedin.com" class="fa fa-linkedin"></a>
+                        <h3 class="fallows">Follow Us</h3>
                 </div>
                         </div>
         </footer>
