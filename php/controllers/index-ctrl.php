@@ -11,7 +11,7 @@
     }
     else
     {
-        if (isset($_GET['page'])) $data = getSales((((int)$_GET['page']) - 1) * 30);
+        if (isset($_GET['page'])) $data = getSales((((int)$_GET['page']) - 1) * 15);
         else $data = getSales();
 
         $topPosts = $data['top'];

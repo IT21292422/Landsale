@@ -557,11 +557,11 @@
         $results = $con->query($sql);
         $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
-        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id = 1 limit $startFrom, 30;";
+        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id = 1 limit $startFrom, 15;";
         $results = $con->query($sql);
         $toReturn['top'] = $results->fetch_all(MYSQLI_ASSOC);
 
-        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id <> 1 limit $startFrom, 30;";
+        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id <> 1 limit $startFrom, 15;";
         $results = $con->query($sql);
         $toReturn['posts'] = $results->fetch_all(MYSQLI_ASSOC);
 

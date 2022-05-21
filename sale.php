@@ -133,7 +133,7 @@
 
         <div class="user">
             <h3>Seller</h3>
-            <a href="user?id=<?php echo $values['seller']['user_id'] ?>">
+            <a href="userview.php?id=<?php echo $values['seller']['user_id'] ?>">
                 <div class="profile">
                     <img class="avatar" src="<?php echo $values['seller']['profile_photo'] ?>">
                     <p> <?php echo $values['seller']['first_name'] . ' ' . $values['seller']['last_name'] ?></p>
