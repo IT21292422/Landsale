@@ -1,4 +1,7 @@
-<?php require 'php/includes/dbcon.php';?>
+<?php 
+    //connecting to the DB
+    require 'php/includes/dbcon.php';
+?>
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +17,7 @@
 		<hr>
 
             <center><h1 id="cheader">Registration Form</h1></center>
-
+            <div>
             <form onsubmit="return checkPassword()" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
                 <label for="fname">First Name<br></label>
@@ -33,7 +36,9 @@
                 <input type="file" name="pPhoto" id="photo" ><br><br>
 
                 <label for="pass">Password</label><br>
-                <input type="password" name="pass" id="pass" pattern="(?=.+\d)(?=.+[a-z])(?=.+[A-Z]).{5,10}" required><br><br>
+                <input type="password" name="pass" id="pass" pattern="(?=.+\d)(?=.+[a-z])(?=.+[A-Z]).{5,10}" required
+                title="Password should be leaset 8 characters long and include at least
+                One lowercase letter, One Uppercase letter and One number" ><br><br>
 
                 <label for="repass">Re-Enter Password</label><br>
                 <input type="password" name="pass" id="repass"><br><br>
@@ -45,38 +50,28 @@
                     <input type="submit" value="submit" id="submitbtn">
                 </center>
             </form>
-        
+            </div>
 		<hr>
 		<!-- adding footer (g)-->
         <?php
-            include("php/templates/footer.php");
-
-            include("link.php");
-
-            //connecting to the DB
-            require 'php/includes/dbcon.php';
-            
-                $uID = $_POST[""];
-                $fName = $_POST["fname"];
+                $fName = $_POST['fname'];
                 $lName = $_POST["lname"];
                 $email = $_POST["email"];
-                $pNumber = $_POST["phone"];
                 $pass = $_POST["pass"];
                 $photo = $_POST["pPhoto"];
             
-            
-                $query="INSERT INTO users(user_id, pass, first_name, last_name, email, account_status, account_type, 
-                profile_photo, about) VALUES (1, '$pass', '$fName', '$lName', '$email', 'Valid', 'User', '$photo', '$about' )";
+                $query="INSERT INTO users(user_id, password, first_name, last_name, email, account_status, account_type, 
+                profile_photo, about) VALUES ('', '$pass', '$fName', '$lName', '$email', 'Valid', 'User', '$photo', '$about' )";
                 
-                if($con->query($sql))
+                if($con->query($query))
                 {
                     echo "<script> alert ('Data added Successfully')</script>";
                 }
                 else
                 {
                     echo "<script> alert ('Error: query was not Successful')</script>";
-                    echo sql;
                 }
+                include("php/templates/footer.php");
         ?>
 	</body>
 </html>
