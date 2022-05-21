@@ -18,7 +18,7 @@
         </style>
     <div class="hcenter">
         
-        <form method="POST" action="admin-ctrl.php?attempt">
+        <form method="POST" action="php\controllers\admin-ctrl.php">
             <label class="admin">User ID :</label>
             <input class="admins" type="text" name="user_id" ><br><br>
             <label class="admin">Firest Name :</label>
@@ -41,7 +41,7 @@
             </select><br><br>
             <label class="admin">About:</label>
             <input class="admins" type="text" name="about"><br><br>
-            <input type="button" value="Create">
+            <input type="submit" name="Create" value="Create">
             <input type="button" value="Update">
 
         </form>
