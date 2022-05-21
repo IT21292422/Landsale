@@ -62,7 +62,7 @@ function unsave(url)
 let pos = 0;
 function changeImage(num)
 {
-    let images = document.getElementsByClassName('image');
+    let images =  document.querySelectorAll('.slide-show .image');
 
     pos += num;
 
