@@ -1,6 +1,30 @@
 <?php 
     //connecting to the DB
     require 'php/includes/dbcon.php';
+
+    if(isset($_POST['first_name']))
+    {
+                $fName = $_POST['fname'];
+                $lName = $_POST["lname"];
+                $email = $_POST["email"];
+                $pass = $_POST["pass"];
+                $photo = $_POST["pPhoto"];
+            
+                $query="INSERT INTO users(user_id, password, first_name, last_name, email, account_status, account_type, 
+                profile_photo, about) VALUES ('', '$pass', '$fName', '$lName', '$email', 'Valid', 'User', '$photo', '$about' )";
+                
+                if($con->query($query))
+                {
+                    
+                    echo "<script> alert ('Data added Successfully')</script>";
+                }
+                else
+                {
+                    echo "<script> alert ('Error: query was not Successful')</script>";
+                }
+                include("php/templates/footer.php");
+    }
+                
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +60,7 @@
                 <input type="file" name="pPhoto" id="photo" ><br><br>
 
                 <label for="pass">Password</label><br>
-                <input type="password" name="pass" id="pass" pattern="(?=.+\d)(?=.+[a-z])(?=.+[A-Z]).{5,10}" required
+                <input type="password" name="pass" id="pass" pattern="(?=.+\d)(?=.+[a-z])(?=.+[A-Z]).{8,20}" required
                 title="Password should be leaset 8 characters long and include at least
                 One lowercase letter, One Uppercase letter and One number" ><br><br>
 
@@ -53,25 +77,5 @@
             </div>
 		<hr>
 		<!-- adding footer (g)-->
-        <?php
-                $fName = $_POST['fname'];
-                $lName = $_POST["lname"];
-                $email = $_POST["email"];
-                $pass = $_POST["pass"];
-                $photo = $_POST["pPhoto"];
-            
-                $query="INSERT INTO users(user_id, password, first_name, last_name, email, account_status, account_type, 
-                profile_photo, about) VALUES ('', '$pass', '$fName', '$lName', '$email', 'Valid', 'User', '$photo', '$about' )";
-                
-                if($con->query($query))
-                {
-                    echo "<script> alert ('Data added Successfully')</script>";
-                }
-                else
-                {
-                    echo "<script> alert ('Error: query was not Successful')</script>";
-                }
-                include("php/templates/footer.php");
-        ?>
 	</body>
 </html>
