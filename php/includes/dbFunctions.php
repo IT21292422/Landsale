@@ -469,11 +469,11 @@
 
         if (empty($searchString))
         {
-            $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale limit $startFrom, 10;";
+            $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale limit $startFrom, 30;";
         }
         else
         {
-            $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where match(title, city, district, province) against ('$searchString') limit $startFrom, 10;";
+            $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
         }
 
         
@@ -491,11 +491,11 @@
 
         if (empty($searchString))
         {
-            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request limit $startFrom, 10;";
+            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request limit $startFrom, 30;";
         }
         else
         {
-            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where match(title, city, district, province) against ('$searchString') limit $startFrom, 10;";
+            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
 
         }
         
@@ -506,6 +506,43 @@
         return $results->fetch_all(MYSQLI_ASSOC);
         
     }
+
+    function getSales($startFrom=0)
+    {
+        global $con;
+
+        $toReturn = array();
+
+        $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where type_id = 1 limit $startFrom, 15;";     
+        $results = $con->query($sql);
+        $toReturn['top'] = $results->fetch_all(MYSQLI_ASSOC);
+
+        $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where type_id <> 1 limit $startFrom, 15;";     
+        $results = $con->query($sql);
+        $toReturn['posts'] = $results->fetch_all(MYSQLI_ASSOC);
+
+        return $toReturn;
+        
+    }
+
+    function getRequests($startFrom=0)
+    {
+        global $con;
+
+        $toReturn = array();
+
+        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id = 1 limit $startFrom, 30;";
+        $results = $con->query($sql);
+        $toReturn['top'] = $results->fetch_all(MYSQLI_ASSOC);
+
+        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id <> 1 limit $startFrom, 30;";
+        $results = $con->query($sql);
+        $toReturn['posts'] = $results->fetch_all(MYSQLI_ASSOC);
+
+        return $toReturn;
+        
+    }
+    
 
     function deleteWarning($userId)
     {

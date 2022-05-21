@@ -6,7 +6,9 @@
     }
     else
     {
-        $results = searchSale();
+        $data = getSales();
+        $topPosts = $data['top'];
+        $posts = $data['posts'];
     }
 
 ?>
