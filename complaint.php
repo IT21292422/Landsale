@@ -25,7 +25,7 @@ $result2=$con->query($sql1);
 //Shows the Request table details
 if ($result2->num_rows > 0) {
 
-    echo("<h1 class='texts'>Request Complaints</h1>");
+    echo("<h1 style='text-align:center;'>Request Complaints</h1>");
     
     echo("<table class='table1'>");
 
@@ -78,7 +78,7 @@ $result2=$con->query($sql1);
 //Shows the Sale table details
 if ($result2->num_rows > 0) {
 
-    echo("<h1 class='texts'>Sale Complaints</h1>");
+    echo("<h1 style='text-align:center;'>Sale Complaints</h1>");
     
     echo("<table class='table1'>");
 

@@ -59,14 +59,6 @@ $result2=$con->query($sql1);
 if ($result2->num_rows > 0) {
 
     echo("<h1 style='text-align:center;'>All Users</h1>");
-
-    ?>
-    <style>
-
-    </style>
-
-    <div >
-    <?php
     
     echo("<table border='5' class='table1'>");
 
@@ -91,14 +83,22 @@ if ($result2->num_rows > 0) {
         echo "<td>".$row["about"]."</td>";
         ?>
         <td class="delete"><a style="text-decoration: none;" href="php\controllers\admin-del-ctrl.php?user_id=<?php echo $row["user_id"]; ?>">Delete</a></td>
-        <th><a href='sale.php?$id=$row["user_id"]'>View</a></th>
+        <style>
+            .viewws{
+            background-color:rgba(14, 140, 243, 0.737) ;
+        }
+        .viewws:hover{
+            background-color:rgba(41, 240, 140, 0.7) ;
+        }
+        </style>
+        <td class="viewws"><a style="text-decoration: none;" href='sale.php?$id=$row["user_id"]'>View</a></td>
         <?php
         echo "</tr>";
     }
     echo ("</table>");
 
     }else{
-        echo ('<h1 class="warnings">The User table is empty</h1>');
+        echo ('<h1 class="warnings">The Users table is empty</h1>');
     }
 
 $con->close();
