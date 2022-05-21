@@ -89,7 +89,8 @@
 <div><a href="admin.php">Admin</a></div>
 <div><a href="complaint.php">complaint</a></div>
 <div><a href="saved-posts.php">saved posts page</a></div>
-    
+<div><a href="review-complaint.php">review complaint</a></div>
+
     <?php
         include("php/templates/footer.php");
     ?>
