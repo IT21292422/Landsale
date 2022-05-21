@@ -55,16 +55,16 @@ $sql1="SELECT complaint_id,description,reviewed,complaint_type,request_id,user_i
 
 $result2=$con->query($sql1);
 
-//Shows the Sale table details
+//Shows the Request table details
 if ($result2->num_rows > 0) {
 
-    echo("<h1 class='texts'>Sale Complaints</h1>");
+    echo("<h1 class='texts'>Request Complaints</h1>");
     
     echo("<table class='table1'>");
 
     echo("<th>Complaint ID</th>");
     echo("<th>Complaint Type</th>");
-    echo("<th>Sale ID</th>");
+    echo("<th>Request ID</th>");
    // echo("<th>Created date</th>");
     echo("<th>User ID</th>");
     echo("<th>Description</th>");
@@ -86,7 +86,7 @@ if ($result2->num_rows > 0) {
     echo ("</table>");
 
     }else{
-        echo ('<h1 class="warnings">The Sale complaint table is empty</h1>');
+        echo ('<h1 class="warnings">The Request complaint table is empty</h1>');
     }
 
 echo "<hr>";
@@ -99,10 +99,10 @@ $sql1="SELECT complaint_id,description,reviewed,complaint_type,sale_id,user_id,c
 
 $result2=$con->query($sql1);
 
-//Shows the Request table details
+//Shows the Sale table details
 if ($result2->num_rows > 0) {
 
-    echo("<h1 class='texts'>Request Complaints</h1>");
+    echo("<h1 class='texts'>Sale Complaints</h1>");
     
     echo("<table class='table1'>");
 
@@ -130,7 +130,7 @@ if ($result2->num_rows > 0) {
     echo ("</table>");
 
     }else{
-        echo ('<h1 class="warnings">The Request complaint table is empty</h1>');
+        echo ('<h1 class="warnings">The Sale complaint table is empty</h1>');
     }
 
     $con->close();
