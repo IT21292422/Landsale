@@ -16,7 +16,8 @@
                                 <a href="register.php" class="link">Register</a>
                         </div>
                 <div class="profile">
-                <a href="" class=""><img src="images/profile/default.png" class="profile-img" alt=""></a>
+                        <a href="account.php" class=""><img src="images/profile/default.png" class="profile-img" alt=""></a>
+                </div>
         </div>
     </div>  
 </header>       
