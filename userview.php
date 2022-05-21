@@ -57,27 +57,24 @@ if($stmt = $con->prepare($path)){
 
 
 <?php
-include("php/controllers/sale-ctrl.php");
+include 'php/includes/dbcon.php'; 
 
-$path1="SELECT*FROM users_phone where user_id=?";
-if($stmt = $con->prepare($path1)){
-    $stmt->bind_param('i',$id);
-     $stmt->execute();
-     $result1 = $stmt->get_result();
-     $value1=$result1->fetch_object();
-  
-  }else{
-      echo $connection->error;
-      }
-      ?>
-<p> Contact Number :
-    <?php
-        
-     echo $value1->phone;
-    
-      ?>
+$path1=$con->query
+("SELECT phone FROM users_phone where user_id=$id");
+?>
 
- </p>
+<h3>
+  <p> Contact Numbers:
+<?php
+while($row = $path1->fetch_object())  
+       {
+        echo "<br>";
+        echo $row->phone;
+       }
+      ?>
+      </h3>
+      </p>
+
 
     <?php
         include("php/templates/footer.php");
