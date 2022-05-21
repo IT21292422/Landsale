@@ -1,8 +1,10 @@
+<!--NRH-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Submit sale</title>
     <?php include_once('php/includes/common-css-js.php'); ?>
+    <link rel="stylesheet" href="styles/sale-request.css">
     
 </head>
 <body>

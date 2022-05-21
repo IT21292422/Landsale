@@ -1,3 +1,4 @@
+<!--NRH-->
 <?php
 require 'php/includes/dbcon.php';//connecting to the database
 
