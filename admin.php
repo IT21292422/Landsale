@@ -41,8 +41,7 @@
             </select><br><br>
             <label class="admin">About:</label>
             <input class="admins" type="text" name="about"><br><br>
-            <input type="submit" name="Create" value="Create">
-            <input type="button" value="Update">
+            <input type="submit" name="Update" value="Update">
 
         </form>
     </div>
