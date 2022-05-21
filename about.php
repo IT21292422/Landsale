@@ -9,6 +9,7 @@
     <?php
         include("php/templates/header.php");
     ?>
+    <div>Home => About</div>
 
     <div class="mainpage">
         <h2>About Us</h2>
