@@ -13,10 +13,19 @@
                 width: 100%;
                 color: rgb(202, 253, 172);
         }
+        .topic{
+                color: antiquewhite;
+                text-decoration: none;
+                
+        }
+        .topic:hover{
+                color:lightskyblue;
+                text-decoration: none;
+        }
         </style>
             <div class="image">
                 <div class="contact">
-                        <span class="topic"><a style="text-decoration: none" href="about.php">Contact Us</a></span>
+                        <span ><a class="topic" href="about.php">Contact Us</a></span>
                         <p>
                         <span>If you are having an issue we are happy</span> 
                         <br>
@@ -27,7 +36,7 @@
                 </div>
         
                 <div class="about"> 
-                        <span class="topic"><a style="text-decoration: none" href="about.php">About Us</a></span>
+                        <span ><a class="topic" href="about.php">About Us</a></span>
                         <p>
                         <span>Our approach gives our users a better</span> 
                         <br>
@@ -79,10 +88,10 @@
 
         </style>
                  <div class="socialmedia">
-                        <h3 class="fallows">Follow Us</h3>
                         <a href="https://www.facebook.com" class="fa fa-facebook"></a>
                        <a href="https://www.instagram.com" class="fa fa-instagram"></a>
                         <a href="https://www.twitter.com" class="fa fa-twitter"></a>
+                        <h3 class="fallows">Follow Us</h3>
                 </div>
                         </div>
         </footer>
