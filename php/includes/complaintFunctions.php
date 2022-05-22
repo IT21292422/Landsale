@@ -14,8 +14,8 @@ function modAction($action, $uID)
 
         case "suspend":
             suspendUser($uID);
-            alert ("Successfully suspended user");
             echo "<script>";
+            echo "alert (\"Successfully suspended user\")";
             echo "window.location = '../../complaint.php'";
             echo "</script>";         
             
@@ -23,22 +23,22 @@ function modAction($action, $uID)
 
         case "ban":
             banUser($uID);
-            alert ("Successfully suspended user");
             echo "<script>";
+            echo "alert (\"Successfully banned user\")";
             echo "window.location = '../../complaint.php'";
             echo "</script>";
             break;
 
         case "noAction":
-            alert ("No action taken");
             echo "<script>";
+            echo "alert (\"No action taken\")";
             echo "window.location = '../../complaint.php'";
             echo "</script>";
             break;
 
         default: 
-        alert ("No action selected");
         echo "<script>";
+        echo "alert (\"No action taken\")";
         echo "window.location = '../../complaint.php'";
         echo "</script>";
     }
