@@ -42,7 +42,7 @@ if($con->query($sql))
         header("Location:payment.html");
     }
     else{
-        header("Location:index.html");
+        header("Location:index.php");
     }
 }
 else 

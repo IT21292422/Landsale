@@ -77,7 +77,7 @@ if($result=$con->query($sql)){
              echo "<br>";
              echo "<br>";
              echo "<button class=\"ownBtn\">"."<a href=\"sale.php?id=$id\">"."View"."</a>"."</button>";  
-             echo "<button class=\"ownBtn\">"."<a href=\"edit-sale-form.php?id=$id\">"."Edit"."</a>"."</button>";    
+             echo "<button class=\"ownBtn\">"."<a href=\"edit-sale.php?id=$id\">"."Edit"."</a>"."</button>";    
              echo "<button class=\"ownBtn\">"."<a href=\"php/includes/delete_sale.php?id=$id\">"."Delete"."</a>"."</button>";
              echo "<span id=\"ownedPrice\">". $row['price'] . "</span>";
              echo "</div>";
