@@ -6,17 +6,17 @@ function modAction($action, $uID)
     {
         case "warn":
             warnUser($uID);
-            alert ("Successfully warned user");
             echo "<script>";
-            echo "window.location = '../../complaint.php'";
+            echo "alert (\"Successfully warned user\");";
+            echo "window.location.href = 'complaint.php';";
             echo "</script>";     
             break;
 
         case "suspend":
             suspendUser($uID);
             echo "<script>";
-            echo "alert (\"Successfully suspended user\")";
-            echo "window.location = '../../complaint.php'";
+            echo "alert (\"Successfully suspended user\");";
+            echo "window.location.href = 'complaint.php';";
             echo "</script>";         
             
             break;
@@ -24,22 +24,22 @@ function modAction($action, $uID)
         case "ban":
             banUser($uID);
             echo "<script>";
-            echo "alert (\"Successfully banned user\")";
-            echo "window.location = '../../complaint.php'";
+            echo "alert (\"Successfully banned user\");";
+            echo "window.location.href = 'complaint.php';";
             echo "</script>";
             break;
 
         case "noAction":
             echo "<script>";
-            echo "alert (\"No action taken\")";
-            echo "window.location = '../../complaint.php'";
+            echo "alert (\"No action taken\");";
+            echo "window.location.href = 'complaint.php';";
             echo "</script>";
             break;
 
         default: 
         echo "<script>";
-        echo "alert (\"No action taken\")";
-        echo "window.location = '../../complaint.php'";
+        echo "alert (\"No action taken\");";
+        echo "window.location.href = 'complaint.php';";
         echo "</script>";
     }
 }
