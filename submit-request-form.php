@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+    session_start(); 
+    require_once('php\includes\signinFunctions.php');
+    accessLevel('user');
+?>
 <html>
     <head>
         <title>Submit Request</title>
