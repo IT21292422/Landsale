@@ -122,9 +122,9 @@
       </form>
       </div>
 
-      
-
-  
+      <?php
+        include("php/templates/footer.php");
+      ?>
   </center> 
 </body>
 
