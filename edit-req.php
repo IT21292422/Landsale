@@ -29,7 +29,7 @@ $distance=$_POST["distance"];
 $type_id=$_POST["postType"];
 $request_id=$_POST["id"];
 
-$sql="UPDATE request SET title='$title',location='$location',description='$description',city='$city',district='$district',province='$province',max_price='$max_price',min_price='$min_price',max_area='max_area',min_area='$min_area',distance='$distance',cover_photo='$target_file' WHERE request_id='$request_id'";
+$sql="UPDATE request SET title='$title',location='$location',description='$description',city='$city',district='$district',province='$province',max_price='$max_price',min_price='$min_price',max_area='$max_area',min_area='$min_area',distance='$distance',type_id='$type_id',cover_photo='$target_file' WHERE request_id='$request_id'";
 if($con->query($sql))
 {
     echo "<script>alert('Form Submitted Successfully');</script>";
