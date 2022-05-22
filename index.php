@@ -1,4 +1,8 @@
 <?php
+    //Name: H.A.R.S. Hapuarachchi
+    //IT Number: it21296246
+    //Center: Malabe
+    //Group: MLB_05.02_09
     session_start();
     require_once('php\controllers\index-ctrl.php');
 ?>
@@ -7,8 +11,8 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" href="styles\index.css">
-    <link rel="stylesheet" href="styles\page-container.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles\page-container.css">    
+
     <?php include_once('php/includes/common-css-js.php'); ?>
 </head>
 <body>
@@ -62,7 +66,7 @@
                     ?>
                 </div>
             </div>
-            <div class="first">
+            <div class="second">
                 <h3>Sales</h3>
                 <div class="card-container">
                     <?php 
@@ -81,6 +85,25 @@
                 </div>
             </div>
         <?php endif; ?>
+
+        <div class="btn-container-ralign">
+            <?php
+                $uri =  $_SERVER['REQUEST_URI'];
+                if (preg_match("/page=/", $uri))
+                {
+                    $page = (int)$_GET['page'];
+                    if ($page > 1)
+                    {
+                        echo "<input type='button' value='Prev Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page - 1, $uri)."' \">";
+                    }
+                    echo "<input type='button' value='Next Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page + 1, $uri)."' \">";
+                }
+                else{
+                    echo "<input type='button' value='Next Page' onclick=\"window.location.href = '".preg_replace("/php.?/",'php?page=2&', $uri)."' \">";
+                    
+                }
+            ?>
+        </div>
     </div>
 
 
@@ -89,7 +112,8 @@
 <div><a href="admin.php">Admin</a></div>
 <div><a href="complaint.php">complaint</a></div>
 <div><a href="saved-posts.php">saved posts page</a></div>
-    
+<div><a href="review-complaint.php">review complaint</a></div>
+
     <?php
         include("php/templates/footer.php");
     ?>

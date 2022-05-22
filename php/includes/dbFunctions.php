@@ -1,4 +1,8 @@
 <?php
+    //Name: H.A.R.S. Hapuarachchi
+    //IT Number: it21296246
+    //Center: Malabe
+    //Group: MLB_05.02_09
     require_once("php/includes/dbcon.php");
 
     //generate an sql statement for the given values and table
@@ -116,11 +120,13 @@
         return $results->fetch_assoc();
     }
     
-    function doesEmailExist($email)
+    function doesEmailExist($email, $userId=NULL)
     {
         global $con;
         $email = strtolower($email);
-        $sql = "select user_id from users where email = '$email'";
+        if ($userId === NULL)   $sql = "select user_id from users where email = '$email'";
+        else    $sql = "select user_id from users where email = '$email' and user_id <> $userId";
+        
         $results = $con->query($sql);
 
         if ($results->num_rows < 1) return False;
@@ -414,11 +420,11 @@
     {
         global $con;
 
-        if (count($values['phone']) > 0)
+        $sql = "delete from users_phone where user_id = $userId";
+        $con->query($sql);
+
+        if ($values['phone'] and count($values['phone']) > 0)
         {
-            $sql = "delete from users_phone where user_id = $userId";
-            $con->query($sql);
-            
             foreach($values['phone'] as $phone)
             {
                 $sql = "insert into users_phone(user_id, phone) values($userId, '$phone')";
@@ -465,45 +471,61 @@
     {
         global $con;
 
-        $sql = '';
+        $toReturn = array();
 
         if (empty($searchString))
         {
+            $sql = "select count(*) as num from sale;";
+            $results = $con->query($sql);
+            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
+
             $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale limit $startFrom, 30;";
+            $results = $con->query($sql);
+            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
         }
         else
         {
+            $sql = "select count(*) as num from sale where match(title, city, district, province) against ('$searchString');";
+            $results = $con->query($sql);
+            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
+
             $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
+            $results = $con->query($sql);
+            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
         }
 
-        
-        $results = $con->query($sql);
-
-        if ($results and $results->num_rows < 1) return False;
-
-        return $results->fetch_all(MYSQLI_ASSOC);
-        
+        return $toReturn;
     }
 
     function searchRequest($searchString='', $startFrom=0)
     {
         global $con;
 
+        $toReturn = array();
+
         if (empty($searchString))
         {
+            $sql = "select count(*) as num from request;";
+            $results = $con->query($sql);
+            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
+
             $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request limit $startFrom, 30;";
+            $results = $con->query($sql);
+            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
+
         }
         else
         {
-            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
+            $sql = "select count(*) as num from request where match(title, city, district, province) against ('$searchString');";
+            $results = $con->query($sql);
+            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
+            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
+            $results = $con->query($sql);
+            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
         }
         
-        $results = $con->query($sql);
-
-        if ($results and $results->num_rows < 1) return False;
-
-        return $results->fetch_all(MYSQLI_ASSOC);
+        return $toReturn;
         
     }
 
@@ -512,6 +534,10 @@
         global $con;
 
         $toReturn = array();
+
+        $sql = "select count(*) as num from sale;";     
+        $results = $con->query($sql);
+        $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
         $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where type_id = 1 limit $startFrom, 15;";     
         $results = $con->query($sql);
@@ -531,11 +557,15 @@
 
         $toReturn = array();
 
-        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id = 1 limit $startFrom, 30;";
+        $sql = "select count(*) as num from request;";     
+        $results = $con->query($sql);
+        $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
+
+        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id = 1 limit $startFrom, 15;";
         $results = $con->query($sql);
         $toReturn['top'] = $results->fetch_all(MYSQLI_ASSOC);
 
-        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id <> 1 limit $startFrom, 30;";
+        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id <> 1 limit $startFrom, 15;";
         $results = $con->query($sql);
         $toReturn['posts'] = $results->fetch_all(MYSQLI_ASSOC);
 

@@ -1,8 +1,19 @@
+/* 
+    //Name: H.A.R.S. Hapuarachchi
+    //IT Number: it21296246
+    //Center: Malabe
+    //Group: MLB_05.02_09    
+*/
+body {
+    background-image: linear-gradient(to bottom right, #e8ecf1, #e8ecf1);
+}
+
 .nav {
     display: grid;
     grid-template-columns: max-content auto max-content max-content;
     align-items: center;
-    background-color:#e8ecf1;
+    background-color:#d2dff0;
+    background-image: linear-gradient(to bottom, #c2d5ee, #e8ecf1);
     gap: 10px;
     padding-right: 15px;
 }
@@ -57,5 +68,13 @@
 
 .nav .profile-img{
     width: 50px;
-    border-radius: 50px;
+    height: 50px;
+    border-radius: 100px;
+    transition: all 0.2s;
+
+}
+
+.nav .profile-img:hover{
+    transform: scale(1.03);
+    box-shadow: 5px 5px 10px #b2b2b2;
 }

@@ -1,5 +1,9 @@
 
 <?php
+    //Name: H.A.R.S. Hapuarachchi
+    //IT Number: it21296246
+    //Center: Malabe
+    //Group: MLB_05.02_09
     require_once('php/includes/dbFunctions.php');
 
     //get user details from db
@@ -11,7 +15,7 @@
         "last_name"=>True,
         "email"=>True,
         "about"=>False,
-        "phone"=>True
+        "phone"=>False
     );
 
     $errors = array();  //array to store errors relevent to each field
@@ -40,8 +44,10 @@
                 //get values from user
                 foreach ($required as $fieldName=>$_) 
                 {
-                    $values[$fieldName] = $_POST[$fieldName];
+                    $values[$fieldName] = isset($_POST[$fieldName]) ? $_POST[$fieldName] : NULL;
                 }
+
+                if ($values['phone'] == NULL) $values['phone'] = [];
                 
                 //alter fields
                 $values['email'] = strtolower($values['email']);
@@ -52,7 +58,7 @@
                     $isValid = True;
     
                     //validate phone
-                    if(count($values['phone']) > 5)
+                    if($values['phone'] and count($values['phone']) > 5)
                     {
                         $errors['phone'] = 'maximum number of contacts is 5';
                         
@@ -60,7 +66,7 @@
                     }
                     
                     //validate phone numbers
-                    if ($isValid)
+                    if ($isValid and $values['phone'] and count($values['phone']) > 0)
                     {
                         //check for duplicates
                         if (count(array_unique($values['phone'])) < count($values['phone']))
@@ -87,7 +93,12 @@
     
                     if(!filter_var($values['email'], FILTER_VALIDATE_EMAIL))
                     {
-                        $errors['email'] = 'invalid email address';
+                        $errors['email'] = 'Invalid email address';
+                        $isValid = False;
+                    }
+                    elseif(doesEmailExist($values['email'], $values['user_id']))
+                    {
+                        $errors['email'] = 'Provided email is already register';
                         $isValid = False;
                     }
     

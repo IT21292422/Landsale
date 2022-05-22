@@ -1,4 +1,8 @@
 <?php
+    //Name: H.A.R.S. Hapuarachchi
+    //IT Number: it21296246
+    //Center: Malabe
+    //Group: MLB_05.02_09
     session_start();
     include("php/controllers/request-ctrl.php");
 ?>
@@ -66,7 +70,7 @@
 
                     
         <div class="btn-container-ralign">
-        <input class='btn-simple' type='button' value='Report' onclick='showReportForm()'>
+        <input class='btn-simple' type='button' value='Report' onclick='showReportForm()' <?php echo isset($_SESSION['user_id']) ? '' : "disabled title = 'Sign in to report posts'" ?>>
 
         <input class='btn-simple <?php if (!$values['saved']) echo 'hide' ?>' type='button' value='Saved' id='btn-unsave' onclick="unsave('save-request.php')">
         <input class='btn-simple <?php if ($values['saved']) echo 'hide' ?>' type='button' value='Save' id='btn-save' onclick="save('save-request.php')" <?php echo isset($_SESSION['user_id']) ? '' : "disabled title = 'Sign in to save posts'" ?>>
@@ -118,7 +122,7 @@
 
         <div class="user">
             <h3>Requester</h3>
-            <a href="user?id=<?php echo $values['seller']['user_id'] ?>">
+            <a href="userview.php?id=<?php echo $values['seller']['user_id'] ?>">
                 <div class="profile">
                     <img class="avatar" src="<?php echo $values['seller']['profile_photo'] ?>">
                     <p> <?php echo $values['seller']['first_name'] . ' ' . $values['seller']['last_name'] ?></p>

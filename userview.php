@@ -1,9 +1,11 @@
+<?php session_start(); ?>
+<!--NRH-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>User Details</title>
     <?php include_once('php/includes/common-css-js.php'); ?>
-    <link rel="stylesheet" href="styles/sale-request.css">
+    
     
 </head>
 <body>

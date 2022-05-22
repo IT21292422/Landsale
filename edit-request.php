@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
 require 'php/includes/dbcon.php';
 $target_dir = "images/request/";

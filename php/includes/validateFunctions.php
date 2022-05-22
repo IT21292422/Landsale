@@ -1,4 +1,9 @@
 <?php
+    //Name: H.A.R.S. Hapuarachchi
+    //IT Number: it21296246
+    //Center: Malabe
+    //Group: MLB_05.02_09
+    
     //check for empty values in the array, assign null and add errors
     function areRequiredFieldsProvided(&$values, $required, &$errors) 
     {
