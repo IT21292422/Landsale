@@ -25,7 +25,8 @@ Group: MLB_05.02_09-->
                 
                 if($con->query($query))
                 {
-                    
+                    $sessionID = $con->insert_id;
+                    signin($sessionID);
                     echo "<script> alert ('Data added Successfully')</script>";
                     if (isset($_SERVER["HTTP_REFERER"])){
                         header("Location:../landsale/index.php");
@@ -36,13 +37,6 @@ Group: MLB_05.02_09-->
                     echo "<script> alert ('Error: query was not Successful')</script>";
                 }
 
-                if ($con->query($query) === TRUE) {
-                    $sessionID = $con->insert_id;
-                    echo "New record created successfully. Last inserted ID is: " . $sessionID;
-                  } else {
-                    echo "Error: " . $query . "<br>" . $con->error;
-                  }
-                    signin($sessionID);
     }
                 
 ?>
