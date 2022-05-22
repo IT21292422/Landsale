@@ -90,12 +90,12 @@
                     $page = (int)$_GET['page'];
                     if ($page > 1)
                     {
-                        echo "<input type='button' value='Prev Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page - 1, $uri)."' \">";
+                        echo "<input type='button' class='page-btn' value='Prev Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page - 1, $uri)."' \">";
                     }
-                    echo "<input type='button' value='Next Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page + 1, $uri)."' \">";
+                    echo "<input type='button' class='page-btn' value='Next Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page + 1, $uri)."' \">";
                 }
                 else{
-                    echo "<input type='button' value='Next Page' onclick=\"window.location.href = '".preg_replace("/php.?/",'php?page=2&', $uri)."' \">";
+                    echo "<input type='button' class='page-btn' value='Next Page' onclick=\"window.location.href = '".preg_replace("/php.?/",'php?page=2&', $uri)."' \">";
                     
                 }
             ?>
