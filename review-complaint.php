@@ -3,21 +3,16 @@
       require 'php/includes/dbcon.php';
 
       //checking for data availability
-      if(isset($_POST['complaint_id']))
+      if(isset($_GET['id']))
       {
         {
           echo  "success";
-          
-          $cID = $_POST["complaint_id"];
-          $desc = $_POST["description"];
-          $pReviewed = $_POST["reviewed"];
-          $type = $_POST["complaint_type"];
-          $rPostID = $_POST["request_id "];
-          $uID = $_POST["user_id"];
-          $date = $_POST["create_date"];
+          $_GET['id'];
+
+          $cID = $GET["id"];
 
           //making sql query
-          $sql = "SELECT * FROM request_complaints WHERE complaint_id=$comlainr_id";
+          $sql = "SELECT * FROM request_complaints WHERE complaint_id=$cID";
 
           //getting sql results
           $result = $con->query($sql);
@@ -27,11 +22,11 @@
           
           //closing connection
           //$con->close();
+          echo $row['complaint_id'];
         }
       }
       else{
         echo "error!";
-        echo $row['complaint_id'];
       }
 ?>
 
@@ -70,7 +65,7 @@
       <div class="reviewPage">
       <?php
 
-        //echo "<h4><?php echo" . $row['complaint_id'] . "</h4>";
+        echo "<h4><?php echo" . $row['complaint_id'] . "</h4>";
         
 ?>
       </div>
