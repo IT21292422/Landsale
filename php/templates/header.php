@@ -14,7 +14,7 @@
                         <a href="index.php" class="link">Home</a>
                         <a href="requests.php" class="link">Requests</a>
                         <a href="submit-sale.php" class="link">Submit a Sale</a>
-                        <a href="submit-request.php" class="link">Submit a Request</a>
+                        <a href="submit-request-form.php" class="link">Submit a Request</a>
                         <?php if (isset($_SESSION['account_type']) and ($_SESSION['account_type'] === 'moderator' or $_SESSION['account_type'] === 'admin')) : ?>
                                 <a href="complaint.php" class="link">Moderator Dashboard</a>
                         <?php endif; ?>
