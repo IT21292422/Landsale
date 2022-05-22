@@ -141,7 +141,7 @@
                             <p>Saved posts</p>
                         </div>
                     </a>
-                    <a href="owned-posts.php">
+                    <a href="owned-posts.php?id=<?php echo $values['user_id']?>">
                         <div>
                             <p>My posts</p>
                         </div>
