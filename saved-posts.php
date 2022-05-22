@@ -38,25 +38,26 @@
             $rData=$con->query($sql2);
 
             //getting results in array
-            //$row= $rData->fetch_assoc();
+            $row= $rData->fetch_assoc();
+            $uID = $row['user_id'];
     ?>
     <div class="card-container">
         <?php 
 
+            //if($sData->num_rows > 0 and $uID=$_SESSION['user_id'])
             if($sData->num_rows > 0)
- 
-                //printing sale data as cards
+            {
+                    //printing sale data as cards
                 foreach ($sData as $cardData)
                 {
                     include('php\templates\sale-card.php');
                 }
+
+            }
             else
             {
                 echo "No Data";
             }
-
-            
-            //if($rData->num_rows > 0 AND $row['r.user_id']=$_SESSION['user_id'])
                 if($rData->num_rows > 0)
                 
                 //printing request data as cards
@@ -68,6 +69,9 @@
             {
                 echo "No Data";
             }
+            
+ 
+                
         ?>
 
     </div>
