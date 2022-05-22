@@ -8,7 +8,6 @@ $target_dir = "images/sale/";
 $target_file = $target_dir . basename($_FILES["sphoto"]["name"]);
 if (isset($_FILES["sphoto"])){
     if (move_uploaded_file($_FILES["sphoto"]["tmp_name"], $target_file)){
-       // echo "The file ".basename($_FILES["coverphoto"]["name"])." is uploaded";
     }
     else {
         echo "Error while uploading your file.";
