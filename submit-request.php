@@ -27,7 +27,7 @@ $max_area=$_POST["max_area"];
 $min_area=$_POST["min_area"];
 $distance=$_POST["distance"];
 $type_id=$_POST["postType"];
-$user_id=$_POST["id"];
+$user_id=$_SESSION['user_id'];
 
 $sql="INSERT INTO request(title,location,description,city,district,province,max_price,min_price,max_area,min_area,distance,cover_photo,type_id,user_id) VALUES('$title','$location','$description','$city','$district','$province','$max_price','$min_price','$max_area','$min_area','$distance','$target_file','$type_id','$user_id')";
 if($con->query($sql))
