@@ -79,11 +79,10 @@
 
         </style>
                  <div class="socialmedia">
+                        <h3 class="fallows">Follow Us</h3>
                         <a href="https://www.facebook.com" class="fa fa-facebook"></a>
                        <a href="https://www.instagram.com" class="fa fa-instagram"></a>
                         <a href="https://www.twitter.com" class="fa fa-twitter"></a>
-                        <a href="https://www.linkedin.com" class="fa fa-linkedin"></a>
-                        <h3 class="fallows">Follow Us</h3>
                 </div>
                         </div>
         </footer>

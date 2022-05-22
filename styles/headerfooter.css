@@ -22,20 +22,6 @@
         color: rgb(125, 253, 123);
     }
 
-   
-    .brands {
-        width: 30px;
-        padding: auto;
-        flex: 33%;
-    }
-
-    .brands:hover {
-        position: relative;
-        width: 35px;
-    }
-
-   
-    
     .contact{
         position: absolute;
         left: 10px;
@@ -55,4 +41,4 @@
         border-radius: 10px;
     }
     
-
+    
