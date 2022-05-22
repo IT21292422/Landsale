@@ -1,22 +1,23 @@
 <html>
     <head>
-        <title>Submit Request</title>
+        <title>Edit Request</title>
         <link rel="stylesheet" href="styles/reqownForm.css">
     </head>
     <body class="form">
     <div class="RequestForm">    
-        <div class="Title">Submit Request Form</div>
-        <form method="POST" action="submit-request.php" enctype="multipart/form-data">
+        <div class="Title">Edit Request Form</div>
+        <form method="POST" action="edit-req.php" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
         <label>Title</label> <br>
-        <input type="text" name="title" placeholder="Enter the title" required><br><br> 
+        <input type="text" name="title" placeholder="Enter the new title" required><br><br> 
         <label>Cover Photo : </label>
         <input type="file" name="coverphoto" accept="image/png, image/jpeg , image/jpg"><br><br> 
         <label>Location</label> <br>
-        <input type="text" name="location" placeholder="Enter the location co-ordinates" required><br><br> 
+        <input type="text" name="location" placeholder="Enter the new location co-ordinates" required><br><br> 
         <label>Description</label> <br>
-        <textarea name="description" rows="10" cols="50" placeholder="Enter the description" required></textarea><br><br> 
+        <textarea name="description" rows="10" cols="50" placeholder="Enter the new description" required></textarea><br><br> 
         <label>City</label> <br>
-        <input type="text" name="city" placeholder="Enter the city" required><br><br> 
+        <input type="text" name="city" placeholder="Enter the new city" required><br><br> 
         <label>District</label> <br>
         <select name="district">
             <option value="Anuradhapura">Anuradhapura</option>
@@ -58,15 +59,15 @@
             <option value="Southern">Southern Province</option>
         </select> <br><br>
         <label>Maximum Price</label> <br>
-        <input type="text" name="max_price" pattern="[0-9]{1,10}" placeholder="Enter the Maximum Price" required><br><br> 
+        <input type="text" name="max_price" pattern="[0-9]{1,10}" placeholder="Enter the new Maximum Price" required><br><br> 
         <label>Minimum Price</label> <br>
-        <input type="text" name="min_price" pattern="[0-9]{1,10}" placeholder="Enter the Minimum Price" required><br><br> 
+        <input type="text" name="min_price" pattern="[0-9]{1,10}" placeholder="Enter the new Minimum Price" required><br><br> 
         <label>Maximum Area</label> <br>
-        <input type="text" name="max_area" pattern="[0-9]{1,10}" placeholder="Enter the Maximum Area (in perch)" required><br><br> 
+        <input type="text" name="max_area" pattern="[0-9]{1,10}" placeholder="Enter the new Maximum Area (in perch)" required><br><br> 
         <label>Minimum Area</label> <br>
-        <input type="text" name="min_area" pattern="[0-9]{1,10}" placeholder="Enter the Minimum Area (in perch)" required><br><br> 
+        <input type="text" name="min_area" pattern="[0-9]{1,10}" placeholder="Enter the new Minimum Area (in perch)" required><br><br> 
         <label>Distance</label> <br>
-        <input type="text" name="distance" pattern="[0-9]{1,10}" placeholder="Enter the Distance (in meter)" required><br><br> 
+        <input type="text" name="distance" pattern="[0-9]{1,10}" placeholder="Enter the new Distance (in meter)" required><br><br> 
         <label>Post Type</label><br>
         <label>Basic<input type="radio" name="postType" value="1" checked></label>
         <label>Budget<input type="radio" name="postType" value="2"></label> 
@@ -80,3 +81,4 @@
     </form>
     </body>
 </html>
+

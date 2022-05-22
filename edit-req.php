@@ -26,15 +26,24 @@ $min_price=$_POST["min_price"];
 $max_area=$_POST["max_area"];
 $min_area=$_POST["min_area"];
 $distance=$_POST["distance"];
-$type_id=1;
-$user_id=$_GET['id'];
-$create_date="5-4-2022";
+$type_id=$_POST["postType"];
+$request_id=$_POST["id"];
 
-$sql="UPDATE request SET title='$title',location='$location',description='$description',city='$city',district='$district',province='$province',max_price='$max_price',min_price='$min_price',max_area='max_area',min_area='$min_area',distance='$distance',cover_photo='$target_file' WHERE user_id='$user_id'";
+$sql="UPDATE request SET title='$title',location='$location',description='$description',city='$city',district='$district',province='$province',max_price='$max_price',min_price='$min_price',max_area='max_area',min_area='$min_area',distance='$distance',cover_photo='$target_file' WHERE request_id='$request_id'";
 if($con->query($sql))
 {
-    echo "Form Updated Successfully";
-    header("Location:owned-posts.php");
+    echo "<script>alert('Form Submitted Successfully');</script>";
+    if($type_id==2)
+    {
+        header("Location:payment.html");
+    }
+    else if($type_id==3)
+    {
+        header("Location:payment.html");
+    }
+    else{
+        header("Location:owned-posts.php");
+    }
 }
 else 
 {
