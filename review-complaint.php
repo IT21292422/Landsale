@@ -113,15 +113,15 @@
               <option value="noAction" id="none">Ignore</option>
           </select>
 
-          <input type="hidden" value=<?php $row['user_id'] ?>>
+          <input type="hidden" value=<?php $row["user_id"] ?>>
           <input type="submit" id="reviewed" value="Mark as Reviewed" onclick="takeAction()">
 
 
           <?php  if(isset($_POST["action"]))
           {
-              echo $_POST['action'];
-              echo $_POST['user_id'];
-              echo $_POST['type'];
+              echo $_POST["action"];
+              echo $row["user_id"];
+
               modAction($_POST['action'], $_POST['user_id']);
               reviewed($_POST['type']);
           }?>
