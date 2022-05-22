@@ -27,7 +27,7 @@
             $sql2="SELECT request_id, title, location, description, city, district, province, max_price,
             min_price, max_area, min_area, distance, cover_photo, type_id, user_id, create_date FROM request";
 
-            //executing query
+            //executing query and storing data
             $sData=$con->query($sql1);
             $rData=$con->query($sql2);
     ?>
