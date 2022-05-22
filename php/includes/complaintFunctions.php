@@ -56,4 +56,9 @@ function banUser($uID)
             echo "<script> alert ('Oops! Something went wrong')</script>";
         }
     }
+
+function reviewed()
+{
+    $sql = "UPDATE users SET account_status=\"Banned\" WHERE user_id=$uID";
+}
 ?>
