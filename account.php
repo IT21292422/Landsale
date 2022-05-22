@@ -141,7 +141,7 @@
                             <p>Saved posts</p>
                         </div>
                     </a>
-                    <a href="myposts.php">
+                    <a href="owned-posts.php">
                         <div>
                             <p>My posts</p>
                         </div>
