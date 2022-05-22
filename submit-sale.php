@@ -20,7 +20,7 @@
 
 <h1>Sell Your Land</h1>
    <div  text-align="center">
-   <form  method="post" action="saleform.php"><!--clicking submit executes saleform.php-->
+   <form  method="post" action="saleform.php" enctype="multipart/form-data"> <!--clicking submit executes saleform.php-->
    
    <div class="saleForm">
        <!--//Form to input details-->
