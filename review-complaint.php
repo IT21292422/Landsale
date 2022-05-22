@@ -68,6 +68,10 @@
   border: 5px solid black;
   border-right: 5px solid black;
 }
+.reviewContainer{
+  padding: 100px;
+}
+
 </style>
   <?php
 
@@ -76,7 +80,6 @@
 
   ?>
 
-  <div>
     
   <center>
       <div class="reviewContainer ">
@@ -126,10 +129,11 @@
       </form>
       </div>
 
-      <?php
+      
+  </center> 
+  <?php
         include("php/templates/footer.php");
       ?>
-  </center> 
 </body>
 
 </html>

@@ -18,7 +18,7 @@
     <div class="RequestForm">    
         <div class="Title">Submit Request Form</div>
         <form method="POST" action="submit-request.php" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
+        <input type="hidden" name="id" value="<?php echo $_SESSION['user_id'];?>">
         <label>Title</label> <br>
         <input type="text" name="title" placeholder="Enter the title" required><br><br> 
         <label>Cover Photo : </label>
