@@ -1,6 +1,6 @@
 function editMode()
 {
-    
+    scrollTo(0, 200);
     for(element of document.getElementsByClassName('display'))
     {
         element.classList.add('hide');
@@ -9,6 +9,7 @@ function editMode()
     {
         element.classList.remove('hide');
     }
+   
 }
 
 function photoSelected()
