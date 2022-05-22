@@ -2,6 +2,30 @@
     <head>
         <title>Edit Request</title>
         <link rel="stylesheet" href="styles/reqownForm.css">
+        <?php
+        require 'php/includes/dbcon.php';
+        $id=$_GET['id'];
+        $sql="SELECT * FROM request where request_id='$id'";
+        $result=$con->query($sql);
+        if($result=$con->query($sql)){
+            if($result->num_rows>0){
+                while($row=$result->fetch_assoc()){
+                    $title=$row["title"];
+                    $location=$row["location"];
+                    $coverphoto=$row["cover_photo"];
+                    $description=$row["description"];
+                    $city=$row["city"];
+                    $district=$row["district"];
+                    $province=$row["province"];
+                    $max_price=$row["max_price"];
+                    $min_price=$row["min_price"];
+                    $max_area=$row["max_area"];
+                    $min_area=$row["min_area"];
+                    $distance=$row["distance"];
+                }
+            }
+        }
+        ?>
     </head>
     <body class="form">
     <div class="RequestForm">    
