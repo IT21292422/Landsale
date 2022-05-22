@@ -15,7 +15,7 @@ $sarea =$_POST["slandarea"];
 $saddress =$_POST["saddress"];
 $sphoto =$_POST["sphoto"];
 $fk1=$_POST["spostType"];
-$fk2="2";
+$fk2=$_SESSION["sid"]
 //inserting data into table in order of columns 
 $sql = "INSERT INTO sale (title,location,description,city,district,province,price,land_area,address,cover_photo,type_id,user_id)   VALUES ('$stitle' ,'$sloc' ,'$sdesc' ,'$scity' ,'$sdist','$sprovince','$sprice','$sarea','$saddress' ,'$sphoto','$fk1','$fk2')";
 //checking if query excuted or not
