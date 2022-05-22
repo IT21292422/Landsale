@@ -1,12 +1,13 @@
 <html>
     <head>
-        <title>Submit Request</title>
+        <title>Edit Request</title>
         <link rel="stylesheet" href="styles/reqownForm.css">
     </head>
     <body class="form">
     <div class="RequestForm">    
         <div class="Title">Edit Request Form</div>
-        <form method="POST" action="edit-request.php" enctype="multipart/form-data">
+        <form method="POST" action="edit-req.php" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
         <label>Title</label> <br>
         <input type="text" name="title" placeholder="Enter the new title" required><br><br> 
         <label>Cover Photo : </label>
@@ -80,3 +81,4 @@
     </form>
     </body>
 </html>
+
