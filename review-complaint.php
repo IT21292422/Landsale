@@ -7,9 +7,23 @@
       {
         {
           $cID = $_GET["id"];
+          $type = $_GET["type"];
 
           //making sql query
-          $sql = "SELECT * FROM request_complaints WHERE complaint_id=$cID";
+          if($type="sale")
+          {
+            $sql = "SELECT * FROM sale_complaints WHERE complaint_id=$cID";
+
+          }
+          elseif($type="request")
+          {
+            $sql = "SELECT * FROM request_complaints WHERE complaint_id=$cID";
+          }
+          else
+        {
+          echo "Error!!!!";
+        }
+          
 
           //getting sql results
           $result = $con->query($sql);
@@ -32,6 +46,7 @@
 
     <head>
         <?php include_once('php/includes/common-css-js.php'); ?>
+        <script src="js/complaintFunctions.js"></script> 
     </head>
   
 <body>
@@ -70,19 +85,29 @@
         <div class="desc"> Description: <?php echo $row["description"]?></div>
         <hr>
 
+      <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <label for="action">Select Action</label>
-        <select name="action" id="mAction" title="Please Select an Action" required >
-          <option value="warn">Warn User</option>
-          <option value="suspend">Suspend User</option>
-          <option value="ban">Ban User</option>
-          <option value="noAction">Ignore</option>
-        </select>
+          <select name="action" id="mAction" title="Please Select an Action" required >
+              <option value="warn" id="warn">Warn User</option>
+              <option value="suspend" id="suspend">Suspend User</option>
+              <option value="ban" id="ban">Ban User</option>
+              <option value="noAction" id="none">Ignore</option>
+          </select>
 
-        <label for="reviewed"></label>
-        <input type="button" id="reviewed" value="Mark as Reviewed">
+          <input type="submit" id="reviewed" value="Mark as Reviewed" onclick="takeAction()">
 
+          <?php  if(isset($_POST["action"]))
+          {
+              echo $_POST['action'];
 
+          }?>
+
+      </form>
       </div>
+
+      
+
+  
   </center> 
 </body>
 
