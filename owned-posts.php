@@ -35,6 +35,8 @@ if($result=$con->query($sql)){
              echo "<br>";
              echo "<br>";
              echo "<br>";
+             echo "<br>";
+             echo "<br>";
              echo "<button class=\"ownBtn\">"."<a href=\"request.php?id=$id\">"."View"."</a>"."</button>";  
              echo "<button class=\"ownBtn\">"."<a href=\"edit-request-form.php?id=$id\">"."Edit"."</a>"."</button>";    
              echo "<button class=\"ownBtn\">"."<a href=\"php/includes/delete_req.php?id=$id\">"."Delete"."</a>"."</button>";
@@ -69,6 +71,8 @@ if($result=$con->query($sql)){
              echo "<img src=\"$img\" alt=\"Picture of a land\" height=\"150\" width=\"150\" id=\"ownedImg\">";
              echo "<h2>".$row['title']."</h2>";
              echo "<p>".$row['description']."</p>";
+             echo "<br>";
+             echo "<br>";
              echo "<br>";
              echo "<br>";
              echo "<br>";
