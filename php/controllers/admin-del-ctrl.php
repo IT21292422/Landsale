@@ -13,6 +13,7 @@ $userId=$_GET["user_id"];
 
 echo $userId;
 
+    // deletes from whole data base
      $sql = "delete from saved_request where request_id in (select request_id from request where user_id = $userId) or user_id = $userId;".
             "delete from saved_sale where sale_id in (select sale_id from sale where user_id = $userId) or user_id = $userId;".
             "delete from request_complaints where request_id in (select request_id from request where user_id = $userId) or user_id = $userId;".
