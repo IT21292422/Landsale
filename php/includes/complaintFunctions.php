@@ -33,6 +33,7 @@ function suspendUser($uID)
 {
     global $con;
     $sql = "UPDATE users SET account_status='suspended' WHERE user_id=$uID";
+    echo $sql;
     
         if($con->query($sql))
         {
