@@ -3,8 +3,12 @@
 <head>
     <title>Owned-Posts</title>
     <link rel="stylesheet" href="styles/reqownForm.css">
+    <?php include_once('php/includes/common-css-js.php'); ?>
 </head>
 <body style="background:linear-gradient(135deg, #71b7e6, #9b59b6);">
+<?php
+        include("php/templates/header.php");
+?>
 
 <?php
 require 'php/includes/dbcon.php';
@@ -89,6 +93,8 @@ if($result=$con->query($sql)){
 
 ?>
 
-
+<?php
+    include("php/templates/footer.php");
+?>
 </body>
 </html>
