@@ -12,7 +12,7 @@
 
 <?php
 require 'php/includes/dbcon.php';
-echo "<h2 class=\"ownTitle\">Owned Request Post</h2>";
+echo "<h2 class=\"ownTitle\">My Request Post</h2>";
 $userId=$_GET['id'];
 $sql="SELECT * FROM request where user_id='$userId'";
 $result=$con->query($sql);
@@ -52,7 +52,7 @@ if($result=$con->query($sql)){
     }
 }
 
-echo "<h2 class=\"ownTitle\">Owned Sale Post</h2>";
+echo "<h2 class=\"ownTitle\">My Sale Post</h2>";
 $sql="SELECT * FROM sale where user_id=$userId";
 $result=$con->query($sql);
 
