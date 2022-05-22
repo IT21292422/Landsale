@@ -10,18 +10,18 @@
         if($result=$con->query($sql)){
             if($result->num_rows>0){
                 while($row=$result->fetch_assoc()){
-                    $title=$row["title"];
-                    $location=$row["location"];
-                    $coverphoto=$row["cover_photo"];
-                    $description=$row["description"];
-                    $city=$row["city"];
-                    $district=$row["district"];
-                    $province=$row["province"];
-                    $max_price=$row["max_price"];
-                    $min_price=$row["min_price"];
-                    $max_area=$row["max_area"];
-                    $min_area=$row["min_area"];
-                    $distance=$row["distance"];
+                    $title= $row['title'];
+                    $location= $row['location'];
+                    $coverphoto= $row['cover_photo'];
+                    $description= $row['description'];
+                    $city= $row['city'];
+                    $district= $row['district'];
+                    $province= $row['province'];
+                    $max_price= $row['max_price'];
+                    $min_price= $row['min_price'];
+                    $max_area= $row['max_area'];
+                    $min_area= $row['min_area'];
+                    $distance= $row['distance'];
                 }
             }
         }
@@ -31,19 +31,19 @@
     <div class="RequestForm">    
         <div class="Title">Edit Request Form</div>
         <form method="POST" action="edit-req.php" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
+        <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
         <label>Title</label> <br>
-        <input type="text" name="title" placeholder="Enter the new title" required><br><br> 
+        <input type="text" name="title" placeholder="Enter the new title" value="<?php echo "$title"; ?>"required><br><br> 
         <label>Cover Photo : </label>
-        <input type="file" name="coverphoto" accept="image/png, image/jpeg , image/jpg"><br><br> 
+        <input type="file" name="coverphoto" accept="image/png, image/jpeg , image/jpg" value="<?php echo "$coverphoto"; ?>"><br><br> 
         <label>Location</label> <br>
-        <input type="text" name="location" placeholder="Enter the new location co-ordinates" required><br><br> 
+        <input type="text" name="location" placeholder="<?php echo "$location"; ?>" value="<?php echo "$location"; ?>" required><br><br> 
         <label>Description</label> <br>
-        <textarea name="description" rows="10" cols="50" placeholder="Enter the new description" required></textarea><br><br> 
+        <textarea name="description" rows="10" cols="50" placeholder="<?php echo "$description"; ?>" value="<?php echo "$description"; ?>" required></textarea><br><br> 
         <label>City</label> <br>
-        <input type="text" name="city" placeholder="Enter the new city" required><br><br> 
+        <input type="text" name="city" placeholder="Enter the new city" value="<?php echo "$city";?>" required><br><br> 
         <label>District</label> <br>
-        <select name="district">
+        <select name="district" value="<?php echo "$district"; ?>">
             <option value="Anuradhapura">Anuradhapura</option>
             <option value="Colombo">Colombo</option>
             <option value="Gampaha">Gampaha</option>
@@ -71,7 +71,7 @@
             <option value="Vavuniya">Vavuniya</option>
         </select><br><br>
         <label>Province</label> <br>
-        <select name="province">
+        <select name="province" value="<?php echo "$province"; ?>">
             <option value="Western">Western Province</option>
             <option value="North-Western">North-Western</option>
             <option value="Nothern">Northern Province</option>
@@ -83,15 +83,15 @@
             <option value="Southern">Southern Province</option>
         </select> <br><br>
         <label>Maximum Price</label> <br>
-        <input type="text" name="max_price" pattern="[0-9]{1,10}" placeholder="Enter the new Maximum Price" required><br><br> 
+        <input type="text" name="max_price" pattern="[0-9]{1,10}" placeholder="Enter the new Maximum Price" value="<?php echo "$max_price"; ?>" required><br><br> 
         <label>Minimum Price</label> <br>
-        <input type="text" name="min_price" pattern="[0-9]{1,10}" placeholder="Enter the new Minimum Price" required><br><br> 
+        <input type="text" name="min_price" pattern="[0-9]{1,10}" placeholder="Enter the new Minimum Price" value="<?php echo "$min_price"; ?>" required><br><br> 
         <label>Maximum Area</label> <br>
-        <input type="text" name="max_area" pattern="[0-9]{1,10}" placeholder="Enter the new Maximum Area (in perch)" required><br><br> 
+        <input type="text" name="max_area" pattern="[0-9]{1,10}" placeholder="Enter the new Maximum Area (in perch)" value="<?php echo "$max_area"; ?>" required><br><br> 
         <label>Minimum Area</label> <br>
-        <input type="text" name="min_area" pattern="[0-9]{1,10}" placeholder="Enter the new Minimum Area (in perch)" required><br><br> 
+        <input type="text" name="min_area" pattern="[0-9]{1,10}" placeholder="Enter the new Minimum Area (in perch)" value="<?php echo "$min_area"; ?>" required><br><br> 
         <label>Distance</label> <br>
-        <input type="text" name="distance" pattern="[0-9]{1,10}" placeholder="Enter the new Distance (in meter)" required><br><br> 
+        <input type="text" name="distance" pattern="[0-9]{1,10}" placeholder="<?php echo "$distance"; ?>"  value="<?php echo "$distance"; ?>" required><br><br> 
         <label>Post Type</label><br>
         <label>Basic<input type="radio" name="postType" value="1" checked></label>
         <label>Budget<input type="radio" name="postType" value="2"></label> 
