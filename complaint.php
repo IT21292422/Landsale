@@ -62,7 +62,7 @@ if ($result2->num_rows > 0) {
 
         ?>
         <td class="delete"><a style="text-decoration: none;" href="php\controllers\request-complaints-ctrl.php?complaint_id=<?php echo $row["complaint_id"]; ?>">Delete</a></td>
-        <td class="viewws"><a style="text-decoration: none;" href="review-complaint.php?complaint_id=<?php echo $row["complaint_id"]; ?>">View</a></td>
+        <td class="viewws"><a style="text-decoration: none;" href="review-complaint.php?id=<?php echo $row["complaint_id"]; ?>">View</a></td>
       <?php
 
         echo "</tr>";
@@ -117,7 +117,7 @@ if ($result2->num_rows > 0) {
 
       ?>
         <td class="delete"><a style="text-decoration: none;" href="php\controllers\sale-complaint-ctrl.php?complaint_id=<?php echo $row["complaint_id"]; ?>">Delete</a></td>
-        <td class="viewws"><a style="text-decoration: none;" href="review-complaint.php?complaint_id=<?php echo $row["complaint_id"]; ?>">View</a></td>
+        <td class="viewws"><a style="text-decoration: none;" href="review-complaint.php?id=<?php echo $row["complaint_id"]; ?>">View</a></td>
       <?php
 
        echo "</tr>";
