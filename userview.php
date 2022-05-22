@@ -3,7 +3,7 @@ Nimeth Herath
 Center: Malabe
 Group: MLB_05.02_09-->
 <?php session_start(); ?>
-
+<!--NRH-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,15 +13,12 @@ Group: MLB_05.02_09-->
     
 </head>
 <body>
-
     <?php
         include("php/templates/header.php");
     ?>
-
-
-<div align="center">
+    <div align="center">
 <?Php
-$id=$_SESSION['user_id'];
+$id=$_GET['id'];
 // Checking data it is a number or not
 if(!is_numeric($id)){
 echo "ID must be a integer";
@@ -75,15 +72,17 @@ $path1=$con->query
 
 <h3>
   <p> Contact Numbers:
-    <?php
-          while($row = $path1->fetch_object())  {
-             echo "<br>";
-              echo $row->phone;
+<?php
+while($row = $path1->fetch_object())  
+       {
+        echo "<br>";
+        echo $row->phone;
        }
-    ?>
-  </p>
-  </h3> 
-      </div>
+      ?>
+      </h3>
+      </p>
+  </div>
+
     <?php
         include("php/templates/footer.php");
     ?>
