@@ -82,6 +82,12 @@
         <br><br>
         <input type="reset" name ="reset" class="formBtn" value="Reset">
         <input type="submit" name ="submit" class="formBtn" value="Submit">
+        <br>
+        <ul style="color:red;">
+          <li>Basic plan is the Free and Standard Package</li><br>
+          <li>Budget plan is the Budget Package which is quite similar to the Basic Plan but with some additional functionalities with a Price of Rs.300.00</li><br>
+          <li>Premium plan is the Premium Version to make your post featured in the home page with a Price of Rs.1000.00</li>
+        </ul>
     </div>    
 
            
