@@ -1,10 +1,16 @@
-
+<?php session_start(); ?>
 <html>
     <head>
         <title>Submit Request</title>
         <link rel="stylesheet" href="styles/reqownForm.css">
+        <?php include_once('php/includes/common-css-js.php'); ?>
+
     </head>
-    <body class="form">
+    <body >
+    <?php
+        include("php/templates/header.php");
+    ?>
+    <div class="form">
     <div class="RequestForm">    
         <div class="Title">Submit Request Form</div>
         <form method="POST" action="submit-request.php" enctype="multipart/form-data">
@@ -80,5 +86,11 @@
 
            
     </form>
+    </div>
+    
+
+    <?php
+        include("php/templates/footer.php");
+    ?>
     </body>
 </html>
