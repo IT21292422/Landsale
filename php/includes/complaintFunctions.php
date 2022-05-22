@@ -82,6 +82,13 @@ function banUser($uID)
         }
     }
 
+function warnUser($uID)
+        {
+            global $con;
+
+            $sql = "UPDATE users_warnings SET warning='Warned' WHERE user_id=$uID";
+        }
+
 function reviewed()
 {
     global $con;

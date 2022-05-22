@@ -16,9 +16,10 @@ Group: MLB_05.02_09-->
                 $email = $_POST["email"];
                 $pass = $_POST["pass"];
                 $photo = $_POST["pPhoto"];
+                $aboutc = $_POST["about"];
             
                 $query="INSERT INTO users(user_id, password, first_name, last_name, email, account_status, account_type, 
-                profile_photo, about) VALUES ('', '$pass', '$fName', '$lName', '$email', 'valid', 'user', '$photo', '$about' )";
+                profile_photo, about) VALUES ('', '$pass', '$fName', '$lName', '$email', 'valid', 'user', '$photo', '$about')";
                 
                 if($con->query($query))
                 {
