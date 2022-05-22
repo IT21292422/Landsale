@@ -6,8 +6,8 @@ require 'php/includes/dbcon.php';//connecting to the database
 
 $target_dir = "images/sale/";
 $target_file = $target_dir . basename($_FILES["sphoto"]["name"]);
-if (isset($_FILES["coverphoto"])){
-    if (move_uploaded_file($_FILES["coverphoto"]["tmp_name"], $target_file)){
+if (isset($_FILES["sphoto"])){
+    if (move_uploaded_file($_FILES["sphoto"]["tmp_name"], $target_file)){
        // echo "The file ".basename($_FILES["coverphoto"]["name"])." is uploaded";
     }
     else {
