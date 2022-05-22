@@ -156,6 +156,7 @@
                         if (updateUser($valuesToDB, $_SESSION['user_id']))
                         {
                             header('Location: account.php');  //redirect to account page
+                            signin($_SESSION['user_id']);
                         }
                         else
                         {
