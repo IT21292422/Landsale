@@ -75,7 +75,7 @@ Group: MLB_05.02_09-->
                 <input type="file" name="pPhoto" class="inputBox" id="photo" ><br><br>
 
                 <label for="pass" class="label">Password</label>
-                <input type="password" name="pass" id="pass" class="inputBox" pattern="(?=.+\d)(?=.+[a-z])(?=.+[A-Z]).{8,20}" required
+                <input type="password" name="pass" id="pass" class="inputBox" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}" required
                 title="Password should be leaset 8 characters long and include at least
                 One lowercase letter, One Uppercase letter and One number" ><br>
 
