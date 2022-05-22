@@ -80,7 +80,18 @@
         <div class="cInfo"> Reported By: <?php echo $row["user_id"]?></div>
         <div class="cInfo"> Date of Complaint: <?php echo $row["create_date"]?></div>
         <hr>
-        <div class="complaint"> Post ID: <?php echo $row["request_id"]?></div>
+
+        <? php if($type="sale") 
+        {
+          echo "<div class=\"complaint\"> Post ID:" .$row['sale_id'] . "</div>"
+        }
+        else
+        {
+          echo "<div class=\"complaint\"> Post ID:" $row["request_id"] "</div>"
+        }
+        ?>
+
+
         <div class="complaint"> Complaint Type: <?php echo $row["complaint_type"]?></div>
         <div class="desc"> Description: <?php echo $row["description"]?></div>
         <hr>
