@@ -11,8 +11,10 @@
     ?>
 
     <style>
-        .bread{
-
+        .bread div{
+            width: 30px;
+            padding: 5px;
+            left: 50%;
         }
     </style>
     <div class="bread"><a style="text-decoration: none;" href="index.php">Home</a> => About</div>
