@@ -124,7 +124,7 @@
           </select>
 
           <input type="hidden" name="user_id" value=<?php echo $row["user_id"]; ?>>
-          <input type="submit" name="submit" id="reviewed" value="Mark as Reviewed" ">
+          <input type="submit" name="submit" id="reviewed" value="Mark as Reviewed" onclick="takeAction()">
 
 
           
