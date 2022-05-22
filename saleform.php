@@ -3,6 +3,20 @@
 <?php
 require 'php/includes/dbcon.php';//connecting to the database
 
+
+$target_dir = "images/sale/";
+$target_file = $target_dir . basename($_FILES["sphoto"]["name"]);
+if (isset($_FILES["coverphoto"])){
+    if (move_uploaded_file($_FILES["coverphoto"]["tmp_name"], $target_file)){
+       // echo "The file ".basename($_FILES["coverphoto"]["name"])." is uploaded";
+    }
+    else {
+        echo "Error while uploading your file.";
+    }
+}
+else {
+    echo "File not available";
+}
 //getting the values typed in the form to variables 
 $stitle =$_POST["stitle"];
 $sloc =$_POST["slocation"];
@@ -13,15 +27,15 @@ $sprovince =$_POST["sprovince"];
 $sprice =$_POST["sprice"];
 $sarea =$_POST["slandarea"];
 $saddress =$_POST["saddress"];
-$sphoto =$_POST["sphoto"];
 $fk1=$_POST["spostType"];
 $fk2=$_SESSION["user_id"];
 //inserting data into table in order of columns 
-$sql = "INSERT INTO sale (title,location,description,city,district,province,price,land_area,address,cover_photo,type_id,user_id)   VALUES ('$stitle' ,'$sloc' ,'$sdesc' ,'$scity' ,'$sdist','$sprovince','$sprice','$sarea','$saddress' ,'$sphoto','$fk1','$fk2')";
+$sql = "INSERT INTO sale (title,location,description,city,district,province,price,land_area,address,cover_photo,type_id,user_id)   VALUES ('$stitle' ,'$sloc' ,'$sdesc' ,'$scity' ,'$sdist','$sprovince','$sprice','$sarea','$saddress' ,'$target_file','$fk1','$fk2')";
 //checking if query excuted or not
 if($con->query($sql))
 {
     echo "<script>alert('Form Submitted Successfully');</script>";
+    
     if($fk1==2)
     {
         header("Location:payment.html");
@@ -31,7 +45,7 @@ if($con->query($sql))
         header("Location:payment.html");
     }
     else{
-        header("Location:index.html");
+        header("Location:index.php");
     }
 }
 else 

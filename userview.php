@@ -9,11 +9,15 @@
     
 </head>
 <body>
+
     <?php
         include("php/templates/header.php");
     ?>
+
+
+<div align="center">
 <?Php
-$id=$_GET['id'];
+$id=$_SESSION['user_id'];
 // Checking data it is a number or not
 if(!is_numeric($id)){
 echo "ID must be a integer";
@@ -67,17 +71,15 @@ $path1=$con->query
 
 <h3>
   <p> Contact Numbers:
-<?php
-while($row = $path1->fetch_object())  
-       {
-        echo "<br>";
-        echo $row->phone;
+    <?php
+          while($row = $path1->fetch_object())  {
+             echo "<br>";
+              echo $row->phone;
        }
-      ?>
-      </h3>
-      </p>
-
-
+    ?>
+  </p>
+  </h3> 
+      </div>
     <?php
         include("php/templates/footer.php");
     ?>
