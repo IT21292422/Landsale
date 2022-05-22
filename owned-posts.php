@@ -10,7 +10,7 @@
 require 'php/includes/dbcon.php';
 echo "<h2 class=\"ownTitle\">Owned Request Post</h2>";
 //$userId=$_GET['id'];
-$userId=1;
+$userId=$_SESSION['user_id'];
 $sql="SELECT * FROM request where user_id='$userId'";
 $result=$con->query($sql);
 
@@ -71,7 +71,7 @@ if($result=$con->query($sql)){
              echo "<br>";
              echo "<br>";
              echo "<br>";
-             echo "<button class=\"ownBtn\">"."<a href=\"\">"."View"."</a>"."</button>";  
+             echo "<button class=\"ownBtn\">"."<a href=\"request.php?id=".$row['sale_id']."\">"."View"."</a>"."</button>";  
              echo "<button class=\"ownBtn\">"."<a href=\"edit-request.html\">"."Edit"."</a>"."</button>";    
              echo "<button class=\"ownBtn\">"."<a href=\"delete.php\">"."Delete"."</a>"."</button>";
              echo "<span id=\"ownedPrice\">". $row['price'] . "</span>";
