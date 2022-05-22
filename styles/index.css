@@ -101,3 +101,20 @@ div.container{
     max-width: 1200px;
 
 }
+
+.advanced-search{
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.ad-field{
+    display: grid;
+    grid-template-columns: 20% auto;
+}
+
+#adv-search{
+    padding : 5px;
+    margin-top: 5px;
+}

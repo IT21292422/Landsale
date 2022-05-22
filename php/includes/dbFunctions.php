@@ -583,4 +583,27 @@
         $con->query($sql);
     }
 
+    function advancedSearchSale($values, $startFrom = 0)
+    {
+        global $con;
+
+        $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where ";
+
+        if (isset($values['min_price']) and !empty($values['min_price'])) $sql .= 'price > ' . $values['min_price'] . ' and ';
+        if (isset($values['max_price']) and !empty($values['max_price'])) $sql .= 'price < ' . $values['max_price'] . ' and ';
+        if (isset($values['min_area']) and !empty($values['min_area'])) $sql .= 'area > ' . $values['min_area'] . ' and ';
+        if (isset($values['max_area']) and !empty($values['max_area'])) $sql .= 'area < ' . $values['max_area'] . ' and ';
+        if (isset($values['min_date']) and !empty($values['min_date'])) $sql .= 'create_date > ' . $values['min_date'] . ' and ';
+        if (isset($values['max_date']) and !empty($values['max_date'])) $sql .= 'create_date < ' . $values['max_date'] . ' and ';
+        if (isset($values['city']) and !empty($values['city'])) $sql .= 'city = \'' . $values['city'] . '\' and ';
+        if (isset($values['district']) and !empty($values['district'])) $sql .= 'district = \'' . $values['district'] . '\' and ';
+        if (isset($values['province']) and !empty($values['province'])) $sql .= 'province = \'' . $values['province'] . '\' and ';
+        $sql .= "true LIMIT $startFrom, 30;";
+        $results = $con->query($sql);
+        $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
+        $toReturn['count'] = 0;
+        return $toReturn;
+
+    }
+
 ?>
