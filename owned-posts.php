@@ -48,7 +48,7 @@ if($result=$con->query($sql)){
              echo "</div>";
         }
     } else {
-        echo "<b>No results</b>";
+        echo "<b style='padding: 100px;'>No results</b>";
     }
 }
 
@@ -87,12 +87,14 @@ if($result=$con->query($sql)){
              echo "</div>";
         }
     } else {
-        echo "No results";
+        echo "<b style='padding: 100px;'>No results</b>";
     }
 }
 
 ?>
+<div style="padding: 50px;">
 
+</div>
 <?php
     include("php/templates/footer.php");
 ?>
