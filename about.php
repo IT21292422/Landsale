@@ -12,15 +12,6 @@
         include("php/templates/header.php");
     ?>
 
-    <style>
-        .bread div{
-            width: 30px;
-            padding: 5px;
-            left: 50%;
-        }
-    </style>
-    <div class="bread"><a style="text-decoration: none;" href="index.php">Home</a> => About</div>
-
     <div class="mainpage">
         <h2>About Us</h2>
         <p>Our approach gives our users a better
@@ -31,9 +22,12 @@ third party person or company.</p>
 
     <div class="mainpage">
         <h2>Contact Us</h2>
-        <span>E-mail :</span>
-        <span>Phone :</span>
-        <span>Social media :</span>
+        <p>
+        <span>E-mail : goldenlands@gmil.com</span><br>
+        <span>Phone (Admin): 077-6543784</span><br>
+        <span>Phone (Moderator): 077-2369878</span><br>
+        <span>Social media (Whatsapp or Telegram): 076-4365879</span>
+    </P>
     </div>
 
     <div class="mainpage">
