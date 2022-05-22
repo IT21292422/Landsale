@@ -55,7 +55,7 @@
     
                     }
                     else{
-                       header('Location: /landsale');  //redirect to homepage
+                       header('Location: index.php');  //redirect to homepage
                     }
                 }
                 else

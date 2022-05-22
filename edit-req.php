@@ -35,11 +35,11 @@ if($con->query($sql))
     echo "<script>alert('Form Submitted Successfully');</script>";
     if($type_id==2)
     {
-        header("Location:payment.html");
+        header("Location:payment.php");
     }
     else if($type_id==3)
     {
-        header("Location:payment.html");
+        header("Location:payment.php");
     }
     else{
         header("Location:owned-posts.php");
