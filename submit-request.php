@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php
 require 'php/includes/dbcon.php';
-$target_dir = "images/Request/";
+$target_dir = "images/request/";
 $target_file = $target_dir . basename($_FILES["coverphoto"]["name"]);
 if (isset($_FILES["coverphoto"])){
     if (move_uploaded_file($_FILES["coverphoto"]["tmp_name"], $target_file)){
@@ -26,15 +26,24 @@ $min_price=$_POST["min_price"];
 $max_area=$_POST["max_area"];
 $min_area=$_POST["min_area"];
 $distance=$_POST["distance"];
-$type_id=1;
-$user_id=5;
-$create_date="5-4-2022";
+$type_id=$_POST["postType"];
+$user_id=$_POST["id"];
 
-$sql="INSERT INTO request(request_id,title,location,description,city,district,province,max_price,min_price,max_area,min_area,distance,cover_photo,type_id,user_id,create_date) VALUES(6,'$title','$location','$description','$city','$district','$province','$max_price','$min_price','$max_area','$min_area','$distance','$target_file','$type_id','$user_id','$create_date')";
+$sql="INSERT INTO request(title,location,description,city,district,province,max_price,min_price,max_area,min_area,distance,cover_photo,type_id,user_id) VALUES('$title','$location','$description','$city','$district','$province','$max_price','$min_price','$max_area','$min_area','$distance','$target_file','$type_id','$user_id')";
 if($con->query($sql))
 {
-    echo "Form Submitted Successfully";
-    header("Location:index.html");
+    echo "<script>alert('Form Submitted Successfully');</script>";
+    if($type_id==2)
+    {
+        header("Location:payment.html");
+    }
+    else if($type_id==3)
+    {
+        header("Location:payment.html");
+    }
+    else{
+        header("Location:index.html");
+    }
 }
 else 
 {
