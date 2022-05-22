@@ -35,7 +35,7 @@ if($result=$con->query($sql)){
              echo "<br>";
              echo "<br>";
              echo "<br>";
-             echo "<button class=\"ownBtn\">"."<a href=\"\">"."View"."</a>"."</button>";  
+             echo "<button class=\"ownBtn\">"."<a href=\"request.php?id=".$row['request_id']."\">"."View"."</a>"."</button>";  
              echo "<button class=\"ownBtn\">"."<a href=\"edit-request.html\">"."Edit"."</a>"."</button>";    
              echo "<button class=\"ownBtn\">"."<a href=\"delete_req.php\">"."Delete"."</a>"."</button>";
              echo "<span id=\"ownedPrice\">". $row['max_price'] . "</span>";
@@ -71,7 +71,7 @@ if($result=$con->query($sql)){
              echo "<br>";
              echo "<br>";
              echo "<br>";
-             echo "<button class=\"ownBtn\">"."<a href=\"request.php?id=".$row['sale_id']."\">"."View"."</a>"."</button>";  
+             echo "<button class=\"ownBtn\">"."<a href=\"sale.php?id=".$row['sale_id']."\">"."View"."</a>"."</button>";  
              echo "<button class=\"ownBtn\">"."<a href=\"edit-request.html\">"."Edit"."</a>"."</button>";    
              echo "<button class=\"ownBtn\">"."<a href=\"delete.php\">"."Delete"."</a>"."</button>";
              echo "<span id=\"ownedPrice\">". $row['price'] . "</span>";
