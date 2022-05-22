@@ -39,10 +39,10 @@
                <input type="text" id="sprovince"  name="sprovince"required >
             </p>
            <p>Price : 
-               <input type="text" id="sprice"  name="sprice" required> Rs.
+               <input type="text" id="sprice"  name="sprice"  pattern="[0-9]{1,10}" required> Rs.
             </p>
            <p>Landa Area : 
-               <input type="text" id="slandarea"  name="slandarea"required > Perch
+               <input type="text" id="slandarea"  name="slandarea"  pattern="[0-9]{1,10}" required > Perch
              </p>
            <p>Address:
                <input type="text" id=" saddress" name="saddress" placeholder="Land address" required>
