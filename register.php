@@ -8,6 +8,8 @@ Group: MLB_05.02_09-->
 <?php 
     //connecting to the DB
     require 'php/includes/dbcon.php';
+    require 'php/includes/signinFunctions.php';
+
 
     if(isset($_POST['fname']))
     {
@@ -34,6 +36,13 @@ Group: MLB_05.02_09-->
                     echo "<script> alert ('Error: query was not Successful')</script>";
                 }
 
+                if ($con->query($query) === TRUE) {
+                    $sessionID = $con->insert_id;
+                    echo "New record created successfully. Last inserted ID is: " . $sessionID;
+                  } else {
+                    echo "Error: " . $query . "<br>" . $con->error;
+                  }
+                    signin($sessionID);
     }
                 
 ?>
