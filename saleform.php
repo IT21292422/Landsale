@@ -19,12 +19,23 @@ $fk2=$_SESSION["user_id"];
 //inserting data into table in order of columns 
 $sql = "INSERT INTO sale (title,location,description,city,district,province,price,land_area,address,cover_photo,type_id,user_id)   VALUES ('$stitle' ,'$sloc' ,'$sdesc' ,'$scity' ,'$sdist','$sprovince','$sprice','$sarea','$saddress' ,'$sphoto','$fk1','$fk2')";
 //checking if query excuted or not
-if($con->query($sql)){
-    echo "<script> alert ('Added Successfully')</script>";
+if($con->query($sql))
+{
+    echo "<script>alert('Form Submitted Successfully');</script>";
+    if($fk1==2)
+    {
+        header("Location:payment.html");
+    }
+    else if($fk1==3)
+    {
+        header("Location:payment.html");
+    }
+    else{
+        header("Location:index.html");
+    }
 }
-else{
-    echo "<script> alert ('Error: query was not Successful')</script>";
-    echo sql;
+else 
+{
+    echo "Error: ".$con->error;
 }
-
 ?>
