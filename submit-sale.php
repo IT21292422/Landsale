@@ -21,7 +21,7 @@
    <div class="saleForm">
        <!--//Form to input details-->
        <fieldset>
-
+       <input type="hidden" name="sid" value="<?php echo $_SESSION['user_id'];?>">
            <p>Title: <br>
                <input type="text" id="stitle"  name="stitle" placeholder="Enter the title" required >
            </p>
