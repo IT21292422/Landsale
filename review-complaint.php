@@ -6,7 +6,6 @@
       if(isset($_GET['id']))
       {
         {
-          echo  "success";
           $cID = $_GET["id"];
 
           //making sql query
@@ -24,7 +23,7 @@
         }
       }
       else{
-        echo "error!";
+        echo "Error loading Complaint!";
       }
 ?>
 
@@ -60,13 +59,29 @@
   <div>
     
   <center>
-      <div class="reviewPage">
-      <?php
+      <div class="reviewContainer ">
 
-        echo $row['description'];
-        echo $row['complaint_id'];
-        
-?>
+        <div class="cInfo"> Complaint ID: <?php echo $row["complaint_id"]?></div>
+        <div class="cInfo"> Reported By: <?php echo $row["user_id"]?></div>
+        <div class="cInfo"> Date of Complaint: <?php echo $row["create_date"]?></div>
+        <hr>
+        <div class="complaint"> Post ID: <?php echo $row["request_id"]?></div>
+        <div class="complaint"> Complaint Type: <?php echo $row["complaint_type"]?></div>
+        <div class="desc"> Description: <?php echo $row["description"]?></div>
+        <hr>
+
+        <label for="action">Select Action</label>
+        <select name="action" id="mAction" title="Please Select an Action" required >
+          <option value="warn">Warn User</option>
+          <option value="suspend">Suspend User</option>
+          <option value="ban">Ban User</option>
+          <option value="noAction">Ignore</option>
+        </select>
+
+        <label for="reviewed"></label>
+        <input type="button" id="reviewed" value="Mark as Reviewed">
+
+
       </div>
   </center> 
 </body>
