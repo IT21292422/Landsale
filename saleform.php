@@ -1,5 +1,10 @@
-<?php session_start(); ?>
-<!--NRH-->
+<!--IT21292668
+Nimeth Herath
+Center: Malabe
+Group: MLB_05.02_09-->
+
+<?php 
+session_start(); ?>
 <?php
 require 'php/includes/dbcon.php';//connecting to the database
 

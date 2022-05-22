@@ -1,4 +1,7 @@
-<!--NRH-->
+<!--IT21292668
+Nimeth Herath
+Center: Malabe
+Group: MLB_05.02_09-->
 <?php
 require_once('../includes/dbcon.php');
 //checking  if id is set or not then executing the given commands
