@@ -2,5 +2,5 @@
 echo "<script>alert('payment confirmed');</script>";
 ?>
 <?php
-header("Location:index.html");
+header("Location:index.php");
 ?>
