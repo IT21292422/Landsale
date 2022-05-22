@@ -9,7 +9,7 @@
           echo  "success";
           $_GET['id'];
 
-          $cID = $GET["id"];
+          $cID = $_GET["id"];
 
           //making sql query
           $sql = "SELECT * FROM request_complaints WHERE complaint_id=$cID";
@@ -22,7 +22,7 @@
           
           //closing connection
           //$con->close();
-          echo $row['complaint_id'];
+          echo var_dump($row);
         }
       }
       else{
