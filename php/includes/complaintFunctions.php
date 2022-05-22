@@ -7,40 +7,42 @@ function modAction($action, $uID)
         case "warn":
             warnUser($uID);
             alert ("Successfully warned user");
-            <script>
+            echo "<script>";
             echo "window.location = '../../complaint.php'";
-            </script>            
+            echo "</script>";     
             break;
 
         case "suspend":
             suspendUser($uID);
             alert ("Successfully suspended user");
-            <script>
+            echo "<script>";
             echo "window.location = '../../complaint.php'";
-            </script>
+            echo "</script>";         
             
             break;
 
         case "ban":
             banUser($uID);
             alert ("Successfully suspended user");
-            <script>
+            echo "<script>";
             echo "window.location = '../../complaint.php'";
-            </script>            break;
+            echo "</script>";
+            break;
 
         case "noAction":
             alert ("No action taken");
-            <script>
+            echo "<script>";
             echo "window.location = '../../complaint.php'";
-            </script>            break;
+            echo "</script>";
+            break;
 
         default: 
         alert ("No action selected");
-        <script>
+        echo "<script>";
         echo "window.location = '../../complaint.php'";
-        </script>    }
+        echo "</script>";
+    }
 }
-
 
 function suspendUser($uID)
 {
