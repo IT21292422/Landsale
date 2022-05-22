@@ -1,3 +1,9 @@
+<!--
+Name: M.D.M.C.L Wickramarathne
+IT Number: IT21294648
+Center: Malabe
+Group: MLB_05.02_09-->
+
 <?php session_start(); ?>
 <?php 
     //connecting to the DB
@@ -19,8 +25,8 @@
                     
                     echo "<script> alert ('Data added Successfully')</script>";
                     if (isset($_SERVER["HTTP_REFERER"])){
-            header("Location: " . $_SERVER["HTTP_REFERER"]);
-        }
+                        header("Location:../landsale/index.php");
+                    }
                 }
                 else
                 {
@@ -77,6 +83,8 @@
 
                 <center>
                     <input type="submit" value="SUBMIT" id="submitbtn">
+                    <label for="action" id=saction">Already have an account?</label>
+                    <a href="signin.php" id="signin">Sign in</a></label>
                 </center>
             </form>
             </div>

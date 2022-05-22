@@ -1,5 +1,10 @@
-<?php session_start(); ?>
-<!--NRH-->
+<!--IT21292668
+Nimeth Herath
+Center: Malabe
+Group: MLB_05.02_09-->
+
+<?php 
+session_start(); ?>
 <?php
 require 'php/includes/dbcon.php';//connecting to the database
 
@@ -37,14 +42,15 @@ if($con->query($sql))
     
     if($fk1==2)
     {
-        header("Location:payment.html");
+        header("Location:payment.php");
     }
     else if($fk1==3)
     {
-        header("Location:payment.html");
+        header("Location:payment.php");
     }
     else{
         header("Location:index.php");
+        echo "<script>alert('Form Submitted Successfully');</script>";
     }
 }
 else 

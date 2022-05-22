@@ -12,6 +12,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="styles\index.css">
     <link rel="stylesheet" href="styles\page-container.css">    
+    <script src="js/index.js"></script>
     <?php include_once('php/includes/common-css-js.php'); ?>
 </head>
 <body>
@@ -23,6 +24,47 @@
     <form class="search-form" action="index.php">
         <input type="search" name="search" id="search">
         <input type="submit" value="Search">
+        <input id='adv-search' type="button" value="advanced search" onclick="advancedSearch()">
+
+        <div class="advanced-search">
+            <div class="s-field">
+			<label class="hide" for="min_price">min_price</label>
+            <input class='hide' type="number" name="min_price" id="min_price"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="max_price">max_price</label>
+            <input class='hide' type="number" name="max_price" id="max_price"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="min_area">min_area</label>
+            <input class='hide' type="number" name="min_area" id="min_area"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="max_area">max_area</label>
+            <input class='hide' type="number" name="max_area" id="max_area"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="min_date">min_date</label>
+            <input class='hide' type="date" name="min_date" id="min_date"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="max_date">max_date</label>
+            <input class='hide' type="date" name="max_date" id="max_date"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="city">city</label>
+            <input class='hide' type="text" name="city" id="city"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="district">district</label>
+            <input class='hide' type="text" name="district" id="district"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="province">province</label>
+            <input class='hide' type="text" name="province" id="province"   disabled>
+			</div>
+
+        </div>
     </form>
 
     <div class="container">
@@ -93,25 +135,17 @@
                     $page = (int)$_GET['page'];
                     if ($page > 1)
                     {
-                        echo "<input type='button' value='Prev Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page - 1, $uri)."' \">";
+                        echo "<input type='button' class='page-btn' value='Prev Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page - 1, $uri)."' \">";
                     }
-                    echo "<input type='button' value='Next Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page + 1, $uri)."' \">";
+                    echo "<input type='button' class='page-btn' value='Next Page' onclick=\"window.location.href = '".preg_replace("/page=\d+/", 'page='.$page + 1, $uri)."' \">";
                 }
                 else{
-                    echo "<input type='button' value='Next Page' onclick=\"window.location.href = '".preg_replace("/php.?/",'php?page=2&', $uri)."' \">";
+                    echo "<input type='button' class='page-btn' value='Next Page' onclick=\"window.location.href = '".preg_replace("/php.?/",'php?page=2&', $uri)."' \">";
                     
                 }
             ?>
         </div>
     </div>
-
-
-    
-
-<div><a href="admin.php">Admin</a></div>
-<div><a href="complaint.php">complaint</a></div>
-<div><a href="saved-posts.php">saved posts page</a></div>
-<div><a href="review-complaint.php">review complaint</a></div>
 
     <?php
         include("php/templates/footer.php");
