@@ -7,8 +7,6 @@
       {
         {
           echo  "success";
-          $_GET['id'];
-
           $cID = $_GET["id"];
 
           //making sql query
@@ -22,7 +20,7 @@
           
           //closing connection
           //$con->close();
-          echo var_dump($row);
+          //echo var_dump($row);
         }
       }
       else{
@@ -65,7 +63,8 @@
       <div class="reviewPage">
       <?php
 
-        echo "<h4><?php echo" . $row['complaint_id'] . "</h4>";
+        echo $row['description'];
+        echo $row['complaint_id'];
         
 ?>
       </div>

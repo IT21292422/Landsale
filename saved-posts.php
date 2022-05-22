@@ -20,16 +20,25 @@
             //$sql1="SELECT sale_id, user_id FROM saved_sale";
 
 
-            //retrieving data from sale and request tables
-            $sql1="SELECT sale_id, title, location, description, city, district, province, price, land_area, address,
-            cover_photo, type_id, user_id, create_date FROM sale";
+            //retrieving complaint data for sale posts
+            $sql1="SELECT s.sale_id, title, location, c.description, city, district, province, price, land_area, address,
+            cover_photo, type_id, s.user_id, c.create_date 
+            FROM sale s, sale_complaints c 
+            WHERE s.sale_id=c.sale_id;";
 
-            $sql2="SELECT request_id, title, location, description, city, district, province, max_price,
-            min_price, max_area, min_area, distance, cover_photo, type_id, user_id, create_date FROM request";
+
+            //retrieving complaint data for request posts
+            $sql2="SELECT r.request_id, title, location, c.description, city, district, province, max_price, min_price, max_area, min_area, distance,
+            cover_photo, type_id, r.user_id, c.create_date 
+            FROM request r, request_complaints c 
+            WHERE r.request_id=c.request_id;";
 
             //executing query and storing data
             $sData=$con->query($sql1);
             $rData=$con->query($sql2);
+
+            //getting results in array
+            //$row= $rData->fetch_assoc();
     ?>
     <div class="card-container">
         <?php 
@@ -46,8 +55,10 @@
                 echo "No Data";
             }
 
-            if($rData->num_rows > 0)
-
+            
+            //if($rData->num_rows > 0 AND $row['r.user_id']=$_SESSION['user_id'])
+                if($rData->num_rows > 0)
+                
                 //printing request data as cards
                 foreach ($rData as $cardData)
                 {
