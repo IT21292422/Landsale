@@ -6,25 +6,30 @@ function modAction($action, $uID)
     {
         case "warn":
             warnUser($uID);
-            echo "Successfully warned user";
+            alert ("Successfully warned user");
+            echo "window.location = 'complaint.php'";
             break;
 
         case "suspend":
             suspendUser($uID);
-            echo "Successfully suspended user";
+            alert ("Successfully suspended user");
+            echo "window.location = '../../complaint.php'";
             break;
 
         case "ban":
             banUser($uID);
-            echo "Successfully suspended user";
+            alert ("Successfully suspended user");
+            echo "window.location = \"./../complaint.php\"";
             break;
 
         case "noAction":
-            echo "No action taken";
+            alert ("No action taken");
+            echo "window.location = \"./../complaint.php\"";
             break;
 
         default: 
-            echo "No action selected";
+        alert ("No action selected");
+        echo "window.location = \"./../complaint.php\"";
     }
 }
 
@@ -51,7 +56,7 @@ function banUser($uID)
 
         $sql = "UPDATE users SET account_status='banned' WHERE user_id=$uID";
                 
-        if($con->query($query))
+        if($con->query($sql))
         {
             echo "<script> alert ('Successfully Banned User')</script>";
         }
