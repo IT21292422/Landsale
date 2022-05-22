@@ -1,6 +1,7 @@
 <?php
       //connecting to the DB
       require 'php/includes/dbcon.php';
+      include_once('php/includes/complaintFunctions.php'); 
 
       //checking for data availability
       if(isset($_GET['id']))
@@ -36,6 +37,15 @@
           //echo var_dump($row);
         }
       }
+      elseif(isset($_POST["action"]))
+      {
+          echo $_POST["action"];
+          echo $_POST["user_id"];
+
+          modAction($_POST['action'], $_POST['user_id']);
+          reviewed($_POST['type']);
+          die();
+      }
       else{
         echo "Error loading Complaint!";
       }
@@ -48,7 +58,6 @@
         <?php 
 
           include_once('php/includes/common-css-js.php'); 
-          include_once('php/includes/complaintFunctions.php'); 
          ?>
         <script src="js/complaintFunctions.js"></script>
         
@@ -113,18 +122,11 @@
               <option value="noAction" id="none">Ignore</option>
           </select>
 
-          <input type="hidden" value=<?php $row["user_id"] ?>>
-          <input type="submit" id="reviewed" value="Mark as Reviewed" onclick="takeAction()">
+          <input type="hidden" name="user_id" value=<?php $row["user_id"] ?>>
+          <input type="submit" name="submit" id="reviewed" value="Mark as Reviewed" onclick="takeAction()">
 
 
-          <?php  if(isset($_POST["action"]))
-          {
-              echo $_POST["action"];
-              echo $row["user_id"];
-
-              modAction($_POST['action'], $_POST['user_id']);
-              reviewed($_POST['type']);
-          }?>
+          
 
       </form>
       </div>

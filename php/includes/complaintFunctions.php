@@ -2,7 +2,7 @@
 
 function modAction($action, $uID)
 {
-    switch(action)
+    switch($action)
     {
         case "warn":
             warnUser($uID);
@@ -31,9 +31,10 @@ function modAction($action, $uID)
 
 function suspendUser($uID)
 {
-    $sql = "UPDATE users SET account_status=\"Suspended\" WHERE user_id=$uID";
-                
-        if($con->query($query))
+    global $con;
+    $sql = "UPDATE users SET account_status='suspended' WHERE user_id=$uID";
+    
+        if($con->query($sql))
         {
              echo "<script> alert ('Successfully Suspended User')</script>";
         }
@@ -45,7 +46,9 @@ function suspendUser($uID)
         
 function banUser($uID)
     {
-        $sql = "UPDATE users SET account_status=\"Banned\" WHERE user_id=$uID";
+        global $con;
+
+        $sql = "UPDATE users SET account_status='banned' WHERE user_id=$uID";
                 
         if($con->query($query))
         {
@@ -59,6 +62,8 @@ function banUser($uID)
 
 function reviewed()
 {
-    $sql = "UPDATE users SET account_status=\"Banned\" WHERE user_id=$uID";
+    global $con;
+
+    $sql = "UPDATE users SET account_status='banned' WHERE user_id=$uID";
 }
 ?>
