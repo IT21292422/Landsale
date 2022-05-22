@@ -61,6 +61,8 @@
           include_once('php/includes/common-css-js.php'); 
          ?>
         <script src="js/complaintFunctions.js"></script>
+        <link rel="stylesheet" href="styles/complaint-review.css">
+
         
     </head>
   
@@ -110,13 +112,13 @@
         ?>
 
 
-        <div class="complaint"> Complaint Type: <?php echo $row["complaint_type"]?></div>
+        <div class="complaint2"> Complaint Type: <?php echo $row["complaint_type"]?></div>
         <div class="desc"> Description: <?php echo $row["description"]?></div>
         <hr>
 
       <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        <label for="action">Select Action</label>
-          <select name="action" id="mAction" title="Please Select an Action" required >
+        <label for="action" id=saction">SELECT AN ACTION</label>
+          <select name="action" id="mAction" class="maction" title="Please Select an Action" required >
               <option value="warn" id="warn">Warn User</option>
               <option value="suspend" id="suspend">Suspend User</option>
               <option value="ban" id="ban">Ban User</option>
@@ -124,7 +126,7 @@
           </select>
 
           <input type="hidden" name="user_id" value=<?php echo $row["user_id"]; ?>>
-          <input type="submit" name="submit" id="reviewed" value="Mark as Reviewed" onclick="takeAction()">
+          <input type="submit" name="submit" id="reviewed" class="sbbtn" value="Mark as Reviewed" onclick="takeAction()">
 
 
           

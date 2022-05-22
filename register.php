@@ -42,38 +42,38 @@
         ?>
 		<hr>
 
-            <center><h1 id="cheader">Registration Form</h1></center>
             <div class="icontainer">
+            <center><h1 id="cheader">REGISTRATION FORM</h1></center>
             <form onsubmit="return checkPassword()" method="post" class="regform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
                 <label for="fname" class="label">First Name<br></label>
-				<input type="text" id="fname" name="fname" placeholder="First Name" required><br><br>
+				<input type="text" id="fname" name="fname" class="inputBox" placeholder="First Name" required><br><br>
 				
 				<label for="lName" class="label">Last Name<br></label>
-				<input type="text" id="lName" name="lname" placeholder="Last Name" required><br><br>
+				<input type="text" id="lName" name="lname" class="inputBox" placeholder="Last Name" required><br><br>
 
                 <label for="email" class="label">Email<br></label>
-				<input type="text" id="email" name="email" placeholder="abc@xyz.com" pattern="[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,3}" required><br><br>
+				<input type="text" id="email" name="email" class="inputBox" placeholder="abc@xyz.com" pattern="[a-z0-9._%+-]+@[a-z0-9]+\.[a-z]{2,3}" required><br><br>
 				
                 <label for="about" class="label">About<br></label>
-				<textarea id="about" rows="4" cols="25" name="about" placeholder="Add a small description about yourself"></textarea><br><br>
+				<textarea id="about" rows="4" cols="25" name="about" class="inputBox" placeholder="Add a small description about yourself"></textarea><br><br>
 
                 <label for="photo" class="label">Upload a profile picture</label>
-                <input type="file" name="pPhoto" id="photo" ><br><br>
+                <input type="file" name="pPhoto" class="inputBox" id="photo" ><br><br>
 
-                <label for="pass" class="label">Password</label><br>
-                <input type="password" name="pass" id="pass" pattern="(?=.+\d)(?=.+[a-z])(?=.+[A-Z]).{8,20}" required
+                <label for="pass" class="label">Password</label>
+                <input type="password" name="pass" id="pass" class="inputBox" pattern="(?=.+\d)(?=.+[a-z])(?=.+[A-Z]).{8,20}" required
                 title="Password should be leaset 8 characters long and include at least
-                One lowercase letter, One Uppercase letter and One number" ><br><br>
+                One lowercase letter, One Uppercase letter and One number" ><br>
 
-                <label for="repass" class="label">Re-Enter Password</label><br>
-                <input type="password" name="pass" id="repass"><br><br>
+                <label for="repass" class="label">Re-Enter Password</label>
+                <input type="password" name="pass" class="inputBox" id="repass"><br>
 
-                <label for="ToS" class="label">Accept Privacy Policy and Terms & Conditions</label><br>
-                <input type="checkbox" class="tos" name="tos" onclick="enableButton()"><br><br>
+                <label for="ToS" class="label">Accept Privacy Policy and Terms & Conditions</label>
+                <input type="checkbox" class="tos" class="inputBox" value=" name="tos" onclick="enableButton()"><br><br>
 
                 <center>
-                    <input type="submit" value="submit" id="submitbtn">
+                    <input type="submit" value="SUBMIT" id="submitbtn">
                 </center>
             </form>
             </div>
