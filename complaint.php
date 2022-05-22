@@ -38,7 +38,6 @@ if ($result2->num_rows > 0) {
     echo("<th>Complaint ID</th>");
     echo("<th>Complaint Type</th>");
     echo("<th>Request ID</th>");
-   // echo("<th>Created date</th>");
     echo("<th>User ID</th>");
     echo("<th>Description</th>");
     echo("<th>Reviewed</th>");
@@ -50,7 +49,6 @@ if ($result2->num_rows > 0) {
         echo "<td>".$row["complaint_id"]."</td>";
         echo "<td>".$row["complaint_type"]."</td>";
         echo "<td>".$row["request_id"]."</td>";
-       // echo "<td>".$row["create date"]."</td>";
         echo "<td>".$row["user_id"]."</td>";
         echo "<td>".$row["description"]."</td>";
     
@@ -93,7 +91,6 @@ if ($result2->num_rows > 0) {
     echo("<th>Complaint ID</th>");
     echo("<th>Complaint Type</th>");
     echo("<th>Sale ID</th>");
-   // echo("<th>Created date</th>");
     echo("<th>User ID</th>");
     echo("<th>Description</th>");
     echo("<th>Reviewed</th>");
@@ -105,7 +102,6 @@ if ($result2->num_rows > 0) {
         echo "<td>".$row["complaint_id"]."</td>";
         echo "<td>".$row["complaint_type"]."</td>";
         echo "<td>".$row["sale_id"]."</td>";
-       // echo "<td>".$row["create date"]."</td>";
         echo "<td>".$row["user_id"]."</td>";
         echo "<td>".$row["description"]."</td>";
 
