@@ -18,6 +18,9 @@
                 {
                     
                     echo "<script> alert ('Data added Successfully')</script>";
+                    if (isset($_SERVER["HTTP_REFERER"])){
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+        }
                 }
                 else
                 {
