@@ -45,8 +45,13 @@
 <html>
 
     <head>
-        <?php include_once('php/includes/common-css-js.php'); ?>
-        <script src="js/complaintFunctions.js"></script> 
+        <?php 
+
+          include_once('php/includes/common-css-js.php'); 
+          include_once('php/includes/complaintFunctions.php'); 
+         ?>
+        <script src="js/complaintFunctions.js"></script>
+        
     </head>
   
 <body>
@@ -110,7 +115,8 @@
           <?php  if(isset($_POST["action"]))
           {
               echo $_POST['action'];
-
+              echo $_POST['user_id'];
+              modAction($_POST['action'], $_POST['user_id']);
           }?>
 
       </form>

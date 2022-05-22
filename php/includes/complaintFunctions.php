@@ -1,13 +1,30 @@
 <?php 
 
-function modAction(action)
+function modAction($action, $uID)
 {
     switch(action)
     {
-        case "Warn":
-            ///
+        case "warn":
+            warnUser($uID);
+            echo "Successfully warned user";
             break;
-        case: "Suspend"
+
+        case "suspend":
+            suspendUser($uID);
+            echo "Successfully suspended user";
+            break;
+
+        case "ban":
+            banUser($uID);
+            echo "Successfully suspended user";
+            break;
+
+        case "noAction":
+            echo "No action taken";
+            break;
+
+        default: 
+            echo "No action selected";
     }
 }
 
@@ -39,7 +56,4 @@ function banUser($uID)
             echo "<script> alert ('Oops! Something went wrong')</script>";
         }
     }
-        
-
-
 ?>
