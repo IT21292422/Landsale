@@ -81,13 +81,13 @@
         <div class="cInfo"> Date of Complaint: <?php echo $row["create_date"]?></div>
         <hr>
 
-        <? php if($type="sale") 
+        <?php if($type="sale") 
         {
-          echo "<div class=\"complaint\"> Post ID:" .$row['sale_id'] . "</div>"
+          echo "<div class=\"complaint\"> Post ID:" .$row['sale_id'] . "</div>";
         }
         else
         {
-          echo "<div class=\"complaint\"> Post ID:" $row["request_id"] "</div>"
+          echo "<div class=\"complaint\"> Post ID:". $row["request_id"] ."</div>";
         }
         ?>
 
