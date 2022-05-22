@@ -1,8 +1,4 @@
-<html>
-    <head>
-        <title>Edit Request</title>
-        <link rel="stylesheet" href="styles/reqownForm.css">
-        <?php
+<?php
         require 'php/includes/dbcon.php';
         $id=$_GET['id'];
         $sql="SELECT * FROM request where request_id='$id'";
@@ -25,9 +21,20 @@
                 }
             }
         }
-        ?>
-    </head>
-    <body class="form">
+?>
+<html>
+<head>
+    <title>Edit Request</title>
+    <link rel="stylesheet" href="styles/reqownForm.css">
+    <?php 
+        include ('php/includes/common-css-js.php'); 
+    ?>
+</head>
+<body>
+<?php
+    include ("php/templates/header.php");
+?>
+<div class="form">
     <div class="RequestForm">    
         <div class="Title">Edit Request Form</div>
         <form method="POST" action="edit-req.php" enctype="multipart/form-data">
@@ -105,10 +112,14 @@
           <li>Budget plan is the Budget Package which is quite similar to the Basic Plan but with some additional functionalities with a Price of Rs.300.00</li><br>
           <li>Premium plan is the Premium Version to make your post featured in the home page with a Price of Rs.1000.00</li>
         </ul>
-    </div>    
-
-           
+    </div> 
+</div>       
     </form>
+<?php
+    include ("php/templates/footer.php");
+?>
+
     </body>
+
 </html>
 
