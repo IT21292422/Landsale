@@ -23,7 +23,7 @@
     <h1 style='text-align:center;'>Update user details</details></h1>
 
     <div class="hcenter">
-        
+        <div class="texxst"> 
         <form method="POST" action="php\controllers\admin-ctrl.php">
             <label class="admin">User ID :</label>
             <input class="admins" type="text" name="user_id" ><br><br>
@@ -48,8 +48,8 @@
             <label class="admin">About:</label>
             <input class="admins" type="text" name="about"><br><br>
             <input type="submit" name="Update" value="Update">
-
         </form>
+        </div>
     </div>
 
 
