@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!--NRH-->
 <?php
 //checking  if id is set or not
@@ -32,14 +31,16 @@ $values=$result->fetch_assoc();//fetches result row as an associative array
     
 </head>
 <body>
+<link rel="stylesheet" href="styles/sale-req.css">
     <?php
         include("php/templates/header.php");
     ?>
 
 <h3>Edit Sale </h3>
-   
+  <div  text-align="center">
    <form  method="post" action="php/controllers/edit-sale-ctrl.php?id=<?= $id?>"><!--clicking submit executes edit-sale-ctrl.php-->
 
+   <div class="saleForm">
        <!--//Form to input details-->
        <fieldset>
 
@@ -73,15 +74,16 @@ $values=$result->fetch_assoc();//fetches result row as an associative array
            <p>Upload photo : <input type="file" name="sphoto" id="sphoto" >
 
        </fieldset>
+</div>
        <br>
        <input type="submit" value="Update"  name="submit" >
        <button>
-   <a  href="php/controllers/delete-sale-ctrl.php?id=<?= $id?>">Delete2</a>
-</button>
+            <a  href="php/controllers/delete-sale-ctrl.php?id=<?= $id?>">Delete</a>
+        </button>
        
    </form>
-   
-
+</div> 
+<br><br>
     <?php
         include("php/templates/footer.php");
     ?>
