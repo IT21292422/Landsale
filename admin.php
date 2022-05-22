@@ -19,9 +19,9 @@
   <?php
         include("php/templates/header.php");
         ?> 
-    <style>
 
-        </style>
+    <h1 style='text-align:center;'>Update user details</details></h1>
+
     <div class="hcenter">
         
         <form method="POST" action="php\controllers\admin-ctrl.php">
