@@ -8,6 +8,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="styles\index.css">
     <link rel="stylesheet" href="styles\page-container.css">    
+    <script src="js/index.js"></script>
 
     <?php include_once('php/includes/common-css-js.php'); ?>
 </head>
@@ -20,6 +21,47 @@
     <form class="search-form" action="requests.php">
         <input type="search" name="search" id="search">
         <input type="submit" value="Search">
+        <input id='adv-search' type="button" value="advanced search" onclick="advancedSearch()">
+
+        <div class="advanced-search">
+            <div class="s-field">
+			<label class="hide" for="min_price">min price</label>
+            <input class='hide' type="number" name="min_price" id="min_price"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="max_price">max price</label>
+            <input class='hide' type="number" name="max_price" id="max_price"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="min_area">min area</label>
+            <input class='hide' type="number" name="min_area" id="min_area"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="max_area">max area</label>
+            <input class='hide' type="number" name="max_area" id="max_area"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="min_date">min date</label>
+            <input class='hide' type="date" name="min_date" id="min_date"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="max_date">max date</label>
+            <input class='hide' type="date" name="max_date" id="max_date"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="city">city</label>
+            <input class='hide' type="text" name="city" id="city"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="district">district</label>
+            <input class='hide' type="text" name="district" id="district"   disabled>
+			</div>
+            <div class="s-field">
+			<label class="hide" for="province">province</label>
+            <input class='hide' type="text" name="province" id="province"   disabled>
+			</div>
+
+        </div>
     </form>
 
     <div class="container">

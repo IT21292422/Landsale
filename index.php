@@ -28,27 +28,27 @@
 
         <div class="advanced-search">
             <div class="s-field">
-			<label class="hide" for="min_price">min_price</label>
+			<label class="hide" for="min_price">min price</label>
             <input class='hide' type="number" name="min_price" id="min_price"   disabled>
 			</div>
             <div class="s-field">
-			<label class="hide" for="max_price">max_price</label>
+			<label class="hide" for="max_price">max price</label>
             <input class='hide' type="number" name="max_price" id="max_price"   disabled>
 			</div>
             <div class="s-field">
-			<label class="hide" for="min_area">min_area</label>
+			<label class="hide" for="min_area">min area</label>
             <input class='hide' type="number" name="min_area" id="min_area"   disabled>
 			</div>
             <div class="s-field">
-			<label class="hide" for="max_area">max_area</label>
+			<label class="hide" for="max_area">max area</label>
             <input class='hide' type="number" name="max_area" id="max_area"   disabled>
 			</div>
             <div class="s-field">
-			<label class="hide" for="min_date">min_date</label>
+			<label class="hide" for="min_date">min date</label>
             <input class='hide' type="date" name="min_date" id="min_date"   disabled>
 			</div>
             <div class="s-field">
-			<label class="hide" for="max_date">max_date</label>
+			<label class="hide" for="max_date">max date</label>
             <input class='hide' type="date" name="max_date" id="max_date"   disabled>
 			</div>
             <div class="s-field">

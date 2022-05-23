@@ -92,6 +92,7 @@
         
     }
 
+    //check validity of email and password
     function checkAccount($email, $pwd)
     {   
         global $con;
@@ -107,6 +108,7 @@
         return $toReturn;
     }
 
+    //get basic user details for signin
     function getBasicUserDetails($userId)
     {
         global $con;
@@ -120,6 +122,7 @@
         return $results->fetch_assoc();
     }
     
+    //check if an email is alredy registered
     function doesEmailExist($email, $userId=NULL)
     {
         global $con;
@@ -134,6 +137,7 @@
         return True;
     }
 
+    //get sale details
     function getSale($id, $userId=NULL)   //get sale details from db
     {
         global $con;
@@ -215,6 +219,7 @@
         return $sale;
     }
 
+    //get request details
     function getRequest($id, $userId=NULL)   //get request details from db
     {
         global $con;
@@ -281,6 +286,7 @@
         return $request;
     }
 
+    //save a sale complaint
     function addSaleComplaint($values, $userId)
     {
         global $con;
@@ -297,6 +303,7 @@
         return False;
     }
 
+    //save a request complaint
     function addRequestComplaint($values, $userId)
     {
         global $con;
@@ -313,6 +320,7 @@
         return False;
     }
 
+    //save a sale
     function saveSale($values)
     {
         global $con;
@@ -341,6 +349,7 @@
         return True; //todo check error
     }
 
+    //save a request
     function saveRequest($values)
     {
         global $con;
@@ -369,6 +378,7 @@
         return True; //todo check error
     }
 
+    //get details of a user
     function getUser($userId)
     {
         global $con;
@@ -416,6 +426,7 @@
 
     }
 
+    //update user details
     function updateUser($values, $userId)
     {
         global $con;
@@ -444,6 +455,7 @@
         return False;
     }
 
+    //delete a user and all the related information
     function deleteUser($userId)
     {
         global $con;
@@ -467,6 +479,7 @@
 
     }
 
+    //search for sales
     function searchSale($searchString='', $startFrom=0)
     {
         global $con;
@@ -497,6 +510,7 @@
         return $toReturn;
     }
 
+    //search for requests
     function searchRequest($searchString='', $startFrom=0)
     {
         global $con;
@@ -529,6 +543,7 @@
         
     }
 
+    //get a list of sales
     function getSales($startFrom=0)
     {
         global $con;
@@ -551,6 +566,7 @@
         
     }
 
+    //get a list of requests
     function getRequests($startFrom=0)
     {
         global $con;
@@ -574,15 +590,7 @@
     }
     
 
-    function deleteWarning($userId)
-    {
-        global $con;
-
-        $sql = "delete from users_warnings where user_id = $userId;";
-
-        $con->query($sql);
-    }
-
+    //advanced search for sales
     function advancedSearchSale($values, $startFrom = 0)
     {
         global $con;
@@ -598,6 +606,8 @@
         if (isset($values['city']) and !empty($values['city'])) $sql .= 'city = \'' . $values['city'] . '\' and ';
         if (isset($values['district']) and !empty($values['district'])) $sql .= 'district = \'' . $values['district'] . '\' and ';
         if (isset($values['province']) and !empty($values['province'])) $sql .= 'province = \'' . $values['province'] . '\' and ';
+        if (isset($values['search']) and !empty($values['search'])) $sql .= " match(title, city, district, province) against ('". $values['search']."') and ";
+
         $sql .= "true LIMIT $startFrom, 30;";
         $results = $con->query($sql);
         $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
@@ -606,4 +616,38 @@
 
     }
 
+    //advanced search for requests
+    function advancedSearchRequest($values, $startFrom = 0)
+    {
+        global $con;
+
+        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where ";
+
+        if (isset($values['min_price']) and !empty($values['min_price'])) $sql .= 'min_price > ' . $values['min_price'] . ' and ';
+        if (isset($values['max_price']) and !empty($values['max_price'])) $sql .= 'max_price < ' . $values['max_price'] . ' and ';
+        if (isset($values['min_area']) and !empty($values['min_area'])) $sql .= 'min_area > ' . $values['min_area'] . ' and ';
+        if (isset($values['max_area']) and !empty($values['max_area'])) $sql .= 'max_area < ' . $values['max_area'] . ' and ';
+        if (isset($values['min_date']) and !empty($values['min_date'])) $sql .= 'create_date > ' . $values['min_date'] . ' and ';
+        if (isset($values['max_date']) and !empty($values['max_date'])) $sql .= 'create_date < ' . $values['max_date'] . ' and ';
+        if (isset($values['city']) and !empty($values['city'])) $sql .= 'city = \'' . $values['city'] . '\' and ';
+        if (isset($values['district']) and !empty($values['district'])) $sql .= 'district = \'' . $values['district'] . '\' and ';
+        if (isset($values['province']) and !empty($values['province'])) $sql .= 'province = \'' . $values['province'] . '\' and ';
+        if (isset($values['search']) and !empty($values['search'])) $sql .= " match(title, city, district, province) against ('". $values['search']."') and ";
+        $sql .= "true LIMIT $startFrom, 30;";
+        $results = $con->query($sql);
+        $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
+        $toReturn['count'] = 0;
+        return $toReturn;
+
+    }
+
+    //delete warnings of a user
+    function deleteWarning($userId)
+    {
+        global $con;
+
+        $sql = "delete from users_warnings where user_id = $userId;";
+
+        $con->query($sql);
+    }
 ?>

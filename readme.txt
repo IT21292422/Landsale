@@ -1,7 +1,7 @@
 Project Group Id : MLB_05.02_09
 Batch No : 5.2
 Topic : online land sale system
-Project Link : 
+Project Link : https://mysliit-my.sharepoint.com/:u:/g/personal/it21294198_my_sliit_lk/EYz4k0tXlXZLrPv4fk4xPasBgEiLfCJJ2F2f-tN2r7d0zA?e=WKVzsj
 
 
 Group Contribution and Details
