@@ -13,7 +13,8 @@ Group: MLB_05.02_09
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>     
+    <!-- linking css files etc-->
     <?php include_once('php/includes/common-css-js.php'); ?>
     <link rel="stylesheet" href="styles\index.css">
 </head>
@@ -24,8 +25,6 @@ Group: MLB_05.02_09
             include("php/templates/header.php");
 
             //retrieving saved post data from the DB
-            //$sql1="SELECT sale_id, user_id FROM saved_sale";
-
 
             //retrieving complaint data for sale posts
             $sql1="SELECT s.sale_id, title, location, c.description, city, district, province, price, land_area, address,
@@ -70,7 +69,7 @@ Group: MLB_05.02_09
                 //printing request data as cards
                 foreach ($rData as $cardData)
                 {
-                    include('php\templates\request-card.php');
+                    include('php\templates\request-card.php'); //linking footer
                 }
             else
             {
