@@ -17,7 +17,7 @@ Group: MLB_05.02_09-->
           $cID = $_GET["id"];
           $type = $_GET["type"];
 
-          //making sql query
+          //making sql query based on type
           if($type="sale")
           {
             $sql = "SELECT * FROM sale_complaints WHERE complaint_id=$cID";
@@ -40,11 +40,10 @@ Group: MLB_05.02_09-->
           //results in array
           $row= $result->fetch_assoc();
           
-          //closing connection
-          //$con->close();
-          //echo var_dump($row);
+
+
         }
-      }
+      }//keeping session
       elseif(isset($_POST["action"]))
       {
           echo $_POST["action"];
@@ -99,7 +98,7 @@ Group: MLB_05.02_09-->
 
   ?>
 
-    
+    <!-- printing details-->
   <center>
       <div class="reviewContainer ">
 
@@ -132,6 +131,8 @@ Group: MLB_05.02_09-->
               <option value="noAction" id="none">Ignore</option>
           </select>
 
+
+              <!-- review button-->
           <input type="hidden" name="user_id" value=<?php echo $row["user_id"]; ?>>
           <input type="submit" name="submit" id="reviewed" class="sbbtn" value="Mark as Reviewed" onclick="takeAction()">
 
@@ -144,7 +145,7 @@ Group: MLB_05.02_09-->
       
   </center> 
   <?php
-        include("php/templates/footer.php");
+        include("php/templates/footer.php"); //linking footer
       ?>
 </body>
 

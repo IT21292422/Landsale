@@ -51,10 +51,11 @@ Group: MLB_05.02_09-->
 	<body>
 		<!-- adding a header (c)-->
         <?php
-            include("php/templates/header.php");
+            include("php/templates/header.php"); //connecting to the db
         ?>
 		<hr>
 
+        <!--getting user details through input boxes-->
             <div class="icontainer">
             <center><h1 id="cheader">REGISTRATION FORM</h1></center>
             <form onsubmit="return checkPassword()" method="post" class="regform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -86,6 +87,8 @@ Group: MLB_05.02_09-->
                 <input type="checkbox" class="tos" class="inputBox" value=" name="tos" onclick="enableButton()"><br><br>
 
                 <center>
+
+                    <!--submit boxes-->
                     <input type="submit" value="SUBMIT" id="submitbtn">
                     <label for="action" id=saction">Already have an account?</label>
                     <a href="signin.php" id="signin">Sign in</a></label>
@@ -93,6 +96,7 @@ Group: MLB_05.02_09-->
             </form>
             </div>
 		<hr>
-        <?php include("php/templates/footer.php"); ?>
+        <?php include("php/templates/footer.php"); ?>   <!--linking the footer-->
+
 	</body>
 </html>
