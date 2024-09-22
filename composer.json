@@ -1,0 +1,19 @@
+{
+    "name": "it21292422/landsale",
+    "autoload": {
+        "psr-4": {
+            "It21292422\\Landsale\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "IT21292422",
+            "email": "it21292422@my.sliit.lk"
+        }
+    ],
+    "require": {
+        "league/oauth2-client": "^2.7",
+        "league/oauth2-google": "^4.0",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
