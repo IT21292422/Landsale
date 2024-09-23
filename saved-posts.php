@@ -1,11 +1,11 @@
-<!--
-Name: M.D.M.C.L Wickramarathne
-IT Number: IT21294648
-Center: Malabe
-Group: MLB_05.02_09
--->
-
-<?php session_start(); ?>
+<?php 
+    session_start([
+        'cookie_lifetime' => 0, // Session lasts until browser is closed
+        'cookie_httponly' => true, // Prevents JavaScript access to the session cookie
+        'cookie_secure' => true,  // Ensures the cookie is only sent over HTTPS
+        'cookie_samesite' => 'Lax', // Helps mitigate CSRF attacks
+    ]);
+?>
 <?php
       //connecting to the DB
       require 'php/includes/dbcon.php';
