@@ -111,17 +111,20 @@
     }
 
     //get basic user details for signin
+    // SQL injection fixed by using prepared statements
     function getBasicUserDetails($userId)
     {
         global $con;
 
-        $sql = "select user_id, first_name, last_name, profile_photo, account_type from users where user_id = $userId";
+        $sql = "SELECT user_id, first_name, last_name, profile_photo, account_type FROM users WHERE user_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        $results = $con->query($sql);
+        if ($result->num_rows < 1) return NULL;
 
-        if ($results->num_rows < 1) return NULL;
-
-        return $results->fetch_assoc();
+        return $result->fetch_assoc();
     }
     
     //check if an email is alredy registered
