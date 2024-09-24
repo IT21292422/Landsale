@@ -813,12 +813,16 @@
     }
 
     //delete warnings of a user
+    // SQL injection fixed by using prepared statement
     function deleteWarning($userId)
     {
         global $con;
 
-        $sql = "delete from users_warnings where user_id = $userId;";
+        $sql = "DELETE FROM users_warnings WHERE user_id = ?";
+        $stmt = $con->prepare($sql);
 
-        $con->query($sql);
+        $stmt->bind_param('i', $userId);
+        
+        $stmt->execute();
     }
 ?>
