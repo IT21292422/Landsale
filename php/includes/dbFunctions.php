@@ -230,73 +230,72 @@
     }
 
     //get request details
+    // SQL injection fixed by using prepared statement
     function getRequest($id, $userId=NULL)   //get request details from db
     {
         global $con;
 
-        //get request details
-        $sql = "select * from request where request_id = $id";
-        $results = $con->query($sql);
+        $sql = "SELECT * FROM request WHERE request_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        //if request doesnt exist
-        if ($results and $results->num_rows < 1) return False;
+        if ($result->num_rows < 1) return False;
 
-        //fetch request details
-        $request = $results->fetch_assoc();
+        $request = $result->fetch_assoc();
 
-        //get request phone numbers
-        $sql = "select phone from request_phone where request_id = $id";
-        $results = $con->query($sql);
+        // Get request phone numbers
+        $sql = "SELECT phone FROM request_phone WHERE request_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $phone = array();
-        if ($results and $results->num_rows > 0)
-        {
-            $table = $results->fetch_all(MYSQLI_NUM);
-            foreach ($table as $row)
-            {
-                $phone[] = $row[0];
-            }
+        while ($row = $result->fetch_array()) {
+            $phone[] = $row[0];
         }
         $request['phone'] = $phone;
 
-        //get requester details
-        $sql = "select * from users where user_id = ". $request['user_id'];
-        $results = $con->query($sql);
+        // Get requester details
+        $sql = "SELECT * FROM users WHERE user_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $request['user_id']);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $request['seller'] = NULL;
-        if ($results and $results->num_rows > 0)        //if seller exists
-        {
-            $request['seller'] = $results->fetch_assoc();
+        if ($result->num_rows > 0) {
+            $request['seller'] = $result->fetch_assoc();
         }
 
-        //check if the request is saved
+        // Check if the request is saved
         $request['saved'] = False;
-        if ($userId !== NULL)
-        {
-            $sql = "select * from saved_request where user_id = $userId and request_id = $id;";
-            $results = $con->query($sql);
-            if ($results and $results->num_rows > 0)        //if request is saved
-            {
+        if ($userId !== NULL) {
+            $sql = "SELECT * FROM saved_request WHERE user_id = ? AND request_id = ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("ii", $userId, $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
                 $request['saved'] = True;
             }
+        }
 
-        }
-        
-        //get seller contacts
-        //get request phone numbers
-        $sql = "select phone from users_phone where user_id = ". $request['seller']['user_id']. " limit 1";
-        $results = $con->query($sql);
-        if ($results and $results->num_rows > 0)        //if request is saved
-        {
-            $request['seller']['contact'] = $results->fetch_array()[0];
-        }
-        else
-        {
+        // Get seller contacts
+        $sql = "SELECT phone FROM users_phone WHERE user_id = ? LIMIT 1";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $request['seller']['user_id']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $request['seller']['contact'] = $result->fetch_array()[0];
+        } else {
             $request['seller']['contact'] = NULL;
         }
 
         return $request;
     }
 
-    //save a sale complaint
     function addSaleComplaint($values, $userId)
     {
         global $con;
