@@ -593,26 +593,32 @@
     }
 
     //get a list of sales
+    // SQL injection fixed by using prepared statement
     function getSales($startFrom=0)
     {
         global $con;
 
         $toReturn = array();
 
-        $sql = "select count(*) as num from sale;";     
+        $sql = "SELECT COUNT(*) AS num FROM sale;";
         $results = $con->query($sql);
         $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
-        $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where type_id = 1 limit $startFrom, 15;";     
-        $results = $con->query($sql);
+        $sql = "SELECT sale_id, price, district, city, title, land_area, create_date, cover_photo FROM sale WHERE type_id = 1 LIMIT ?, 15;";     
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $startFrom);
+        $stmt->execute();
+        $results = $stmt->get_result();
         $toReturn['top'] = $results->fetch_all(MYSQLI_ASSOC);
 
-        $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where type_id <> 1 limit $startFrom, 15;";     
-        $results = $con->query($sql);
+        $sql = "SELECT sale_id, price, district, city, title, land_area, create_date, cover_photo FROM sale WHERE type_id <> 1 LIMIT ?, 15;";     
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $startFrom);
+        $stmt->execute();
+        $results = $stmt->get_result();
         $toReturn['posts'] = $results->fetch_all(MYSQLI_ASSOC);
 
         return $toReturn;
-        
     }
 
     //get a list of requests
