@@ -364,6 +364,7 @@
     }
 
     //save a request
+    // SQL injection fixed by using prepared statement
     function saveRequest($values)
     {
         global $con;
@@ -377,7 +378,11 @@
                 break;
 
             case 'unsave':
-                $sql = 'delete from saved_request where user_id = ' . $values['user_id'] . ' and request_id = ' . $values['request_id'];
+                // Using prepared statements to prevent SQL injection
+                $stmt = $con->prepare('DELETE FROM saved_request WHERE user_id = ? AND request_id = ?');
+                $stmt->bind_param('ii', $values['user_id'], $values['request_id']);
+                $stmt->execute();
+                return $stmt->affected_rows > 0; // Check if rows were deleted
                 break;
 
             default:
