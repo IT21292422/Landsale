@@ -330,6 +330,7 @@
     }
 
     //save a sale
+    // SQL injection fixed by using prepared statement
     function saveSale($values)
     {
         global $con;
@@ -343,7 +344,11 @@
                 break;
 
             case 'unsave':
-                $sql = 'delete from saved_sale where user_id = ' . $values['user_id'] . ' and sale_id = ' . $values['sale_id'];
+                // Using prepared statements to prevent SQL injection
+                $stmt = $con->prepare('DELETE FROM saved_sale WHERE user_id = ? AND sale_id = ?');
+                $stmt->bind_param('ii', $values['user_id'], $values['sale_id']);
+                $stmt->execute();
+                return $stmt->affected_rows > 0; // Check if rows were deleted
                 break;
 
             default:
