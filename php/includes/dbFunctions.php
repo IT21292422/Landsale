@@ -151,81 +151,78 @@
     }
 
     //get sale details
+    // SQL injection fixed by using prepared statement
     function getSale($id, $userId=NULL)   //get sale details from db
     {
         global $con;
 
-        //get sale details
-        $sql = "select * from sale where sale_id = $id";
-        $results = $con->query($sql);
+        $sql = "SELECT * FROM sale WHERE sale_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        //if sale doesnt exist
-        if ($results and $results->num_rows < 1) return False;
+        if ($result->num_rows < 1) return False;
 
-        //fetch sale details
-        $sale = $results->fetch_assoc();
+        $sale = $result->fetch_assoc();
 
-        //get sale phone numbers
-        $sql = "select phone from sale_phone where sale_id = $id";
-        $results = $con->query($sql);
+        // Get sale phone numbers
+        $sql = "SELECT phone FROM sale_phone WHERE sale_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $phone = array();
-        if ($results and $results->num_rows > 0)
-        {
-            $table = $results->fetch_all(MYSQLI_NUM);
-            foreach ($table as $row)
-            {
-                $phone[] = $row[0];
-            }
+        while ($row = $result->fetch_array()) {
+            $phone[] = $row[0];
         }
         $sale['phone'] = $phone;
 
-        //get sale images
-        $sql = "select media from sale_media where sale_id = $id";
-        $results = $con->query($sql);
+        // Get sale images
+        $sql = "SELECT media FROM sale_media WHERE sale_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $images = array();
-        if ($results and $results->num_rows > 0)
-        {
-            $table = $results->fetch_all(MYSQLI_NUM);
-            foreach ($table as $row)
-            {
-                $images[] = $row[0];
-            }
+        while ($row = $result->fetch_array()) {
+            $images[] = $row[0];
         }
-       
         $sale['images'] = $images;
 
-        //get seller details
-        $sql = "select * from users where user_id = ". $sale['user_id'];
-        $results = $con->query($sql);
+        // Get seller details
+        $sql = "SELECT * FROM users WHERE user_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $sale['user_id']);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $sale['seller'] = NULL;
-        if ($results and $results->num_rows > 0)        //if seller exists
-        {
-            $sale['seller'] = $results->fetch_assoc();
+        if ($result->num_rows > 0) {
+            $sale['seller'] = $result->fetch_assoc();
         }
 
-        //check if the sale is saved
+        // Check if the sale is saved
         $sale['saved'] = False;
-        if ($userId !== NULL)
-        {
-            $sql = "select * from saved_sale where user_id = $userId and sale_id = $id;";
-            $results = $con->query($sql);
-            if ($results and $results->num_rows > 0)        //if sale is saved
-            {
+        if ($userId !== NULL) {
+            $sql = "SELECT * FROM saved_sale WHERE user_id = ? AND sale_id = ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("ii", $userId, $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
                 $sale['saved'] = True;
             }
+        }
 
-        }
-        
-        //get seller contacts
-        //get sale phone numbers
-        $sql = "select phone from users_phone where user_id = ". $sale['seller']['user_id']. " limit 1";
-        $results = $con->query($sql);
-        if ($results and $results->num_rows > 0)        //if sale is saved
-        {
-            $sale['seller']['contact'] = $results->fetch_array()[0];
-        }
-        else
-        {
+        // Get seller contacts
+        $sql = "SELECT phone FROM users_phone WHERE user_id = ? LIMIT 1";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $sale['seller']['user_id']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $sale['seller']['contact'] = $result->fetch_array()[0];
+        } else {
             $sale['seller']['contact'] = NULL;
         }
 
