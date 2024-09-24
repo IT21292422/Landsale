@@ -50,20 +50,20 @@ function modAction($action, $uID)
     }
 }
 
-function suspendUser($uID)
+function suspendUser($uID) // SQL injection fixed by using prepared statement
 {
     global $con;
-    $sql = "UPDATE users SET account_status='suspended' WHERE user_id=$uID";
-    echo $sql;
     
-        if($con->query($sql))
-        {
-             echo "<script> alert ('Successfully Suspended User')</script>";
-        }
-        else
-        {
-            echo "<script> alert ('Oops! Something went wrong')</script>";
-        }
+    $sql = "UPDATE users SET account_status='suspended' WHERE user_id=?";
+    $stmt = $con->prepare($sql);
+    
+    $stmt->bind_param('i', $uID);
+
+    if ($stmt->execute()) {
+        echo "<script> alert ('Successfully Suspended User')</script>";
+    } else {
+        echo "<script> alert ('Oops! Something went wrong')</script>";
+    }
 }
         
 function banUser($uID)
