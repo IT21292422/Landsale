@@ -732,28 +732,84 @@
     }
 
     //advanced search for requests
+    // SQL injection fixed by using prepared statement
     function advancedSearchRequest($values, $startFrom = 0)
     {
         global $con;
 
-        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where ";
-
-        if (isset($values['min_price']) and !empty($values['min_price'])) $sql .= 'min_price > ' . $values['min_price'] . ' and ';
-        if (isset($values['max_price']) and !empty($values['max_price'])) $sql .= 'max_price < ' . $values['max_price'] . ' and ';
-        if (isset($values['min_area']) and !empty($values['min_area'])) $sql .= 'min_area > ' . $values['min_area'] . ' and ';
-        if (isset($values['max_area']) and !empty($values['max_area'])) $sql .= 'max_area < ' . $values['max_area'] . ' and ';
-        if (isset($values['min_date']) and !empty($values['min_date'])) $sql .= 'create_date > ' . $values['min_date'] . ' and ';
-        if (isset($values['max_date']) and !empty($values['max_date'])) $sql .= 'create_date < ' . $values['max_date'] . ' and ';
-        if (isset($values['city']) and !empty($values['city'])) $sql .= 'city = \'' . $values['city'] . '\' and ';
-        if (isset($values['district']) and !empty($values['district'])) $sql .= 'district = \'' . $values['district'] . '\' and ';
-        if (isset($values['province']) and !empty($values['province'])) $sql .= 'province = \'' . $values['province'] . '\' and ';
-        if (isset($values['search']) and !empty($values['search'])) $sql .= " match(title, city, district, province) against ('". $values['search']."') and ";
-        $sql .= "true LIMIT $startFrom, 30;";
-        $results = $con->query($sql);
+        $conditions = [];
+        $params = [];
+        $types = '';
+    
+        if (isset($values['min_price']) && !empty($values['min_price'])) {
+            $conditions[] = 'min_price > ?';
+            $params[] = $values['min_price'];
+            $types .= 'i';
+        }
+        if (isset($values['max_price']) && !empty($values['max_price'])) {
+            $conditions[] = 'max_price < ?';
+            $params[] = $values['max_price'];
+            $types .= 'i';
+        }
+        if (isset($values['min_area']) && !empty($values['min_area'])) {
+            $conditions[] = 'min_area > ?';
+            $params[] = $values['min_area'];
+            $types .= 'i';
+        }
+        if (isset($values['max_area']) && !empty($values['max_area'])) {
+            $conditions[] = 'max_area < ?';
+            $params[] = $values['max_area'];
+            $types .= 'i';
+        }
+        if (isset($values['min_date']) && !empty($values['min_date'])) {
+            $conditions[] = 'create_date > ?';
+            $params[] = $values['min_date'];
+            $types .= 's';
+        }
+        if (isset($values['max_date']) && !empty($values['max_date'])) {
+            $conditions[] = 'create_date < ?';
+            $params[] = $values['max_date'];
+            $types .= 's';
+        }
+        if (isset($values['city']) && !empty($values['city'])) {
+            $conditions[] = 'city = ?';
+            $params[] = $values['city'];
+            $types .= 's';
+        }
+        if (isset($values['district']) && !empty($values['district'])) {
+            $conditions[] = 'district = ?';
+            $params[] = $values['district'];
+            $types .= 's';
+        }
+        if (isset($values['province']) && !empty($values['province'])) {
+            $conditions[] = 'province = ?';
+            $params[] = $values['province'];
+            $types .= 's';
+        }
+        if (isset($values['search']) && !empty($values['search'])) {
+            $conditions[] = "MATCH(title, city, district, province) AGAINST (?)";
+            $params[] = $values['search'];
+            $types .= 's';
+        }
+    
+        // Build the SQL query
+        $sql = "SELECT request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo FROM request WHERE ";
+        $sql .= implode(' AND ', $conditions) . " LIMIT ?, 30;";
+    
+        $stmt = $con->prepare($sql);
+    
+        $params[] = $startFrom;
+        $types .= 'i';
+    
+        $stmt->bind_param($types, ...$params);
+    
+        $stmt->execute();
+        $results = $stmt->get_result();
+    
         $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
-        $toReturn['count'] = 0;
+        $toReturn['count'] = 0; // resetting just in case
+    
         return $toReturn;
-
     }
 
     //delete warnings of a user
