@@ -516,32 +516,37 @@
     }
 
     //search for sales
+    // SQL injection fixed by using prepared statement
     function searchSale($searchString='', $startFrom=0)
     {
         global $con;
 
         $toReturn = array();
 
-        if (empty($searchString))
-        {
-            $sql = "select count(*) as num from sale;";
-            $results = $con->query($sql);
-            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
-
-            $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale limit $startFrom, 30;";
-            $results = $con->query($sql);
-            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
+        if (empty($searchString)) {
+            $sql = "SELECT COUNT(*) AS num FROM sale";
+            $result = $con->query($sql);
+            $toReturn['count'] = (int) (ceil($result->fetch_assoc()['num'] / 30));
+    
+            $sql = "SELECT sale_id, price, district, city, title, land_area, create_date, cover_photo FROM sale LIMIT ?, 30";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("i", $startFrom);
+        } else {
+            $sql = "SELECT COUNT(*) AS num FROM sale WHERE MATCH(title, city, district, province) AGAINST (?)";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("s", $searchString);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $toReturn['count'] = (int) (ceil($result->fetch_assoc()['num'] / 30));
+    
+            $sql = "SELECT sale_id, price, district, city, title, land_area, create_date, cover_photo FROM sale WHERE MATCH(title, city, district, province) AGAINST (?) LIMIT ?, 30";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("si", $searchString, $startFrom);
         }
-        else
-        {
-            $sql = "select count(*) as num from sale where match(title, city, district, province) against ('$searchString');";
-            $results = $con->query($sql);
-            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
-
-            $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
-            $results = $con->query($sql);
-            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
-        }
+    
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $toReturn['results'] = $result->fetch_all(MYSQLI_ASSOC);
 
         return $toReturn;
     }
