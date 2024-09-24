@@ -128,18 +128,26 @@
     }
     
     //check if an email is alredy registered
+    // SQL injection fixed by using prepared statements
     function doesEmailExist($email, $userId=NULL)
     {
         global $con;
         $email = strtolower($email);
-        if ($userId === NULL)   $sql = "select user_id from users where email = '$email'";
-        else    $sql = "select user_id from users where email = '$email' and user_id <> $userId";
         
-        $results = $con->query($sql);
+        if ($userId === NULL) {
+            $sql = "SELECT user_id FROM users WHERE email = ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("s", $email);
+        } else {
+            $sql = "SELECT user_id FROM users WHERE email = ? AND user_id <> ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("si", $email, $userId);
+        }
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if ($results->num_rows < 1) return False;
-
-        return True;
+        return $result->num_rows > 0;
     }
 
     //get sale details
