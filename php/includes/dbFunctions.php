@@ -552,6 +552,7 @@
     }
 
     //search for requests
+    // SQL injection fixed by using prepared statement
     function searchRequest($searchString='', $startFrom=0)
     {
         global $con;
@@ -560,28 +561,35 @@
 
         if (empty($searchString))
         {
-            $sql = "select count(*) as num from request;";
+            $sql = "SELECT COUNT(*) AS num FROM request;";
             $results = $con->query($sql);
             $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
-            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request limit $startFrom, 30;";
-            $results = $con->query($sql);
+            $sql = "SELECT request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo FROM request LIMIT ?, 30;";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("i", $startFrom);
+            $stmt->execute();
+            $results = $stmt->get_result();
             $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
-
         }
         else
         {
-            $sql = "select count(*) as num from request where match(title, city, district, province) against ('$searchString');";
-            $results = $con->query($sql);
+            $sql = "SELECT COUNT(*) AS num FROM request WHERE MATCH(title, city, district, province) AGAINST (?);";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("s", $searchString);
+            $stmt->execute();
+            $results = $stmt->get_result();
             $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
-            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
-            $results = $con->query($sql);
+            $sql = "SELECT request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo FROM request WHERE MATCH(title, city, district, province) AGAINST (?) LIMIT ?, 30;";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("si", $searchString, $startFrom);
+            $stmt->execute();
+            $results = $stmt->get_result();
             $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
         }
-        
+
         return $toReturn;
-        
     }
 
     //get a list of sales
