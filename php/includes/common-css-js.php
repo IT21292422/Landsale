@@ -1,3 +1,5 @@
+
+<!-- added a content security policy (CSP) to limit the type of resources loaded by the browser. -->
 <?php
 header("Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self';");
 ?>
