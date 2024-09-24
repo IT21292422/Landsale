@@ -93,19 +93,21 @@
     }
 
     //check validity of email and password
+    // SQL injection fixed by using prepared statements
     function checkAccount($email, $pwd)
     {   
         global $con;
 
         $email = strtolower($email);
-        $sql = "select user_id,account_status from users where email= '$email' and password= '$pwd'";
-        $results = $con->query($sql);
+        $sql = "SELECT user_id, account_status FROM users WHERE email = ? AND password = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("ss", $email, $pwd);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if ($results->num_rows < 1) return NULL;
+        if ($result->num_rows < 1) return NULL;
 
-        $toReturn = $results->fetch_assoc();
-
-        return $toReturn;
+        return $result->fetch_assoc();
     }
 
     //get basic user details for signin
