@@ -82,12 +82,17 @@ function banUser($uID) // SQL injection fixed by using prepared statement
         }
     }
 
-function warnUser($uID)
-        {
-            global $con;
+function warnUser($uID) // SQL injection fixed by using prepared statement
+    {
+        global $con;
 
-            $sql = "UPDATE users_warnings SET warning='Warned' WHERE user_id=$uID";
-        }
+        $sql = "UPDATE users_warnings SET warning='Warned' WHERE user_id=?";
+        $stmt = $con->prepare($sql);
+        
+        $stmt->bind_param('i', $uID);
+        
+        $stmt->execute();
+    }
 
 function reviewed()
 {
