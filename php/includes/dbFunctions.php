@@ -451,27 +451,31 @@
     }
 
     //update user details
+    // SQL injection fixed by using prepared statement
     function updateUser($values, $userId)
     {
         global $con;
 
-        $sql = "delete from users_phone where user_id = $userId";
-        $con->query($sql);
+        $stmt = $con->prepare("DELETE FROM users_phone WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
 
-        if ($values['phone'] and count($values['phone']) > 0)
+        if ($values['phone'] && count($values['phone']) > 0)
         {
             foreach($values['phone'] as $phone)
             {
-                $sql = "insert into users_phone(user_id, phone) values($userId, '$phone')";
-                $con->query($sql);
+                $stmt = $con->prepare("INSERT INTO users_phone (user_id, phone) VALUES (?, ?)");
+                $stmt->bind_param("is", $userId, $phone);
+                $stmt->execute();
             }
         }
 
         unset($values['phone']);
 
-        $sql = generateUpdateString('users', $values, "user_id = $userId");
-
-        if($con->query($sql))
+        $sql = generateUpdateString('users', $values, "user_id = ?");
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $userId);
+        if ($stmt->execute())
         {
             return True;
         }
