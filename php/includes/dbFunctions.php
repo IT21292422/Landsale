@@ -398,25 +398,30 @@
     }
 
     //get details of a user
+    // SQL injection fixed by using prepared statement
     function getUser($userId)
     {
         global $con;
 
         //get data from database
-        $sql = "select * from users where user_id = $userId";
-        $results = $con->query($sql);
+        $stmt = $con->prepare("SELECT * FROM users WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $results = $stmt->get_result();
 
         //if user is not found
-        if ($results and $results->num_rows < 1) return NULL;
+        if ($results && $results->num_rows < 1) return NULL;
 
         //get assoc array
         $user = $results->fetch_assoc();
 
         //get contacts from database
-        $sql = "select phone from users_phone where user_id = $userId";
-        $results = $con->query($sql);
+        $stmt = $con->prepare("SELECT phone FROM users_phone WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $results = $stmt->get_result();
         $phone = array();
-        if ($results and $results->num_rows > 0)
+        if ($results && $results->num_rows > 0)
         {
             $table = $results->fetch_all(MYSQLI_NUM);
             foreach ($table as $row)
@@ -427,10 +432,12 @@
         $user['phone'] = $phone;
 
         //get warnings from database
-        $sql = "select warning from users_warnings where user_id = $userId";
-        $results = $con->query($sql);
+        $stmt = $con->prepare("SELECT warning FROM users_warnings WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $results = $stmt->get_result();
         $warnings = array();
-        if ($results and $results->num_rows > 0)
+        if ($results && $results->num_rows > 0)
         {
             $table = $results->fetch_all(MYSQLI_NUM);
             foreach ($table as $row)
@@ -441,8 +448,6 @@
         $user['warnings'] = $warnings;
 
         return $user;
-        
-
     }
 
     //update user details
