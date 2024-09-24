@@ -66,18 +66,18 @@ function suspendUser($uID) // SQL injection fixed by using prepared statement
     }
 }
         
-function banUser($uID)
+function banUser($uID) // SQL injection fixed by using prepared statement
     {
         global $con;
 
-        $sql = "UPDATE users SET account_status='banned' WHERE user_id=$uID";
-                
-        if($con->query($sql))
-        {
+        $sql = "UPDATE users SET account_status='banned' WHERE user_id=?";
+        $stmt = $con->prepare($sql);
+        
+        $stmt->bind_param('i', $uID);
+        
+        if ($stmt->execute()) {
             echo "<script> alert ('Successfully Banned User')</script>";
-        }
-        else
-        {
+        } else {
             echo "<script> alert ('Oops! Something went wrong')</script>";
         }
     }
