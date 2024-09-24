@@ -3,14 +3,12 @@
     require 'dbcon.php';
     $request_id = $_GET['id'];
 
-    // Prepare the SQL statements to prevent SQL injection
     $sql1 = "DELETE FROM request_phone WHERE request_id=?";
     $sql2 = "DELETE FROM saved_request WHERE request_id=?";
     $sql3 = "DELETE FROM request WHERE request_id=?";
 
-    // Prepare and execute each statement
     $stmt1 = $con->prepare($sql1);
-    $stmt1->bind_param('i', $request_id); // Assuming request_id is an integer
+    $stmt1->bind_param('i', $request_id);
     $stmt1->execute();
 
     $stmt2 = $con->prepare($sql2);
