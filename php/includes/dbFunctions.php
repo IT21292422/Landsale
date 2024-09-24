@@ -484,27 +484,35 @@
     }
 
     //delete a user and all the related information
+    // SQL injection fixed by using prepared statement
     function deleteUser($userId)
     {
         global $con;
 
-        $sql = "delete from saved_request where request_id in (select request_id from request where user_id = $userId) or user_id = $userId;".
-            "delete from saved_sale where sale_id in (select sale_id from sale where user_id = $userId) or user_id = $userId;".
-            "delete from request_complaints where request_id in (select request_id from request where user_id = $userId) or user_id = $userId;".
-            "delete from sale_complaints where sale_id in (select sale_id from sale where user_id = $userId) or user_id = $userId;".
-            "delete from request_phone where request_id in (select request_id from request where user_id = $userId);".
-            "delete from sale_phone where sale_id in (select sale_id from sale where user_id = $userId);".
-            "delete from sale_media where sale_id in (select sale_id from sale where user_id = $userId);".
-            "delete from sale where user_id = $userId;".
-            "delete from request where user_id = $userId;".
-            "delete from users_phone where user_id = $userId;".
-            "delete from users_warnings where user_id = $userId;".
-            "delete from users where user_id = $userId;";
-
-
-        if($con->multi_query($sql)) return True;
-        else return False;
-
+        $queries = [
+            "DELETE FROM saved_request WHERE request_id IN (SELECT request_id FROM request WHERE user_id = ?) OR user_id = ?",
+            "DELETE FROM saved_sale WHERE sale_id IN (SELECT sale_id FROM sale WHERE user_id = ?) OR user_id = ?",
+            "DELETE FROM request_complaints WHERE request_id IN (SELECT request_id FROM request WHERE user_id = ?) OR user_id = ?",
+            "DELETE FROM sale_complaints WHERE sale_id IN (SELECT sale_id FROM sale WHERE user_id = ?) OR user_id = ?",
+            "DELETE FROM request_phone WHERE request_id IN (SELECT request_id FROM request WHERE user_id = ?)",
+            "DELETE FROM sale_phone WHERE sale_id IN (SELECT sale_id FROM sale WHERE user_id = ?)",
+            "DELETE FROM sale_media WHERE sale_id IN (SELECT sale_id FROM sale WHERE user_id = ?)",
+            "DELETE FROM sale WHERE user_id = ?",
+            "DELETE FROM request WHERE user_id = ?",
+            "DELETE FROM users_phone WHERE user_id = ?",
+            "DELETE FROM users_warnings WHERE user_id = ?",
+            "DELETE FROM users WHERE user_id = ?"
+        ];
+    
+        foreach ($queries as $sql) {
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("i", $userId);
+            if (!$stmt->execute()) {
+                return false;
+            }
+        }
+    
+        return true;
     }
 
     //search for sales
