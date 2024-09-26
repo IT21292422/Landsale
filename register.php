@@ -6,6 +6,17 @@
         'cookie_secure' => true,  // Ensures the cookie is only sent over HTTPS
         'cookie_samesite' => 'Lax', // Helps mitigate CSRF attacks
     ]);
+
+    // Generate CSRF token
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+
+
+    // Validate CSRF token
+    if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        die('Invalid CSRF token');
+    }
 ?>
 <?php 
     //connecting to the DB
