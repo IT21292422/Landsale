@@ -4,7 +4,7 @@ https://github.com/it21294198/landsale-system
 ```
 ## Repository with vulnerability fixed
 ```
-https://github.com/it21294198/landsale-system
+https://github.com/IT21292422/Landsale
 ```
 
 ## Youtube Link
