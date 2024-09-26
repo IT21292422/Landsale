@@ -1,76 +1,107 @@
 <?php
-    //Name: H.A.R.S. Hapuarachchi
-    //IT Number: it21296246
-    //Center: Malabe
-    //Group: MLB_05.02_09
-    require_once("php/includes/dbFunctions.php");
-    require_once("php/includes/signinFunctions.php");
-    require_once("php/includes/validateFunctions.php");
+require_once("php/includes/dbFunctions.php");
+require_once("php/includes/signinFunctions.php");
+require_once("php/includes/validateFunctions.php");
+require_once 'vendor/autoload.php';
+require_once 'config.php'; 
 
-    //array to store mandatoriness of each field of form
-    $required = array(
-        "email"=> True,
-        "password"=>True
-    );
+use League\OAuth2\Client\Provider\Google;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 
-    $values = array();  //array to store values from form
-    $errors = array();  //array to store errors relevent to each field
+$required = array(
+    "email"=> True,
+    "password"=>True
+);
 
-    foreach ($required as $fieldName=>$_)   //initialize arrays with empty values
-    {
-        $values[$fieldName] = '';
-        $errors[$fieldName] = '';
-    }
+$values = array();
+$errors = array();
 
-    $errors['form'] = ''; // variable to store form errors
+foreach ($required as $fieldName=>$_) 
+{
+    $values[$fieldName] = '';
+    $errors[$fieldName] = '';
+}
 
-    if(isset($_POST["email"])) //check for a post method
-    {
-        //get values from user
-        foreach ($required as $fieldName=>$_)
-        {
-            $values[$fieldName] = $_POST[$fieldName];
-        }
-        
-        //alter fields
-        $values['email'] = strtolower($values['email']);
+$errors['form'] = ''; 
 
-        if(areRequiredFieldsProvided($values, $required, $errors))
-        {
-            //check for matching email password pair
-            $info = checkAccount($values['email'], $values['password']); 
+if (isset($_GET['code'])) {
+    $provider = new Google([
+        'clientId'     => $_ENV['GOOGLE_CLIENT_ID'],
+        'clientSecret' => $_ENV['GOOGLE_CLIENT_SECRET'],
+        'redirectUri'  => $_ENV['GOOGLE_REDIRECT_URI'],
+    ]);
 
-            if ($info === NULL)    // if user is not valid
-            {
-                $errors['form'] = "Email and password do not match";
+    try {
+        $token = $provider->getAccessToken('authorization_code', [
+            'code' => $_GET['code']
+        ]);
+
+        $user = $provider->getResourceOwner($token);
+        $googleEmail = $user->getEmail();
+
+        $info = checkAccountByEmail($googleEmail);
+
+        if ($info === NULL) {
+            $userId = createAccountFromGoogle($user);
+            signin($userId);
+        } else {
+            if ($info['account_status'] === 'valid') {
+                signin($info['user_id']);
+            } else {
+                $errors['form'] = 'Your account is ' . $info['account_status'];
             }
-            else    //if user is valid
-            {
-                if ($info['account_status'] === 'valid')
-                {
-                    signin($info['user_id']);    //signin user
-                    if (isset($_POST['redirect']))
-                    {
-                       header('Location: '.$_POST['redirect']);  //redirect to requested page
+        }
+
+        if (empty($errors['form'])) {
+            header('Location: index.php');
+            exit;
+        }
+
+    } catch (IdentityProviderException $e) {
+        $errors['form'] = 'Failed to get user details from Google: ' . $e->getMessage();
+    }
+}
+
+
+if(isset($_POST["email"]))
+{
+
+    foreach ($required as $fieldName=>$_)
+    {
+        $values[$fieldName] = $_POST[$fieldName];
+    }
     
-                    }
-                    else{
-                       header('Location: index.php');  //redirect to homepage
-                    }
-                }
-                else
+
+    $values['email'] = strtolower($values['email']);
+
+    if(areRequiredFieldsProvided($values, $required, $errors))
+    {
+        $info = checkAccount($values['email'], $values['password']); 
+
+        if ($info === NULL) 
+        {
+            $errors['form'] = "Email and password do not match";
+        }
+        else  
+        {
+            if ($info['account_status'] === 'valid')
+            {
+                signin($info['user_id']);   
+                if (isset($_POST['redirect']))
                 {
-                    $errors['form'] = 'Your account is ' . $info['account_status'];
+                   header('Location: '.$_POST['redirect']);
+                   exit;
                 }
-                
+                else{
+                   header('Location: index.php');
+                   exit;
+                }
+            }
+            else
+            {
+                $errors['form'] = 'Your account is ' . $info['account_status'];
             }
         }
-
-       
     }
-   
-
-
-
-
+}
 ?>

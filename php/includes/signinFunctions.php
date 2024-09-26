@@ -1,8 +1,4 @@
 <?php
-    //Name: H.A.R.S. Hapuarachchi
-    //IT Number: it21296246
-    //Center: Malabe
-    //Group: MLB_05.02_09
     require_once('php/includes/dbFunctions.php');
 
     function signin($userId)
@@ -16,15 +12,13 @@
             ]);
         }
 
-        $userDetails = getBasicUserDetails($userId);   //get user details
-
-
-        //assign user details to session variables
+        $userDetails = getBasicUserDetails($userId);
         $_SESSION['user_id'] = $userDetails['user_id'];     
         $_SESSION['first_name'] = $userDetails['first_name'];
         $_SESSION['last_name'] = $userDetails['last_name'];
         $_SESSION['account_type'] = $userDetails['account_type'];
         $_SESSION['profile_photo'] = $userDetails['profile_photo'];
+        $_SESSION['is_oauth'] = $isOAuth;
     }
 
     function signout()
@@ -51,5 +45,42 @@
         header('Location: signin.php?redirect='. htmlspecialchars($_SERVER['PHP_SELF']));  
         die();
 
+    }
+
+    function signinWithOAuth($userInfo)
+    {
+    $userId = getUserIdByEmail($userInfo['email']);
+    if (!$userId) {
+        // User doesn't exist, create a new account
+        $userId = createUserFromOAuth($userInfo);
+    }
+    signin($userId, true);
+    }
+
+    function checkAccountByEmail($email) {
+        global $conn;
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        }
+        return NULL;
+    }
+    
+    function createAccountFromGoogle($user) {
+        global $conn;
+        $email = $user->getEmail();
+        $name = $user->getName();
+        $password = bin2hex(random_bytes(16)); // Generate a random password
+        
+        $sql = "INSERT INTO users (email, name, password, account_status) VALUES (?, ?, ?, 'valid')";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $email, $name, $password);
+        $stmt->execute();
+        
+        return $conn->insert_id;
     }
 ?>

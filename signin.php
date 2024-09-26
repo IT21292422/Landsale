@@ -41,6 +41,9 @@
             <a href="register.php">Create an account</a>
         </div>
 
+        <div class="google-signin">
+        <a href="<?php echo $authUrl; ?>" class="google-btn">Sign in with Google</a>
+        </div>
 
         <div class="form-field">
         <input type="submit" name="submit" value="Submit">
