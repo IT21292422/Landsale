@@ -8,7 +8,12 @@
     function signin($userId)
     {
         if (session_status() === PHP_SESSION_NONE) {    //start a new session if not started already
-            session_start();
+            session_start([
+                'cookie_lifetime' => 0, // Session lasts until browser is closed
+                'cookie_httponly' => true, // Prevents JavaScript access to the session cookie
+                'cookie_secure' => true,  // Ensures the cookie is only sent over HTTPS
+                'cookie_samesite' => 'Lax', // Helps mitigate CSRF attacks
+            ]);
         }
 
         $userDetails = getBasicUserDetails($userId);   //get user details
