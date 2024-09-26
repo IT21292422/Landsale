@@ -1,3 +1,7 @@
+
+<!-- added a content security policy (CSP) to limit the type of resources loaded by the browser. -->
+
+
 <link rel="stylesheet" href="styles/headerfooter.css"/>
 <link rel="stylesheet" href="styles/header.css"/>
 
