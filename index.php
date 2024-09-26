@@ -1,7 +1,6 @@
 <?php
 
     session_start();
-    header("Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self';");
     require_once('php\controllers\index-ctrl.php');
 ?>
 <!DOCTYPE html>

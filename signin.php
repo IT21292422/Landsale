@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Sign in</title>
+    <title>Sign in</title>3
     <link rel="stylesheet" href="styles/signin.css">
     <link rel="stylesheet" href="styles/forms.css">
     <?php include_once('php/includes/common-css-js.php'); ?>
