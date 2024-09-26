@@ -7,30 +7,33 @@
 
 include_once '../includes/dbcon.php';
 
-if(isset($_POST["Update"])){
+    if (isset($_POST["Update"])) {
 
-$user_id=$_POST['user_id'];
-$first_name=$_POST['first_name'];
-$last_name=$_POST['last_name'];
-$email=$_POST['email'];
-$account_status=$_POST['status1'];
-$account_type=$_POST['status2'];
-$about=$_POST['about'];
+        // form data
+        $user_id = $_POST['user_id'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $email = $_POST['email'];
+        $account_status = $_POST['status1'];
+        $account_type = $_POST['status2'];
+        $about = $_POST['about'];
 
-$sql2="UPDATE users SET first_name='$first_name',last_name='$last_name',email='$email', account_status='$account_status', account_status='$account_status', account_type='$account_type', about='$about' WHERE user_id=$user_id "; 
+        // SQL injection fixed by using prepared statement
+        $sql2 = "UPDATE users SET first_name=?, last_name=?, email=?, account_status=?, account_type=?, about=? WHERE user_id=?";
 
-$result2=$con->query($sql2);
+        $stmt = $con->prepare($sql2);
+        
+        $stmt->bind_param('ssssssi', $first_name, $last_name, $email, $account_status, $account_type, $about, $user_id);
 
-if($result2){
-
-  if (isset($_SERVER["HTTP_REFERER"])) {
-    header("Location: " . $_SERVER["HTTP_REFERER"]);
-}
-
-}else {
-    echo "failed!!!!!!!!!".$con->error;
-}
-}
+        if ($stmt->execute()) {
+            if (isset($_SERVER["HTTP_REFERER"])) {
+                header("Location: " . $_SERVER["HTTP_REFERER"]);
+            }
+        } else {
+            // fixed sending the default error (prev: echo "Error: ".$con->error)
+            echo "Failed: something went wrong with the update";
+        }
+    }
 
 $con->close();
 

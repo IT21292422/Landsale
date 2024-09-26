@@ -93,126 +93,136 @@
     }
 
     //check validity of email and password
+    // SQL injection fixed by using prepared statements
     function checkAccount($email, $pwd)
     {   
         global $con;
 
         $email = strtolower($email);
-        $sql = "select user_id,account_status from users where email= '$email' and password= '$pwd'";
-        $results = $con->query($sql);
+        $sql = "SELECT user_id, account_status FROM users WHERE email = ? AND password = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("ss", $email, $pwd);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if ($results->num_rows < 1) return NULL;
+        if ($result->num_rows < 1) return NULL;
 
-        $toReturn = $results->fetch_assoc();
-
-        return $toReturn;
+        return $result->fetch_assoc();
     }
 
     //get basic user details for signin
+    // SQL injection fixed by using prepared statements
     function getBasicUserDetails($userId)
     {
         global $con;
 
-        $sql = "select user_id, first_name, last_name, profile_photo, account_type from users where user_id = $userId";
+        $sql = "SELECT user_id, first_name, last_name, profile_photo, account_type FROM users WHERE user_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        $results = $con->query($sql);
+        if ($result->num_rows < 1) return NULL;
 
-        if ($results->num_rows < 1) return NULL;
-
-        return $results->fetch_assoc();
+        return $result->fetch_assoc();
     }
     
     //check if an email is alredy registered
+    // SQL injection fixed by using prepared statements
     function doesEmailExist($email, $userId=NULL)
     {
         global $con;
         $email = strtolower($email);
-        if ($userId === NULL)   $sql = "select user_id from users where email = '$email'";
-        else    $sql = "select user_id from users where email = '$email' and user_id <> $userId";
         
-        $results = $con->query($sql);
+        if ($userId === NULL) {
+            $sql = "SELECT user_id FROM users WHERE email = ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("s", $email);
+        } else {
+            $sql = "SELECT user_id FROM users WHERE email = ? AND user_id <> ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("si", $email, $userId);
+        }
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if ($results->num_rows < 1) return False;
-
-        return True;
+        return $result->num_rows > 0;
     }
 
     //get sale details
+    // SQL injection fixed by using prepared statement
     function getSale($id, $userId=NULL)   //get sale details from db
     {
         global $con;
 
-        //get sale details
-        $sql = "select * from sale where sale_id = $id";
-        $results = $con->query($sql);
+        $sql = "SELECT * FROM sale WHERE sale_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        //if sale doesnt exist
-        if ($results and $results->num_rows < 1) return False;
+        if ($result->num_rows < 1) return False;
 
-        //fetch sale details
-        $sale = $results->fetch_assoc();
+        $sale = $result->fetch_assoc();
 
-        //get sale phone numbers
-        $sql = "select phone from sale_phone where sale_id = $id";
-        $results = $con->query($sql);
+        // Get sale phone numbers
+        $sql = "SELECT phone FROM sale_phone WHERE sale_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $phone = array();
-        if ($results and $results->num_rows > 0)
-        {
-            $table = $results->fetch_all(MYSQLI_NUM);
-            foreach ($table as $row)
-            {
-                $phone[] = $row[0];
-            }
+        while ($row = $result->fetch_array()) {
+            $phone[] = $row[0];
         }
         $sale['phone'] = $phone;
 
-        //get sale images
-        $sql = "select media from sale_media where sale_id = $id";
-        $results = $con->query($sql);
+        // Get sale images
+        $sql = "SELECT media FROM sale_media WHERE sale_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $images = array();
-        if ($results and $results->num_rows > 0)
-        {
-            $table = $results->fetch_all(MYSQLI_NUM);
-            foreach ($table as $row)
-            {
-                $images[] = $row[0];
-            }
+        while ($row = $result->fetch_array()) {
+            $images[] = $row[0];
         }
-       
         $sale['images'] = $images;
 
-        //get seller details
-        $sql = "select * from users where user_id = ". $sale['user_id'];
-        $results = $con->query($sql);
+        // Get seller details
+        $sql = "SELECT * FROM users WHERE user_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $sale['user_id']);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $sale['seller'] = NULL;
-        if ($results and $results->num_rows > 0)        //if seller exists
-        {
-            $sale['seller'] = $results->fetch_assoc();
+        if ($result->num_rows > 0) {
+            $sale['seller'] = $result->fetch_assoc();
         }
 
-        //check if the sale is saved
+        // Check if the sale is saved
         $sale['saved'] = False;
-        if ($userId !== NULL)
-        {
-            $sql = "select * from saved_sale where user_id = $userId and sale_id = $id;";
-            $results = $con->query($sql);
-            if ($results and $results->num_rows > 0)        //if sale is saved
-            {
+        if ($userId !== NULL) {
+            $sql = "SELECT * FROM saved_sale WHERE user_id = ? AND sale_id = ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("ii", $userId, $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
                 $sale['saved'] = True;
             }
+        }
 
-        }
-        
-        //get seller contacts
-        //get sale phone numbers
-        $sql = "select phone from users_phone where user_id = ". $sale['seller']['user_id']. " limit 1";
-        $results = $con->query($sql);
-        if ($results and $results->num_rows > 0)        //if sale is saved
-        {
-            $sale['seller']['contact'] = $results->fetch_array()[0];
-        }
-        else
-        {
+        // Get seller contacts
+        $sql = "SELECT phone FROM users_phone WHERE user_id = ? LIMIT 1";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $sale['seller']['user_id']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $sale['seller']['contact'] = $result->fetch_array()[0];
+        } else {
             $sale['seller']['contact'] = NULL;
         }
 
@@ -220,73 +230,72 @@
     }
 
     //get request details
+    // SQL injection fixed by using prepared statement
     function getRequest($id, $userId=NULL)   //get request details from db
     {
         global $con;
 
-        //get request details
-        $sql = "select * from request where request_id = $id";
-        $results = $con->query($sql);
+        $sql = "SELECT * FROM request WHERE request_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        //if request doesnt exist
-        if ($results and $results->num_rows < 1) return False;
+        if ($result->num_rows < 1) return False;
 
-        //fetch request details
-        $request = $results->fetch_assoc();
+        $request = $result->fetch_assoc();
 
-        //get request phone numbers
-        $sql = "select phone from request_phone where request_id = $id";
-        $results = $con->query($sql);
+        // Get request phone numbers
+        $sql = "SELECT phone FROM request_phone WHERE request_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $phone = array();
-        if ($results and $results->num_rows > 0)
-        {
-            $table = $results->fetch_all(MYSQLI_NUM);
-            foreach ($table as $row)
-            {
-                $phone[] = $row[0];
-            }
+        while ($row = $result->fetch_array()) {
+            $phone[] = $row[0];
         }
         $request['phone'] = $phone;
 
-        //get requester details
-        $sql = "select * from users where user_id = ". $request['user_id'];
-        $results = $con->query($sql);
+        // Get requester details
+        $sql = "SELECT * FROM users WHERE user_id = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $request['user_id']);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $request['seller'] = NULL;
-        if ($results and $results->num_rows > 0)        //if seller exists
-        {
-            $request['seller'] = $results->fetch_assoc();
+        if ($result->num_rows > 0) {
+            $request['seller'] = $result->fetch_assoc();
         }
 
-        //check if the request is saved
+        // Check if the request is saved
         $request['saved'] = False;
-        if ($userId !== NULL)
-        {
-            $sql = "select * from saved_request where user_id = $userId and request_id = $id;";
-            $results = $con->query($sql);
-            if ($results and $results->num_rows > 0)        //if request is saved
-            {
+        if ($userId !== NULL) {
+            $sql = "SELECT * FROM saved_request WHERE user_id = ? AND request_id = ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("ii", $userId, $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
                 $request['saved'] = True;
             }
+        }
 
-        }
-        
-        //get seller contacts
-        //get request phone numbers
-        $sql = "select phone from users_phone where user_id = ". $request['seller']['user_id']. " limit 1";
-        $results = $con->query($sql);
-        if ($results and $results->num_rows > 0)        //if request is saved
-        {
-            $request['seller']['contact'] = $results->fetch_array()[0];
-        }
-        else
-        {
+        // Get seller contacts
+        $sql = "SELECT phone FROM users_phone WHERE user_id = ? LIMIT 1";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $request['seller']['user_id']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $request['seller']['contact'] = $result->fetch_array()[0];
+        } else {
             $request['seller']['contact'] = NULL;
         }
 
         return $request;
     }
 
-    //save a sale complaint
     function addSaleComplaint($values, $userId)
     {
         global $con;
@@ -321,6 +330,7 @@
     }
 
     //save a sale
+    // SQL injection fixed by using prepared statement
     function saveSale($values)
     {
         global $con;
@@ -334,7 +344,11 @@
                 break;
 
             case 'unsave':
-                $sql = 'delete from saved_sale where user_id = ' . $values['user_id'] . ' and sale_id = ' . $values['sale_id'];
+                // Using prepared statements to prevent SQL injection
+                $stmt = $con->prepare('DELETE FROM saved_sale WHERE user_id = ? AND sale_id = ?');
+                $stmt->bind_param('ii', $values['user_id'], $values['sale_id']);
+                $stmt->execute();
+                return $stmt->affected_rows > 0; // Check if rows were deleted
                 break;
 
             default:
@@ -350,6 +364,7 @@
     }
 
     //save a request
+    // SQL injection fixed by using prepared statement
     function saveRequest($values)
     {
         global $con;
@@ -363,7 +378,11 @@
                 break;
 
             case 'unsave':
-                $sql = 'delete from saved_request where user_id = ' . $values['user_id'] . ' and request_id = ' . $values['request_id'];
+                // Using prepared statements to prevent SQL injection
+                $stmt = $con->prepare('DELETE FROM saved_request WHERE user_id = ? AND request_id = ?');
+                $stmt->bind_param('ii', $values['user_id'], $values['request_id']);
+                $stmt->execute();
+                return $stmt->affected_rows > 0; // Check if rows were deleted
                 break;
 
             default:
@@ -379,25 +398,30 @@
     }
 
     //get details of a user
+    // SQL injection fixed by using prepared statement
     function getUser($userId)
     {
         global $con;
 
         //get data from database
-        $sql = "select * from users where user_id = $userId";
-        $results = $con->query($sql);
+        $stmt = $con->prepare("SELECT * FROM users WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $results = $stmt->get_result();
 
         //if user is not found
-        if ($results and $results->num_rows < 1) return NULL;
+        if ($results && $results->num_rows < 1) return NULL;
 
         //get assoc array
         $user = $results->fetch_assoc();
 
         //get contacts from database
-        $sql = "select phone from users_phone where user_id = $userId";
-        $results = $con->query($sql);
+        $stmt = $con->prepare("SELECT phone FROM users_phone WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $results = $stmt->get_result();
         $phone = array();
-        if ($results and $results->num_rows > 0)
+        if ($results && $results->num_rows > 0)
         {
             $table = $results->fetch_all(MYSQLI_NUM);
             foreach ($table as $row)
@@ -408,10 +432,12 @@
         $user['phone'] = $phone;
 
         //get warnings from database
-        $sql = "select warning from users_warnings where user_id = $userId";
-        $results = $con->query($sql);
+        $stmt = $con->prepare("SELECT warning FROM users_warnings WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $results = $stmt->get_result();
         $warnings = array();
-        if ($results and $results->num_rows > 0)
+        if ($results && $results->num_rows > 0)
         {
             $table = $results->fetch_all(MYSQLI_NUM);
             foreach ($table as $row)
@@ -422,32 +448,34 @@
         $user['warnings'] = $warnings;
 
         return $user;
-        
-
     }
 
     //update user details
+    // SQL injection fixed by using prepared statement
     function updateUser($values, $userId)
     {
         global $con;
 
-        $sql = "delete from users_phone where user_id = $userId";
-        $con->query($sql);
+        $stmt = $con->prepare("DELETE FROM users_phone WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
 
-        if ($values['phone'] and count($values['phone']) > 0)
+        if ($values['phone'] && count($values['phone']) > 0)
         {
             foreach($values['phone'] as $phone)
             {
-                $sql = "insert into users_phone(user_id, phone) values($userId, '$phone')";
-                $con->query($sql);
+                $stmt = $con->prepare("INSERT INTO users_phone (user_id, phone) VALUES (?, ?)");
+                $stmt->bind_param("is", $userId, $phone);
+                $stmt->execute();
             }
         }
 
         unset($values['phone']);
 
-        $sql = generateUpdateString('users', $values, "user_id = $userId");
-
-        if($con->query($sql))
+        $sql = generateUpdateString('users', $values, "user_id = ?");
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $userId);
+        if ($stmt->execute())
         {
             return True;
         }
@@ -456,61 +484,75 @@
     }
 
     //delete a user and all the related information
+    // SQL injection fixed by using prepared statement
     function deleteUser($userId)
     {
         global $con;
 
-        $sql = "delete from saved_request where request_id in (select request_id from request where user_id = $userId) or user_id = $userId;".
-            "delete from saved_sale where sale_id in (select sale_id from sale where user_id = $userId) or user_id = $userId;".
-            "delete from request_complaints where request_id in (select request_id from request where user_id = $userId) or user_id = $userId;".
-            "delete from sale_complaints where sale_id in (select sale_id from sale where user_id = $userId) or user_id = $userId;".
-            "delete from request_phone where request_id in (select request_id from request where user_id = $userId);".
-            "delete from sale_phone where sale_id in (select sale_id from sale where user_id = $userId);".
-            "delete from sale_media where sale_id in (select sale_id from sale where user_id = $userId);".
-            "delete from sale where user_id = $userId;".
-            "delete from request where user_id = $userId;".
-            "delete from users_phone where user_id = $userId;".
-            "delete from users_warnings where user_id = $userId;".
-            "delete from users where user_id = $userId;";
-
-
-        if($con->multi_query($sql)) return True;
-        else return False;
-
+        $queries = [
+            "DELETE FROM saved_request WHERE request_id IN (SELECT request_id FROM request WHERE user_id = ?) OR user_id = ?",
+            "DELETE FROM saved_sale WHERE sale_id IN (SELECT sale_id FROM sale WHERE user_id = ?) OR user_id = ?",
+            "DELETE FROM request_complaints WHERE request_id IN (SELECT request_id FROM request WHERE user_id = ?) OR user_id = ?",
+            "DELETE FROM sale_complaints WHERE sale_id IN (SELECT sale_id FROM sale WHERE user_id = ?) OR user_id = ?",
+            "DELETE FROM request_phone WHERE request_id IN (SELECT request_id FROM request WHERE user_id = ?)",
+            "DELETE FROM sale_phone WHERE sale_id IN (SELECT sale_id FROM sale WHERE user_id = ?)",
+            "DELETE FROM sale_media WHERE sale_id IN (SELECT sale_id FROM sale WHERE user_id = ?)",
+            "DELETE FROM sale WHERE user_id = ?",
+            "DELETE FROM request WHERE user_id = ?",
+            "DELETE FROM users_phone WHERE user_id = ?",
+            "DELETE FROM users_warnings WHERE user_id = ?",
+            "DELETE FROM users WHERE user_id = ?"
+        ];
+    
+        foreach ($queries as $sql) {
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("i", $userId);
+            if (!$stmt->execute()) {
+                return false;
+            }
+        }
+    
+        return true;
     }
 
     //search for sales
+    // SQL injection fixed by using prepared statement
     function searchSale($searchString='', $startFrom=0)
     {
         global $con;
 
         $toReturn = array();
 
-        if (empty($searchString))
-        {
-            $sql = "select count(*) as num from sale;";
-            $results = $con->query($sql);
-            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
-
-            $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale limit $startFrom, 30;";
-            $results = $con->query($sql);
-            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
+        if (empty($searchString)) {
+            $sql = "SELECT COUNT(*) AS num FROM sale";
+            $result = $con->query($sql);
+            $toReturn['count'] = (int) (ceil($result->fetch_assoc()['num'] / 30));
+    
+            $sql = "SELECT sale_id, price, district, city, title, land_area, create_date, cover_photo FROM sale LIMIT ?, 30";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("i", $startFrom);
+        } else {
+            $sql = "SELECT COUNT(*) AS num FROM sale WHERE MATCH(title, city, district, province) AGAINST (?)";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("s", $searchString);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $toReturn['count'] = (int) (ceil($result->fetch_assoc()['num'] / 30));
+    
+            $sql = "SELECT sale_id, price, district, city, title, land_area, create_date, cover_photo FROM sale WHERE MATCH(title, city, district, province) AGAINST (?) LIMIT ?, 30";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("si", $searchString, $startFrom);
         }
-        else
-        {
-            $sql = "select count(*) as num from sale where match(title, city, district, province) against ('$searchString');";
-            $results = $con->query($sql);
-            $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
-
-            $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
-            $results = $con->query($sql);
-            $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
-        }
+    
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $toReturn['results'] = $result->fetch_all(MYSQLI_ASSOC);
 
         return $toReturn;
     }
 
     //search for requests
+    // SQL injection fixed by using prepared statement
     function searchRequest($searchString='', $startFrom=0)
     {
         global $con;
@@ -519,135 +561,268 @@
 
         if (empty($searchString))
         {
-            $sql = "select count(*) as num from request;";
+            $sql = "SELECT COUNT(*) AS num FROM request;";
             $results = $con->query($sql);
             $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
-            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request limit $startFrom, 30;";
-            $results = $con->query($sql);
+            $sql = "SELECT request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo FROM request LIMIT ?, 30;";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("i", $startFrom);
+            $stmt->execute();
+            $results = $stmt->get_result();
             $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
-
         }
         else
         {
-            $sql = "select count(*) as num from request where match(title, city, district, province) against ('$searchString');";
-            $results = $con->query($sql);
+            $sql = "SELECT COUNT(*) AS num FROM request WHERE MATCH(title, city, district, province) AGAINST (?);";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("s", $searchString);
+            $stmt->execute();
+            $results = $stmt->get_result();
             $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
-            $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where match(title, city, district, province) against ('$searchString') limit $startFrom, 30;";
-            $results = $con->query($sql);
+            $sql = "SELECT request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo FROM request WHERE MATCH(title, city, district, province) AGAINST (?) LIMIT ?, 30;";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param("si", $searchString, $startFrom);
+            $stmt->execute();
+            $results = $stmt->get_result();
             $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
         }
-        
+
         return $toReturn;
-        
     }
 
     //get a list of sales
+    // SQL injection fixed by using prepared statement
     function getSales($startFrom=0)
     {
         global $con;
 
         $toReturn = array();
 
-        $sql = "select count(*) as num from sale;";     
+        $sql = "SELECT COUNT(*) AS num FROM sale;";
         $results = $con->query($sql);
         $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
-        $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where type_id = 1 limit $startFrom, 15;";     
-        $results = $con->query($sql);
+        $sql = "SELECT sale_id, price, district, city, title, land_area, create_date, cover_photo FROM sale WHERE type_id = 1 LIMIT ?, 15;";     
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $startFrom);
+        $stmt->execute();
+        $results = $stmt->get_result();
         $toReturn['top'] = $results->fetch_all(MYSQLI_ASSOC);
 
-        $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where type_id <> 1 limit $startFrom, 15;";     
-        $results = $con->query($sql);
+        $sql = "SELECT sale_id, price, district, city, title, land_area, create_date, cover_photo FROM sale WHERE type_id <> 1 LIMIT ?, 15;";     
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $startFrom);
+        $stmt->execute();
+        $results = $stmt->get_result();
         $toReturn['posts'] = $results->fetch_all(MYSQLI_ASSOC);
 
         return $toReturn;
-        
     }
 
     //get a list of requests
+    // SQL injection fixed by using prepared statement
     function getRequests($startFrom=0)
     {
         global $con;
 
         $toReturn = array();
 
-        $sql = "select count(*) as num from request;";     
+        $sql = "SELECT COUNT(*) AS num FROM request;";
         $results = $con->query($sql);
         $toReturn['count'] = (int) (ceil($results->fetch_assoc()['num'] / 30));
 
-        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id = 1 limit $startFrom, 15;";
-        $results = $con->query($sql);
+        $sql = "SELECT request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo FROM request WHERE type_id = 1 LIMIT ?, 15;";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $startFrom);
+        $stmt->execute();
+        $results = $stmt->get_result();
         $toReturn['top'] = $results->fetch_all(MYSQLI_ASSOC);
 
-        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where type_id <> 1 limit $startFrom, 15;";
-        $results = $con->query($sql);
+        $sql = "SELECT request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo FROM request WHERE type_id <> 1 LIMIT ?, 15;";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("i", $startFrom);
+        $stmt->execute();
+        $results = $stmt->get_result();
         $toReturn['posts'] = $results->fetch_all(MYSQLI_ASSOC);
 
         return $toReturn;
-        
     }
     
 
     //advanced search for sales
+    // SQL injection fixed by using prepared statement
     function advancedSearchSale($values, $startFrom = 0)
     {
         global $con;
 
-        $sql = "select sale_id, price, district, city, title, land_area, create_date, cover_photo from sale where ";
+        $conditions = [];
+        $params = [];
+        $types = '';
 
-        if (isset($values['min_price']) and !empty($values['min_price'])) $sql .= 'price > ' . $values['min_price'] . ' and ';
-        if (isset($values['max_price']) and !empty($values['max_price'])) $sql .= 'price < ' . $values['max_price'] . ' and ';
-        if (isset($values['min_area']) and !empty($values['min_area'])) $sql .= 'area > ' . $values['min_area'] . ' and ';
-        if (isset($values['max_area']) and !empty($values['max_area'])) $sql .= 'area < ' . $values['max_area'] . ' and ';
-        if (isset($values['min_date']) and !empty($values['min_date'])) $sql .= 'create_date > ' . $values['min_date'] . ' and ';
-        if (isset($values['max_date']) and !empty($values['max_date'])) $sql .= 'create_date < ' . $values['max_date'] . ' and ';
-        if (isset($values['city']) and !empty($values['city'])) $sql .= 'city = \'' . $values['city'] . '\' and ';
-        if (isset($values['district']) and !empty($values['district'])) $sql .= 'district = \'' . $values['district'] . '\' and ';
-        if (isset($values['province']) and !empty($values['province'])) $sql .= 'province = \'' . $values['province'] . '\' and ';
-        if (isset($values['search']) and !empty($values['search'])) $sql .= " match(title, city, district, province) against ('". $values['search']."') and ";
+        if (isset($values['min_price']) && !empty($values['min_price'])) {
+            $conditions[] = 'price > ?';
+            $params[] = $values['min_price'];
+            $types .= 'i';
+        }
+        if (isset($values['max_price']) && !empty($values['max_price'])) {
+            $conditions[] = 'price < ?';
+            $params[] = $values['max_price'];
+            $types .= 'i';
+        }
+        if (isset($values['min_area']) && !empty($values['min_area'])) {
+            $conditions[] = 'land_area > ?';
+            $params[] = $values['min_area'];
+            $types .= 'i';
+        }
+        if (isset($values['max_area']) && !empty($values['max_area'])) {
+            $conditions[] = 'land_area < ?';
+            $params[] = $values['max_area'];
+            $types .= 'i';
+        }
+        if (isset($values['min_date']) && !empty($values['min_date'])) {
+            $conditions[] = 'create_date > ?';
+            $params[] = $values['min_date'];
+            $types .= 's';
+        }
+        if (isset($values['max_date']) && !empty($values['max_date'])) {
+            $conditions[] = 'create_date < ?';
+            $params[] = $values['max_date'];
+            $types .= 's';
+        }
+        if (isset($values['city']) && !empty($values['city'])) {
+            $conditions[] = 'city = ?';
+            $params[] = $values['city'];
+            $types .= 's';
+        }
+        if (isset($values['district']) && !empty($values['district'])) {
+            $conditions[] = 'district = ?';
+            $params[] = $values['district'];
+            $types .= 's';
+        }
+        if (isset($values['province']) && !empty($values['province'])) {
+            $conditions[] = 'province = ?';
+            $params[] = $values['province'];
+            $types .= 's';
+        }
+        if (isset($values['search']) && !empty($values['search'])) {
+            $conditions[] = "MATCH(title, city, district, province) AGAINST (?)";
+            $params[] = $values['search'];
+            $types .= 's';
+        }
 
-        $sql .= "true LIMIT $startFrom, 30;";
-        $results = $con->query($sql);
+        // Build the SQL query
+        $sql = "SELECT sale_id, price, district, city, title, land_area, create_date, cover_photo FROM sale WHERE ";
+        $sql .= implode(' AND ', $conditions) . " LIMIT ?, 30;";
+        
+        $stmt = $con->prepare($sql);
+        
+        $params[] = $startFrom;
+        $types .= 'i'; // assuming startFrom is an integer
+        $stmt->bind_param($types, ...$params);
+
+        $stmt->execute();
+        $results = $stmt->get_result();
+
         $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
-        $toReturn['count'] = 0;
-        return $toReturn;
+        $toReturn['count'] = 0; // resetting to 0 just in case
 
+        return $toReturn;
     }
 
     //advanced search for requests
+    // SQL injection fixed by using prepared statement
     function advancedSearchRequest($values, $startFrom = 0)
     {
         global $con;
 
-        $sql = "select request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo from request where ";
-
-        if (isset($values['min_price']) and !empty($values['min_price'])) $sql .= 'min_price > ' . $values['min_price'] . ' and ';
-        if (isset($values['max_price']) and !empty($values['max_price'])) $sql .= 'max_price < ' . $values['max_price'] . ' and ';
-        if (isset($values['min_area']) and !empty($values['min_area'])) $sql .= 'min_area > ' . $values['min_area'] . ' and ';
-        if (isset($values['max_area']) and !empty($values['max_area'])) $sql .= 'max_area < ' . $values['max_area'] . ' and ';
-        if (isset($values['min_date']) and !empty($values['min_date'])) $sql .= 'create_date > ' . $values['min_date'] . ' and ';
-        if (isset($values['max_date']) and !empty($values['max_date'])) $sql .= 'create_date < ' . $values['max_date'] . ' and ';
-        if (isset($values['city']) and !empty($values['city'])) $sql .= 'city = \'' . $values['city'] . '\' and ';
-        if (isset($values['district']) and !empty($values['district'])) $sql .= 'district = \'' . $values['district'] . '\' and ';
-        if (isset($values['province']) and !empty($values['province'])) $sql .= 'province = \'' . $values['province'] . '\' and ';
-        if (isset($values['search']) and !empty($values['search'])) $sql .= " match(title, city, district, province) against ('". $values['search']."') and ";
-        $sql .= "true LIMIT $startFrom, 30;";
-        $results = $con->query($sql);
+        $conditions = [];
+        $params = [];
+        $types = '';
+    
+        if (isset($values['min_price']) && !empty($values['min_price'])) {
+            $conditions[] = 'min_price > ?';
+            $params[] = $values['min_price'];
+            $types .= 'i';
+        }
+        if (isset($values['max_price']) && !empty($values['max_price'])) {
+            $conditions[] = 'max_price < ?';
+            $params[] = $values['max_price'];
+            $types .= 'i';
+        }
+        if (isset($values['min_area']) && !empty($values['min_area'])) {
+            $conditions[] = 'min_area > ?';
+            $params[] = $values['min_area'];
+            $types .= 'i';
+        }
+        if (isset($values['max_area']) && !empty($values['max_area'])) {
+            $conditions[] = 'max_area < ?';
+            $params[] = $values['max_area'];
+            $types .= 'i';
+        }
+        if (isset($values['min_date']) && !empty($values['min_date'])) {
+            $conditions[] = 'create_date > ?';
+            $params[] = $values['min_date'];
+            $types .= 's';
+        }
+        if (isset($values['max_date']) && !empty($values['max_date'])) {
+            $conditions[] = 'create_date < ?';
+            $params[] = $values['max_date'];
+            $types .= 's';
+        }
+        if (isset($values['city']) && !empty($values['city'])) {
+            $conditions[] = 'city = ?';
+            $params[] = $values['city'];
+            $types .= 's';
+        }
+        if (isset($values['district']) && !empty($values['district'])) {
+            $conditions[] = 'district = ?';
+            $params[] = $values['district'];
+            $types .= 's';
+        }
+        if (isset($values['province']) && !empty($values['province'])) {
+            $conditions[] = 'province = ?';
+            $params[] = $values['province'];
+            $types .= 's';
+        }
+        if (isset($values['search']) && !empty($values['search'])) {
+            $conditions[] = "MATCH(title, city, district, province) AGAINST (?)";
+            $params[] = $values['search'];
+            $types .= 's';
+        }
+    
+        // Build the SQL query
+        $sql = "SELECT request_id, max_price, min_price, max_area, min_area, district, city, title, create_date, cover_photo FROM request WHERE ";
+        $sql .= implode(' AND ', $conditions) . " LIMIT ?, 30;";
+    
+        $stmt = $con->prepare($sql);
+    
+        $params[] = $startFrom;
+        $types .= 'i';
+    
+        $stmt->bind_param($types, ...$params);
+    
+        $stmt->execute();
+        $results = $stmt->get_result();
+    
         $toReturn['results'] = $results->fetch_all(MYSQLI_ASSOC);
-        $toReturn['count'] = 0;
+        $toReturn['count'] = 0; // resetting just in case
+    
         return $toReturn;
-
     }
 
     //delete warnings of a user
+    // SQL injection fixed by using prepared statement
     function deleteWarning($userId)
     {
         global $con;
 
-        $sql = "delete from users_warnings where user_id = $userId;";
+        $sql = "DELETE FROM users_warnings WHERE user_id = ?";
+        $stmt = $con->prepare($sql);
 
-        $con->query($sql);
+        $stmt->bind_param('i', $userId);
+        
+        $stmt->execute();
     }
 ?>
