@@ -18,6 +18,17 @@
         "phone"=>False
     );
 
+    // Generate CSRF token
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+
+
+    // Validate CSRF token
+    if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        die('Invalid CSRF token');
+    }
+
     $errors = array();  //array to store errors relevent to each field
 
     foreach ($required as $fieldName=>$_)   //initialize arrays with empty values
